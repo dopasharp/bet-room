@@ -130,7 +130,7 @@ const paper=new THREE.Mesh(new THREE.BoxGeometry(.34,.23,.025),new THREE.MeshSta
 inspectEnvelope.add(paper);
 const flap=new THREE.Mesh(new THREE.ConeGeometry(.19,.13,3),new THREE.MeshStandardMaterial({color:0xd6a85c,side:THREE.DoubleSide}));
 flap.rotation.z=Math.PI;flap.position.set(0,.04,.022);inspectEnvelope.add(flap);
-scene.add(inspectEnvelope);inspectEnvelope.visible=false;inspectEnvelope.scale.setScalar(1.6);inspectEnvelope.traverse(o=>{if(o.isMesh){o.material.depthTest=false;o.material.depthWrite=false;o.renderOrder=1000}});
+scene.add(inspectEnvelope);inspectEnvelope.visible=false;inspectEnvelope.scale.setScalar(.68);inspectEnvelope.traverse(o=>{if(o.isMesh){o.material.depthTest=false;o.material.depthWrite=false;o.renderOrder=1000}});
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
 function closeInspect(){inspecting=-1;inspectEnvelope.visible=false;document.body.classList.remove('inspect')}
 function openInspect(){
