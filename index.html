@@ -130,19 +130,19 @@ const paper=new THREE.Mesh(new THREE.BoxGeometry(.34,.23,.025),new THREE.MeshSta
 inspectEnvelope.add(paper);
 const flap=new THREE.Mesh(new THREE.ConeGeometry(.19,.13,3),new THREE.MeshStandardMaterial({color:0xd6a85c,side:THREE.DoubleSide}));
 flap.rotation.z=Math.PI;flap.position.set(0,.04,.022);inspectEnvelope.add(flap);
-scene.add(inspectEnvelope);inspectEnvelope.visible=false;
+scene.add(inspectEnvelope);inspectEnvelope.visible=false;inspectEnvelope.scale.setScalar(1.6);inspectEnvelope.traverse(o=>{if(o.isMesh){o.material.depthTest=false;o.material.depthWrite=false;o.renderOrder=1000}});
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
 function closeInspect(){inspecting=-1;inspectEnvelope.visible=false;document.body.classList.remove('inspect')}
 function openInspect(){
  if(!active||freeze>0||near<0||opened.has(near))return;
- inspecting=near;inspectYaw=0;inspectPitch=-.12;document.body.classList.add('inspect');
+ inspecting=near;inspectYaw=.58;inspectPitch=-.05;document.body.classList.add('inspect');
  const [name,x,z]=spots[near];$('inspectTitle').textContent='🔎 '+name+' 내부 탐색';
  const hasEnvelope=loot.includes(near);
  inspectEnvelope.visible=hasEnvelope;
  // Place the envelope low and off-center, so a short look-around is required.
- inspectEnvelope.position.set(x+.34,.43,z-.25);
- inspectEnvelope.rotation.set(-.12,.55,0);
- notice('카메라를 움직여 숨겨진 봉투를 찾아봐');
+ inspectEnvelope.position.set(x+.12,1.04,z+.08);
+ inspectEnvelope.rotation.set(0,.15,0);
+ $('inspectHint').textContent=hasEnvelope?'화면을 조금 돌려 노란 봉투를 찾아 터치!':'봉투가 안 보이면 돌아가서 다른 곳을 찾아봐';
 }
 function finishInspect(){
  const i=inspecting;if(i<0)return;closeInspect();opened.add(i);
