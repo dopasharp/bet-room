@@ -45,7 +45,7 @@ async function enterRoom(code,create){
  try{
  const seatRef=ref(db,'rooms/'+code+'/seats');
  const tx=await runTransaction(seatRef,current=>{
-   const seats=current||{};if(create&&Object.keys(seats).length)return;
+   const seats=current||{};if(create&&Object.keys(seats).length)return;if(!create&&!seats.a)return;
    if(!seats.a){seats.a=sessionId;return seats}
    if(!seats.b&&seats.a!==sessionId){seats.b=sessionId;return seats}
    return;
