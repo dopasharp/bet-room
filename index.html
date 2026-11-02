@@ -5,9 +5,11 @@
 #mapOverlay{position:fixed;inset:0;z-index:4;background:#141c25f2;display:none;align-items:center;justify-content:center;padding:18px}#mapPanel{width:min(100%,510px);max-height:95dvh;overflow:auto;background:#283440;border:1px solid #ffffff30;border-radius:24px;padding:20px;text-align:center}#floorplan{position:relative;width:100%;aspect-ratio:12/11;background:#d9d0c0;border:9px solid #766e63;border-radius:10px;margin:15px 0;overflow:hidden}#floorplan:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 36px,#ffffff20 37px),repeating-linear-gradient(90deg,transparent 0 36px,#ffffff20 37px);pointer-events:none}.furniture{position:absolute;border:2px solid #74685b;border-radius:7px;background:#b1a18c88;color:#534b44;font-size:11px;display:grid;place-items:center;pointer-events:none}.mapSpot{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border:3px solid #fff;border-radius:50%;background:#536c7e;color:white;box-shadow:0 3px 12px #0006;font-weight:900;font-size:16px;cursor:pointer;z-index:2;touch-action:manipulation;padding:0}.mapSpot:active:not(:disabled){transform:translate(-50%,-50%) scale(.85)}.mapSpot.bet{background:#e7bd55;color:#302820}.mapSpot.dud{background:#bd7b79}.mapSpot.pop{animation:spotPop .5s cubic-bezier(.34,1.56,.64,1)}#mapActions{display:flex;gap:8px;justify-content:center}#mapActions button{flex:1}#mapStatus{min-height:24px;font-size:14px;color:#e7d6b7}body.hiding #ui{display:none}#darkness{position:fixed;inset:0;z-index:2;pointer-events:none;display:none}#frost{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,transparent 48%,#cdeeff99 80%,#f2fbffee 100%);box-shadow:inset 0 0 90px 24px #e9f8ffcc}#effect{position:fixed;top:119px;left:14px;z-index:3;display:none;background:#101820e8;border:1px solid #ffffff55;border-radius:12px;padding:9px 13px;font-weight:800;font-size:13px}#inspectHud{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .35s .25s,visibility .35s .25s}#inspectHud .bar{position:absolute;top:18%;left:50%;transform:translateX(-50%);background:#14212ce8;padding:12px 18px;border-radius:16px;text-align:center;white-space:nowrap}#inspectOpen{position:absolute;left:18px;bottom:30px;pointer-events:auto;background:#9de3bb}#inspectExit{position:absolute;right:18px;bottom:30px;pointer-events:auto}#inspectHint{position:absolute;bottom:105px;left:50%;transform:translateX(-50%);background:#14212ce8;border-radius:12px;padding:10px;white-space:nowrap;font-size:13px}body.inspect #ui{opacity:0;visibility:hidden}body.inspect #inspectHud{opacity:1;visibility:visible}
 #panel,#mapPanel{animation:rise .5s cubic-bezier(.34,1.56,.64,1)}#search.ready{animation:ready 1.1s ease-in-out infinite}.bump{animation:bump .4s cubic-bezier(.34,1.56,.64,1)}canvas.dizzy{animation:dizzy .9s ease-in-out}#fx{position:fixed;inset:0;z-index:7;pointer-events:none}
 #reveal{position:fixed;inset:0;z-index:6;display:grid;place-items:center;background:#0b1118b0;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;padding:18px}#reveal.show{opacity:1;visibility:visible}#reveal .stage{display:flex;flex-direction:column;align-items:center;gap:30px;padding-top:110px}.env{position:relative;width:270px;height:170px;transform:translateY(-70vh) rotate(-16deg);transition:transform .55s cubic-bezier(.34,1.56,.64,1)}#reveal.show .env{transform:none}.env .back{position:absolute;inset:0;background:#d9ae58;border-radius:10px}.env .letter{position:absolute;left:14px;right:14px;top:10px;height:150px;background:#fffaf0;border-radius:8px;padding:12px;text-align:center;color:#2c2a26;z-index:2;box-shadow:0 4px 14px #0003;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}#reveal.out .letter{transform:translateY(-118px) scale(1.06)}.env .front{position:absolute;inset:0;background:#f4d78a;border-radius:10px;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);z-index:3}.env .flap{position:absolute;left:0;right:0;top:0;height:62%;background:#e3b85e;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .45s ease-in,z-index 0s .22s;z-index:4}#reveal.open .flap{transform:rotateX(180deg);z-index:1}.letter .icon{font-size:36px;line-height:1.1}.letter .ltitle{font-weight:900;font-size:17px;margin:4px 0 3px}.letter .ltext{font-size:13px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#revealBtn{opacity:0;transform:translateY(12px);transition:opacity .3s .9s,transform .4s .9s cubic-bezier(.34,1.56,.64,1)}#reveal.out #revealBtn{opacity:1;transform:none}.kind-bet .letter{background:#fff6d6}.kind-bet .ltitle{color:#b5821b}.kind-ice .letter{background:#e8f7ff}.kind-ice .ltitle{color:#2f7cb3}.kind-dark .letter{background:#2a2540;color:#f1edff}.kind-reverse .letter{background:#ffe8f0}.kind-reverse .ltitle{color:#c0476e}#reveal.kind-bet.out .env{animation:wiggle .6s .55s}
-@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 방 · 직접 찾아보는 탐색</div></div><div class="pill" id="count">배치 0 / 4</div></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 배치해. 순서대로 ✉️ 내기 → ❄️ 얼음 → 🌑 암흑 → 🔄 방향</small><div id="floorplan"><div class="furniture" style="left:8%;top:9%;width:28%;height:39%">침대</div><div class="furniture" style="left:64%;top:6%;width:25%;height:13%">책상</div><div class="furniture" style="left:84%;top:22%;width:13%;height:24%">옷장</div><div class="furniture" style="left:70%;top:65%;width:27%;height:15%">소파</div><div class="furniture" style="left:2%;top:62%;width:17%;height:23%">책장</div><div class="furniture" style="left:57%;top:65%;width:9%;height:13%">러그</div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>배치 완료 (0/4)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 4개를 배치한 뒤 3D 방에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 방 · 직접 찾아보는 탐색</div></div><div class="pill" id="count">배치 0 / 4</div></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 배치해. 순서대로 ✉️ 내기 → ❄️ 얼음 → 🌑 암흑 → 🔄 방향</small><div id="floorplan"><div class="furniture" style="left:8%;top:9%;width:28%;height:39%">침대</div><div class="furniture" style="left:64%;top:6%;width:25%;height:13%">책상</div><div class="furniture" style="left:84%;top:22%;width:13%;height:24%">옷장</div><div class="furniture" style="left:70%;top:65%;width:27%;height:15%">소파</div><div class="furniture" style="left:2%;top:62%;width:17%;height:23%">책장</div><div class="furniture" style="left:54.5%;top:66%;width:15.8%;height:11.8%;border-radius:50%">러그</div><div class="furniture" style="left:34.2%;top:3.2%;width:5.8%;height:5.5%"></div><div class="furniture" style="left:93.7%;top:87.7%;width:4.2%;height:4.5%;border-radius:50%"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>배치 완료 (0/4)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 4개를 배치한 뒤 3D 방에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js';
+import * as THREE from 'three';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
 import {getDatabase,ref,get,set,update,onValue,onDisconnect,serverTimestamp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
 const fb=initializeApp({apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDomain:"bet-room-e2ae3.firebaseapp.com",databaseURL:"https://bet-room-e2ae3-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bet-room-e2ae3",appId:"1:152551218316:web:3f34e5cf9f01f2e4dfefa9"});
@@ -18,33 +20,96 @@ let roomCode='',seat='',peerTarget=null,peerVisible=false,lastSync=0,lastPush=0,
 const sessionId=(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)).replace(/[^a-zA-Z0-9]/g,'').slice(0,22);
 const peer=new THREE.Group(); // mesh added after player setup
 
-const scene=new THREE.Scene();scene.background=new THREE.Color('#a6b7c3');
+const scene=new THREE.Scene();scene.background=canvasTexture(x=>{const g=x.createLinearGradient(0,0,0,128);g.addColorStop(0,'#ffe6d6');g.addColorStop(1,'#d9d6ff');x.fillStyle=g;x.fillRect(0,0,128,128)});
 const camera=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,100);
-const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;document.body.prepend(renderer.domElement);
-scene.add(new THREE.HemisphereLight(0xffffff,0x7d7e8b,2.2));
-const sun=new THREE.DirectionalLight(0xffe4b4,2.4);sun.position.set(-4,9,5);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);scene.add(sun);
-const mat=(c)=>new THREE.MeshStandardMaterial({color:c,roughness:.85});
-const floor=mat('#b7a38c'),wall=mat('#e0ddd4'),wood=mat('#92785e'),cream=mat('#e6ded0'),dark=mat('#444f56'),blue=mat('#63809b'),green=mat('#6c886f');
-function box(w,h,d,x,y,z,m,group=scene){let o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;group.add(o);return o}
-box(12,.2,11,0,-.1,0,floor);box(12,3,.15,0,1.5,-5.5,wall);box(.15,3,11,-6,1.5,0,wall);
-box(3,.45,4,-3.5,.35,-2.8,wood);box(2.8,.3,3.2,-3.5,.72,-2.8,cream);box(2.7,.16,1,-3.5,.95,-4,blue);box(2.4,.12,1.8,-3.5,.14,-2.8,mat('#b9a994'));
-box(2.4,.13,1.1,2.8,1.15,-4.65,wood);for(let x of [1.8,3.8])box(.13,1.1,.13,x,.6,-4.65,dark);
-box(.9,.55,.07,2.8,1.58,-4.85,dark);box(.7,.06,.3,2.8,1.2,-4.1,dark);box(.7,.65,.7,2.8,.4,-3.45,blue);
-box(1.6,2.4,1.2,4.65,1.2,-2.65,wood);box(.03,1.7,.05,4.66,1.2,-1.99,cream);
-box(2.5,.65,.9,3.8,.34,2.8,dark);box(2.4,.4,.85,3.8,.83,2.8,blue);box(2,.08,1.2,1.5,.12,2.4,cream);
-box(1.2,1.6,.8,-4.8,.8,2.7,wood);for(let y of [.4,.85,1.3])box(1.1,.06,.85,-4.8,y,2.7,cream);
-box(.8,.65,.8,-1.2,.32,3.7,green);box(.7,.12,.7,-1.2,.7,3.7,mat('#c3a888'));
-// Avatars: torso/head bob and limbs pivot at the shoulder/hip so walking can swing them.
-function makeAvatar(g,shirt){
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;document.body.prepend(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xfff1e2,0xcbbcff,1.9));
+const sun=new THREE.DirectionalLight(0xffe0bf,2.3);sun.position.set(-5,10,6);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-9,right:9,top:9,bottom:-9});sun.shadow.camera.updateProjectionMatrix();sun.shadow.bias=-.0004;scene.add(sun);
+const fill=new THREE.DirectionalLight(0xd4e2ff,.6);fill.position.set(6,5,8);scene.add(fill);
+const mat=(c,o={})=>new THREE.MeshStandardMaterial({color:c,roughness:.8,...o});
+// Toy-diorama palette: pastel base with DOPA# lime / pink / mint accents.
+const C={wood:'#dcae80',woodDark:'#b98656',sheet:'#fffaf2',pink:'#ff9fb6',pinkDeep:'#ff6c91',mint:'#8fe3c6',mintLight:'#bff3df',lime:'#d9ff44',sky:'#bfe3ff',lav:'#c9b6ff',lavLight:'#ddd0ff',peach:'#ffc7a8',terra:'#e8896a',leaf:'#62c486',ink:'#3a3f4b',trim:'#fffaf4'};
+const M=Object.fromEntries(Object.entries(C).map(([k,v])=>[k,mat(v)]));
+function mesh(geo,m,x,y,z,group=scene){const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;group.add(o);return o}
+function rbox(w,h,d,x,y,z,m,group=scene,r=.08){return mesh(new RoundedBoxGeometry(w,h,d,3,Math.min(r,Math.min(w,h,d)/2-.002)),m,x,y,z,group)}
+const cyl=(rt,rb,h,seg=20)=>new THREE.CylinderGeometry(rt,rb,h,seg);
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647; // deterministic decor
+// Room shell: a thick floating floor slab with two walls, like a cut-away dollhouse.
+rbox(12.6,.6,11.6,0,-.3,0,mat('#c99b72'),scene,.2);
+const plankTex=canvasTexture(x=>{for(let r=0;r<8;r++){x.fillStyle=r%2?'#e6c398':'#eecfa8';x.fillRect(0,r*16,128,16);x.fillStyle='#d4ad83';x.fillRect(0,r*16+15,128,1);x.fillRect((r*45)%128,r*16,2,16)}});plankTex.wrapS=plankTex.wrapT=THREE.RepeatWrapping;plankTex.repeat.set(2,4);
+const planks=mesh(new THREE.PlaneGeometry(12.3,11.3),mat('#ffffff',{map:plankTex}),0,.005,0);planks.rotation.x=-Math.PI/2;planks.castShadow=false;
+rbox(12.6,3.2,.3,0,1.6,-5.65,mat('#fbefe3'),scene,.12);rbox(.3,3.2,11.6,-6.15,1.6,0,mat('#f6e2d6'),scene,.12);
+rbox(12.2,1.05,.08,.15,.52,-5.47,mat('#f3cfc2'),scene,.03);rbox(12.2,.08,.14,.15,1.07,-5.45,M.trim,scene,.03);
+rbox(.08,1.05,11.2,-5.97,.52,.15,mat('#f3cfc2'),scene,.03);rbox(.14,.08,11.2,-5.95,1.07,.15,M.trim,scene,.03);
+// Window with curtains, and two little frames on the side wall.
+rbox(1.8,1.35,.12,-.4,1.95,-5.44,M.trim,scene,.05);mesh(new THREE.PlaneGeometry(1.5,1.08),mat('#bfe6ff',{emissive:'#d8f0ff',emissiveIntensity:.6}),-.4,1.95,-5.37);
+rbox(.06,1.08,.06,-.4,1.95,-5.36,M.trim,scene,.02);rbox(1.5,.06,.06,-.4,1.95,-5.36,M.trim,scene,.02);rbox(1.95,.08,.26,-.4,1.25,-5.36,M.trim,scene,.03);
+for(const x of [-1.45,.65])rbox(.38,1.6,.1,x,1.9,-5.33,M.pink,scene,.05);
+rbox(.06,.75,.95,-5.95,2.05,1.3,M.trim,scene,.03);rbox(.03,.6,.8,-5.91,2.05,1.3,M.lime,scene,.02);mesh(new THREE.CircleGeometry(.16,24),M.pinkDeep,-5.89,2.05,1.3).rotation.y=Math.PI/2;
+rbox(.06,.55,.55,-5.95,2.15,-.4,M.trim,scene,.03);rbox(.03,.42,.42,-5.91,2.15,-.4,M.sky,scene,.02);
+// Bed: plump mattress, pink blanket (cover 0) and a big pillow (cover 7).
+rbox(3,.38,4,-3.5,.25,-2.8,M.wood,scene,.12);rbox(3.1,1.35,.24,-3.5,.72,-4.72,M.woodDark,scene,.12);rbox(2.8,.34,3.7,-3.5,.6,-2.7,M.sheet,scene,.15);
+const blanket=rbox(2.9,.14,2.1,-3.5,.83,-1.95,mat(C.pink),scene,.07);rbox(2.92,.15,.2,0,.005,-.55,M.pinkDeep,blanket,.06);
+const pillow=rbox(1.3,.22,.6,-3.5,.88,-4.15,mat(C.sky),scene,.11);
+// Nightstand with a warm lamp.
+rbox(.7,.6,.6,-1.55,.3,-4.85,M.wood,scene,.07);rbox(.5,.04,.02,-1.55,.4,-4.54,M.woodDark,scene,.01);
+mesh(cyl(.04,.07,.32),M.trim,-1.55,.76,-4.85);mesh(cyl(.13,.21,.24,24),mat(C.peach,{emissive:'#ffb07a',emissiveIntensity:.5}),-1.55,1.02,-4.85);
+const bedLamp=new THREE.PointLight(0xffc48a,2.2,4.5,1.6);bedLamp.position.set(-1.55,.95,-4.55);scene.add(bedLamp);
+// Desk with a mint drawer (cover 1), DOPA# monitor, mug and chair.
+rbox(2.4,.12,1.1,2.8,1.1,-4.65,M.wood,scene,.05);for(const x of [1.72,3.88])for(const z of [-5.1,-4.2])mesh(cyl(.05,.04,1.04,12),M.woodDark,x,.52,z);
+rbox(1,.28,.72,2.8,.9,-4.62,M.wood,scene,.04);
+const drawer=rbox(.9,.22,.6,2.8,.9,-4.53,mat(C.mint),scene,.05);mesh(new THREE.SphereGeometry(.04,10,8),M.trim,0,0,.31,drawer);
+const screenTex=canvasTexture(x=>{x.fillStyle='#101310';x.fillRect(0,0,128,128);x.translate(64,66);x.scale(.59,1);x.fillStyle='#d9ff44';x.font='900 44px system-ui';x.textAlign='center';x.textBaseline='middle';x.fillText('DOPA#',0,0)});
+rbox(.98,.62,.07,2.8,1.62,-4.95,M.ink,scene,.05);mesh(new THREE.PlaneGeometry(.86,.5),new THREE.MeshBasicMaterial({map:screenTex}),2.8,1.62,-4.91);mesh(cyl(.04,.04,.26,10),M.ink,2.8,1.28,-4.97);rbox(.34,.03,.2,2.8,1.17,-4.95,M.ink,scene,.015);
+mesh(cyl(.07,.06,.14,16),M.pinkDeep,2,1.23,-4.4);rbox(.35,.06,.25,3.6,1.19,-4.4,M.lav,scene,.02);rbox(.32,.06,.24,3.6,1.25,-4.4,M.mint,scene,.02);
+rbox(.72,.14,.72,2.8,.6,-3.45,M.pink,scene,.07);rbox(.72,.62,.12,2.8,.98,-3.12,M.pink,scene,.06);mesh(cyl(.05,.05,.5,10),M.ink,2.8,.28,-3.45);mesh(cyl(.3,.3,.04,20),M.ink,2.8,.03,-3.45);
+// Wardrobe: the right door (cover 2) is hinged on its outer edge.
+rbox(1.6,2.4,1.2,4.65,1.2,-2.65,M.lav,scene,.1);rbox(1.72,.12,1.3,4.65,2.44,-2.65,M.trim,scene,.05);
+rbox(.7,1.85,.02,5.03,1.22,-2.045,mat('#7a68a6'),scene,.01);
+rbox(.72,1.9,.06,4.27,1.22,-2.02,M.lavLight,scene,.04);mesh(new THREE.SphereGeometry(.045,10,8),M.trim,4.57,1.22,-1.98);
+const wardDoor=rbox(.72,1.9,.06,5.39,1.22,-2.02,mat(C.lavLight),scene,.04);wardDoor.geometry.translate(-.36,0,0);mesh(new THREE.SphereGeometry(.045,10,8),M.trim,-.62,0,.04,wardDoor);
+// Sofa with two seat cushions (the right one is cover 3) and a lime throw pillow.
+rbox(2.5,.42,.95,3.8,.27,2.8,M.mint,scene,.14);rbox(2.5,.72,.3,3.8,.68,3.15,M.mint,scene,.14);for(const x of [2.7,4.9])rbox(.32,.6,.95,x,.5,2.8,M.mint,scene,.14);
+rbox(.92,.18,.66,3.32,.57,2.72,M.mintLight,scene,.08);const cushion=rbox(.92,.18,.66,4.28,.57,2.72,mat(C.mintLight),scene,.08);
+rbox(.5,.45,.16,3.05,.85,2.95,M.lime,scene,.08).rotation.set(-.2,.15,.12);
+// Floor lamp in the sofa corner.
+mesh(cyl(.22,.22,.05,20),M.ink,5.5,.025,4.4);mesh(cyl(.025,.025,1.7,8),M.ink,5.5,.88,4.4);mesh(cyl(.2,.32,.35,24),mat(C.lime,{emissive:'#e8ff8a',emissiveIntensity:.45}),5.5,1.75,4.4);
+const floorLamp=new THREE.PointLight(0xfff0b0,1.6,5,1.6);floorLamp.position.set(5.3,1.55,4.2);scene.add(floorLamp);
+// Bookshelf full of colourful books; the pink one (cover 4) slides out.
+rbox(1.2,1.62,.08,-4.8,.81,3.06,M.wood,scene,.03);for(const x of [-5.36,-4.24])rbox(.08,1.62,.8,x,.81,2.7,M.wood,scene,.03);for(const y of [.04,.56,1.08,1.6])rbox(1.2,.07,.8,-4.8,y,2.7,M.wood,scene,.03);
+const bookCols=[C.pinkDeep,C.lime,C.sky,C.lav,C.peach,C.mint,'#ffd46b'];
+for(const [row,y] of [.075,.595,1.115].entries()){let x=-5.3;while(x+.14<-4.3){const w=.07+rnd()*.07,h=.3+rnd()*.12;if(!(row===1&&x>-4.72&&x<-4.45))rbox(w,h,.5,x+w/2,y+h/2,2.72,mat(bookCols[Math.floor(rnd()*bookCols.length)]),scene,.015);x+=w+.008}}
+const book=rbox(.13,.42,.52,-4.56,.805,2.7,mat(C.pinkDeep),scene,.02);rbox(.135,.04,.53,0,.12,0,M.lime,book,.01);
+// Planter (cover 5): terracotta pot with chunky low-poly leaves.
+mesh(cyl(.4,.36,.05,24),mat('#c86f52'),-1.2,.025,3.7);
+const pot=mesh(cyl(.34,.26,.5,24),mat(C.terra),-1.2,.3,3.7);mesh(cyl(.3,.3,.02,20),mat('#7a5240'),0,.24,0,pot);
+for(const [x,y,z,s] of [[0,.55,0,1],[.15,.75,.08,.8],[-.16,.72,-.05,.85],[.02,.95,-.1,.7],[-.05,.85,.15,.75]])mesh(new THREE.IcosahedronGeometry(.24*s,0),mat(C.leaf,{flatShading:true}),x,y,z,pot).rotation.set(rnd()*3,rnd()*3,0);
+// Round rug (cover 6), pivoted on its far edge so it lifts like a flap.
+const rugTex=canvasTexture(x=>{['#d9ff44','#ff9fb6','#fffaf2','#8fe3c6','#fffaf2'].forEach((c,k)=>{x.fillStyle=c;x.beginPath();x.arc(64,64,64-k*12,0,7);x.fill()});x.fillStyle='#ff6c91';for(let k=0;k<12;k++){const a=k/12*6.283;x.beginPath();x.arc(64+Math.cos(a)*46,64+Math.sin(a)*46,3.5,0,7);x.fill()}});
+const rugGeo=cyl(.95,.95,.04,48);rugGeo.translate(0,0,.95);const rug=mesh(rugGeo,mat('#ffffff',{map:rugTex}),1.5,.03,2.4-.95*.68);rug.scale.z=.68;rug.castShadow=false;
+const coverMeshes=[blanket,drawer,wardDoor,cushion,book,pot,rug,pillow];
+const coverPositions=coverMeshes.map(m=>m.position.toArray());
+// Chibi jelly-bean avatars: big round head, bean body, stubby limbs that pivot at the hip/shoulder.
+const skin=mat('#ffe2cc',{roughness:.6}),eyeMat=mat('#2b2f3a',{roughness:.3}),sparkle=new THREE.MeshBasicMaterial({color:'#ffffff'}),blushMat=mat(C.pink,{transparent:true,opacity:.7});
+function makeAvatar(g,body,hat,beanie){
  const torso=new THREE.Group(),head=new THREE.Group();g.add(torso);
- box(.55,.8,.36,0,.95,0,shirt,torso);head.position.set(0,1.58,0);torso.add(head);
- box(.4,.42,.4,0,0,0,cream,head);box(.65,.12,.48,0,.27,0,dark,head);box(.07,.09,.03,-.09,.03,.2,dark,head);box(.07,.09,.03,.09,.03,.2,dark,head);
- const limb=(w,h,d,x,y,m,parent)=>{const p=new THREE.Group();p.position.set(x,y,0);parent.add(p);box(w,h,d,0,-h/2,0,m,p);return p};
- g.userData={torso,head,legL:limb(.2,.48,.26,-.16,.56,dark,g),legR:limb(.2,.48,.26,.16,.56,dark,g),armL:limb(.14,.58,.18,-.36,1.3,shirt,torso),armR:limb(.14,.58,.18,.36,1.3,shirt,torso),phase:0,speed:0,step:1};
+ const bodyMat=mat(body,{roughness:.55}),hatMat=mat(hat,{roughness:.6});
+ mesh(new THREE.CapsuleGeometry(.32,.3,6,18),bodyMat,0,.8,0,torso);
+ mesh(new THREE.SphereGeometry(.2,16,12),mat(new THREE.Color(body).lerp(new THREE.Color('#ffffff'),.45)),0,.74,.2,torso).scale.set(1,1.15,.5);
+ head.position.set(0,1.42,0);torso.add(head);
+ mesh(new THREE.SphereGeometry(.38,28,20),skin,0,0,0,head);
+ const eyes=[-.13,.13].map(x=>{const e=mesh(new THREE.SphereGeometry(.055,14,10),eyeMat,x,.02,.34,head);e.scale.set(1,1.35,.6);mesh(new THREE.SphereGeometry(.018,8,6),sparkle,.015,.025,.04,e);return e});
+ for(const x of [-.22,.22]){const b=mesh(new THREE.CircleGeometry(.06,16),blushMat,x,-.08,.315,head);b.rotation.y=x*.9;b.castShadow=false}
+ mesh(new THREE.TorusGeometry(.04,.012,6,12,Math.PI),eyeMat,0,-.1,.37,head).rotation.z=Math.PI;
+ mesh(new THREE.SphereGeometry(.4,26,12,0,Math.PI*2,0,Math.PI/2),hatMat,0,.05,0,head);
+ if(beanie){mesh(new THREE.TorusGeometry(.37,.06,8,26),hatMat,0,.07,0,head).rotation.x=Math.PI/2;mesh(new THREE.SphereGeometry(.1,12,10),M.trim,0,.48,0,head)}
+ else mesh(cyl(.3,.3,.04,24),hatMat,0,.08,.25,head).scale.z=.8;
+ const limb=(r,len,x,y,m,parent,splay)=>{const p=new THREE.Group();p.position.set(x,y,0);p.rotation.z=splay;parent.add(p);mesh(new THREE.CapsuleGeometry(r,len,4,10),m,0,-(len/2+r)+.02,0,p);return p};
+ g.userData={torso,head,eyes,blinkOff:Math.random()*3400,legL:limb(.11,.14,-.15,.4,bodyMat,g,0),legR:limb(.11,.14,.15,.4,bodyMat,g,0),armL:limb(.085,.16,-.36,1.02,bodyMat,torso,-.3),armR:limb(.085,.16,.36,1.02,bodyMat,torso,.3),phase:0,speed:0,step:1};
 }
-const player=new THREE.Group();scene.add(player);makeAvatar(player,blue);
+const player=new THREE.Group();scene.add(player);makeAvatar(player,'#8ec5ff',C.lime,false);
 player.position.set(0,0,0);
-makeAvatar(peer,mat('#bf786a'));peer.visible=false;scene.add(peer);
+makeAvatar(peer,'#ff8fab',C.mint,true);peer.visible=false;scene.add(peer);
 const spots=[['침대',-3.5,-2.7],['책상',2.8,-4.3],['옷장',4.65,-2.4],['소파',3.8,2.8],['책장',-4.8,2.7],['화분',-1.2,3.7],['러그',1.5,2.4],['베개',-3.5,-4]];
 // Axis-aligned furniture footprints with a small margin for the character body.
 const obstacles=[
@@ -55,8 +120,9 @@ const obstacles=[
  [3.8,2.8,2.5,1.0], // sofa
  [-4.8,2.7,1.2,.9], // bookshelf
  [-1.2,3.7,.8,.8], // planter
- [1.5,2.4,2.0,1.2] // rug is walkable, excluded below
-].slice(0,7);
+ [-1.55,-4.85,.7,.6], // nightstand
+ [5.5,4.4,.5,.5] // floor lamp (the rug stays walkable)
+];
 function blocked(x,z){
  const r=.27;
  return obstacles.some(([cx,cz,w,d])=>x>cx-w/2-r&&x<cx+w/2+r&&z>cz-d/2-r&&z<cz+d/2+r);
@@ -149,23 +215,22 @@ function animateAvatar(a,speed,dt,now,dusty){
  u.legL.rotation.x=sw*.7*s;u.legR.rotation.x=-sw*.7*s;u.armL.rotation.x=-sw*.65*s;u.armR.rotation.x=sw*.65*s;
  u.torso.position.y=Math.abs(Math.cos(u.phase))*.07*s+Math.sin(now*.003)*.015*(1-s);
  u.torso.rotation.x=.12*s;u.head.rotation.z=Math.sin(u.phase*.5)*.06*s;
+ const sq=.035*s*Math.cos(u.phase*2);u.torso.scale.set(1+sq,1-sq,1+sq); // jelly squash
+ const blink=(now+u.blinkOff)%3400<110;u.eyes.forEach(e=>e.scale.y=blink?.15:1.35);
  if(dusty&&s>.35&&Math.sign(sw)!==u.step){u.step=Math.sign(sw);burst(a.position.clone().setY(.05),'#cbb79c',3,{spread:.7,up:.6,size:.05,life:.45,gravity:-2})}
 }
 const turn=(o,t,k)=>{o.rotation.y+=Math.atan2(Math.sin(t-o.rotation.y),Math.cos(t-o.rotation.y))*Math.min(1,k)};
 // Close-up exploration: the player must spot and tap a physical envelope.
 // Interactive covers. Each location has a visible part that moves when inspected.
 const inspectCovers=[];
-const coverLabels=['베개 들추기','서랍 열기','옷장 문 열기','소파 쿠션 들기','책 꺼내기','화분 들어보기','카펫 들기','베개 뒤집기'];
-const coverColors=[blue,wood,wood,blue,cream,green,cream,blue];
-const coverShapes=[[1.0,.18,.65],[.9,.36,.12],[.72,1.7,.09],[.95,.18,.7],[.55,.65,.12],[.65,.24,.65],[1.6,.07,1.0],[.9,.18,.65]];
-const coverPositions=[[-3.5,1.09,-3.75],[2.8,1.15,-4.05],[4.65,1.22,-2.01],[3.8,1.09,2.8],[-4.8,.94,2.28],[-1.2,.85,3.7],[1.5,.18,2.4],[-3.5,1.09,-4.1]];
-coverShapes.forEach(([w,h,d],i)=>{const [x,y,z]=coverPositions[i];const m=coverColors[i].clone();const mesh=box(w,h,d,x,y,z,m);inspectCovers.push({mesh,mat:m,base:new THREE.Vector3(x,y,z),p:0,v:0,target:0,shake:0})});
+const coverLabels=['이불 들추기','서랍 열기','옷장 문 열기','소파 쿠션 들기','책 꺼내기','화분 들어보기','카펫 들기','베개 뒤집기'];
+coverMeshes.forEach(mesh=>inspectCovers.push({mesh,mat:mesh.material,base:mesh.position.clone(),p:0,v:0,target:0,shake:0}));
 function setCoverOpen(i,open){const c=inspectCovers[i];if(c)c.target=open?1:0}
 let inspecting=-1,inspectYaw=0,inspectPitch=0,inspectStart=null,inspectRevealed=false;
 const inspectCam=new THREE.PerspectiveCamera(64,innerWidth/innerHeight,.035,60);
 const viewCam=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.035,100);
 let camBlend=0,camGoal=0,camSpot=-1,shakeAmt=0,envPop=-1,envFly=-1,hintSpot=-1,hintPop=0,iceS=0,prevFreeze=0,emptyLeave=0;
-const envBase=new THREE.Vector3(),envFrom=new THREE.Vector3();
+const envBase=new THREE.Vector3(),envFrom=new THREE.Vector3(),inspectPos=new THREE.Vector3();
 const inspectEnvelope=new THREE.Group();
 const paper=new THREE.Mesh(new THREE.BoxGeometry(.34,.23,.025),new THREE.MeshStandardMaterial({color:0xf4dc9a,roughness:.7,side:THREE.DoubleSide}));
 inspectEnvelope.add(paper);
@@ -177,11 +242,17 @@ halo.renderOrder=999;halo.scale.setScalar(.75);inspectEnvelope.add(halo);
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
 function openInspect(){
  if(!active||freeze>0||near<0||opened.has(near)||camSpot>=0)return;
- inspecting=near;camSpot=near;camGoal=1;inspectRevealed=false;envFly=-1;envPop=-1;setCoverOpen(near,false);inspectYaw=.3;inspectPitch=THREE.MathUtils.clamp(Math.atan2(coverPositions[near][1]-1,1.43),-.7,.1);document.body.classList.add('inspect');buzz(10);
+ inspecting=near;camSpot=near;camGoal=1;inspectRevealed=false;envFly=-1;envPop=-1;setCoverOpen(near,false);document.body.classList.add('inspect');buzz(10);
  const [name,x,z]=spots[near];$('inspectTitle').textContent='🔎 '+name+' 내부 탐색';
  inspectEnvelope.visible=false;$('inspectOpen').textContent='🖐️ '+coverLabels[near];$('inspectOpen').disabled=false;
  // Place the envelope low and off-center, so a short look-around is required.
  envBase.set(x+.38,Math.max(.22,coverPositions[near][1]-.15),z-.28);
+ // Frame the furniture from the side the player walked up from, which is always open floor.
+ // Furniture with an opening face (drawer, doors, shelf) pulls the camera toward its front.
+ const look=new THREE.Vector3(x+.19,coverPositions[near][1],z-.14),front=[null,[0,1],[0,1],[0,-1],[0,-1],null,null,[0,1]][near];
+ let dx=player.position.x-x,dz=player.position.z-z,dl=Math.hypot(dx,dz)||1;if(front){dx=dx/dl*.5+front[0];dz=dz/dl*.5+front[1];dl=Math.hypot(dx,dz)||1}
+ inspectPos.set(THREE.MathUtils.clamp(x+dx/dl*1.7,-5.6,6),THREE.MathUtils.clamp(look.y+.9,.9,2),THREE.MathUtils.clamp(z+dz/dl*1.7,-5.2,5.6));
+ const v=look.sub(inspectPos);inspectYaw=Math.atan2(v.x,-v.z);inspectPitch=THREE.MathUtils.clamp(Math.atan2(v.y,Math.hypot(v.x,v.z)),-.85,.85);
  $('inspectHint').textContent='반짝이는 곳을 터치해서 열어봐!';
 }
 // Rattle first for suspense, then spring the cover open.
@@ -237,7 +308,7 @@ inspectCovers.forEach((c,i)=>{
  c.v+=((c.target-c.p)*170-c.v*15)*dt;c.p+=c.v*dt;c.shake=Math.max(0,c.shake-dt);
  const t=c.p,j=c.shake>0?(Math.random()-.5)*.1*Math.min(1,c.shake*3+.3):0;
  c.mesh.position.copy(c.base);c.mesh.rotation.set(j,j*.6,j*.8);if(c.shake>0)c.mesh.position.y+=Math.abs(j)*.3;
- if(i===6){c.mesh.rotation.x-=t*.95;c.mesh.position.z+=t*.22}else if(i===2){c.mesh.rotation.y+=t*1.15;c.mesh.position.x+=t*.35}else if(i===1){c.mesh.position.z+=t*.65}else if(i===4){c.mesh.position.x+=t*.35;c.mesh.rotation.z+=t*.5}else{c.mesh.position.y+=t*.48;c.mesh.rotation.z+=t*.35}
+ if(i===6){c.mesh.rotation.x-=t*1.1}else if(i===2){c.mesh.rotation.y+=t*1.6}else if(i===1){c.mesh.position.z+=t*.6}else if(i===4){c.mesh.position.z-=t*.42;c.mesh.rotation.x-=t*.4}else{c.mesh.position.y+=t*.48;c.mesh.rotation.z+=t*.35}
  const glow=(i===near&&inspecting<0&&active)||(i===inspecting&&!inspectRevealed&&camBlend>.9);c.mat.emissive.set('#ffbf3c');c.mat.emissiveIntensity=glow?.22+.16*Math.sin(now*.008):0;
 });
 updateParticles(dt);
@@ -266,14 +337,14 @@ if(freeze>0){iceS+=(1-iceS)*Math.min(1,dt*14);ice.visible=true;ice.scale.set(1+(
 $('frost').style.opacity=freeze>0?Math.min(1,(5-freeze)/.25,freeze/.4):0;
 stars.visible=reverseTime>0;if(stars.visible){stars.rotation.y+=dt*6;stars.children.forEach(s=>s.rotation.y+=dt*8)}
 const hs=near>=0&&inspecting<0&&active&&freeze<=0?near:-1;if(hs!==hintSpot){hintSpot=hs;hintPop=0;if(hs>=0)buzz(8)}hintPop=Math.min(1,hintPop+dt/.5);
-if(hintSpot>=0){const [,x,z]=spots[hintSpot];hint.visible=true;hint.position.set(x,Math.max(coverPositions[hintSpot][1]+1.05,2.35)+Math.abs(Math.sin(now*.005))*.15,z);hint.scale.setScalar(.6*Math.max(.001,elastic(hintPop)))}else hint.visible=false;
+if(hintSpot>=0){const [,x,z]=spots[hintSpot];hint.visible=true;hint.position.set(x,Math.max(coverPositions[hintSpot][1]+1.05,2.6)+Math.abs(Math.sin(now*.005))*.15,z);hint.scale.setScalar(.6*Math.max(.001,elastic(hintPop)))}else hint.visible=false;
 if(inspectEnvelope.visible){
  if(envFly>=0){envFly=Math.min(1,envFly+dt/.4);const t=ease(envFly),to=viewCam.position.clone().add(new THREE.Vector3(0,0,-.45).applyQuaternion(viewCam.quaternion));inspectEnvelope.position.lerpVectors(envFrom,to,t);inspectEnvelope.rotation.y+=dt*16;inspectEnvelope.scale.setScalar(.72*(1+t*.6));if(envFly>=1){envFly=-1;inspectEnvelope.visible=false;resolveFind()}}
  else{envPop+=dt;const t=Math.min(1,envPop/.7);inspectEnvelope.scale.setScalar(.72*Math.max(.001,elastic(t)));inspectEnvelope.position.copy(envBase);inspectEnvelope.position.y+=-.12*(1-Math.min(1,t*2.2))+Math.sin(now*.004)*.025;inspectEnvelope.rotation.set(Math.sin(now*.003)*.12,.15+Math.sin(now*.0021)*.35,Math.sin(now*.0027)*.08);halo.material.opacity=.55+.25*Math.sin(now*.008);halo.scale.setScalar(.75+.08*Math.sin(now*.006))}
 }
 const target=new THREE.Vector3(player.position.x-Math.sin(yaw)*4.7,3.6,player.position.z+Math.cos(yaw)*4.7);camera.position.lerp(target,.1);camera.lookAt(player.position.x,1.05,player.position.z);
 // Swoop between the follow camera and the close-up camera instead of cutting.
-if(camSpot>=0){const [,sx,sz]=spots[camSpot];inspectCam.position.set(sx-.7,1.1,sz+1.25);const dir=new THREE.Vector3(Math.sin(inspectYaw),Math.sin(inspectPitch),-Math.cos(inspectYaw));inspectCam.lookAt(inspectCam.position.clone().add(dir))}
+if(camSpot>=0){inspectCam.position.copy(inspectPos);const dir=new THREE.Vector3(Math.sin(inspectYaw),Math.sin(inspectPitch),-Math.cos(inspectYaw));inspectCam.lookAt(inspectCam.position.clone().add(dir))}
 camBlend=THREE.MathUtils.clamp(camBlend+(camGoal?dt:-dt)/.6,0,1);const e=camSpot>=0?ease(camBlend):0;
 viewCam.position.lerpVectors(camera.position,inspectCam.position,e);viewCam.position.y+=Math.sin(e*Math.PI)*.5;viewCam.quaternion.slerpQuaternions(camera.quaternion,inspectCam.quaternion,e);
 if(reverseTime>0&&inspecting<0)viewCam.rotateZ(Math.sin(now*.004)*.07*Math.min(1,reverseTime));
