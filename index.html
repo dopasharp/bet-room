@@ -6,9 +6,11 @@
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
-import {getDatabase,ref,get,set,update,onValue,onDisconnect,runTransaction,serverTimestamp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
+import {getDatabase,ref,get,set,update,onValue,onDisconnect,serverTimestamp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
 const fb=initializeApp({apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDomain:"bet-room-e2ae3.firebaseapp.com",databaseURL:"https://bet-room-e2ae3-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bet-room-e2ae3",appId:"1:152551218316:web:3f34e5cf9f01f2e4dfefa9"});
-const db=getDatabase(fb);
+import {getAuth,signInAnonymously,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+const db=getDatabase(fb),auth=getAuth(fb);
+const authReady=new Promise((resolve,reject)=>{const off=onAuthStateChanged(auth,u=>{if(u){off();resolve(u)}},reject);signInAnonymously(auth).catch(reject)});
 let roomCode='',seat='',peerTarget=null,peerVisible=false,lastSync=0;
 const sessionId=(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)).replace(/[^a-zA-Z0-9]/g,'').slice(0,22);
 const peer=new THREE.Group(); // mesh added after player setup
@@ -41,33 +43,33 @@ function notice(s){$('toast').textContent=s;$('toast').style.display='block';not
 const codeFromUrl=new URLSearchParams(location.search).get('room');if(codeFromUrl)$('roomCode').value=codeFromUrl.toUpperCase().slice(0,6);
 function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('overlay').style.display='none';active=false;phase='hide';loot=[];opened.clear();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
 async function enterRoom(code,create){
- $('lobbyError').textContent='연결 중...';$('createRoom').disabled=true;$('joinRoom').disabled=true;
+ $('lobbyError').textContent='안전하게 연결 중...';$('createRoom').disabled=true;$('joinRoom').disabled=true;
  try{
- const seatRef=ref(db,'rooms/'+code+'/seats');
- const tx=await runTransaction(seatRef,current=>{
-   const seats=current||{};if(create&&Object.keys(seats).length)return;if(!create&&!seats.a)return;
-   if(!seats.a){seats.a=sessionId;return seats}
-   if(!seats.b&&seats.a!==sessionId){seats.b=sessionId;return seats}
-   return;
- },{applyLocally:false});
- if(!tx.committed)throw Error(create?'방 코드가 이미 있어. 다시 시도해줘':'방이 가득 찼거나 존재하지 않아');
- const seats=tx.snapshot.val();seat=seats.a===sessionId?'a':'b';roomCode=code;
- const myRef=ref(db,'rooms/'+code+'/players/'+seat);
- await onDisconnect(ref(db,'rooms/'+code+'/seats/'+seat)).remove();
+ const user=await authReady,uid=user.uid,root='rooms/'+code;
+ if(create){
+   await set(ref(db,root),{seats:{a:uid},players:{a:{id:uid,x:-1.2,z:0,rot:0,updated:serverTimestamp()}}});
+   seat='a';
+ }else{
+   await set(ref(db,root+'/seats/b'),uid);
+   seat='b';
+   await set(ref(db,root+'/players/b'),{id:uid,x:1.2,z:0,rot:0,updated:serverTimestamp()});
+ }
+ roomCode=code;
+ const myRef=ref(db,root+'/players/'+seat);
+ // Seats remain reserved until the room is removed, preventing account takeover on disconnect.
  await onDisconnect(myRef).remove();
- await set(myRef,{id:sessionId,x:seat==='a'?-1.2:1.2,z:0,rot:0,updated:serverTimestamp()});
  player.position.set(seat==='a'?-1.2:1.2,0,0);
- onValue(ref(db,'rooms/'+code+'/players/'+(seat==='a'?'b':'a')),snap=>{
+ onValue(ref(db,root+'/players/'+(seat==='a'?'b':'a')),snap=>{
  const p=snap.val();peerVisible=!!p;peer.visible=!!p;
  if(p&&Number.isFinite(p.x)&&Number.isFinite(p.z)){peerTarget={x:p.x,z:p.z,rot:p.rot||0};$('roomLabel').textContent='방 '+code+' · 친구 접속';}
  else{$('roomLabel').textContent='방 '+code+' · 친구 대기 중';}
- });
+ },e=>notice('상대 동기화 오류: '+e.message));
  $('roomInfo').style.display='block';history.replaceState(null,'',location.pathname+'?room='+code);
  beginLocal();notice('방 '+code+' 연결! 친구에게 링크를 보내줘');
- }catch(e){$('lobbyError').textContent='연결 실패: '+(e.message||e)+' · RTDB 규칙을 확인해줘';roomCode='';seat='';}
+ }catch(e){$('lobbyError').textContent='연결 실패: '+(e.message||e)+' · 익명 인증과 DB 규칙을 확인해줘';roomCode='';seat='';}
  finally{$('createRoom').disabled=false;$('joinRoom').disabled=false}
 }
-$('createRoom').onclick=()=>{const code=Math.random().toString(36).slice(2,8).toUpperCase();enterRoom(code,true)};
+$('createRoom').onclick=()=>{const code=Array.from(crypto.getRandomValues(new Uint8Array(6)),v=>'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[v%32]).join('');enterRoom(code,true)};
 $('joinRoom').onclick=()=>{const code=$('roomCode').value.trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(code)){$('lobbyError').textContent='6자리 방 코드를 입력해줘';return}enterRoom(code,false)};
 $('copyRoom').onclick=async()=>{const url=location.origin+location.pathname+'?room='+roomCode;try{await navigator.clipboard.writeText(url);notice('초대 링크 복사 완료')}catch(e){prompt('초대 링크',url)}};
 $('start').onclick=beginLocal;
