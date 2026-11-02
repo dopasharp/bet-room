@@ -5,7 +5,9 @@
 #mapOverlay{position:fixed;inset:0;z-index:4;background:#141c25f2;display:none;align-items:center;justify-content:center;padding:18px}#mapPanel{width:min(100%,510px);max-height:95dvh;overflow:auto;background:#283440;border:1px solid #ffffff30;border-radius:24px;padding:20px;text-align:center}#floorplan{position:relative;width:100%;aspect-ratio:12/11;background:#d9d0c0;border:9px solid #766e63;border-radius:10px;margin:15px 0;overflow:hidden}#floorplan:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 36px,#ffffff20 37px),repeating-linear-gradient(90deg,transparent 0 36px,#ffffff20 37px);pointer-events:none}.furniture{position:absolute;border:2px solid #74685b;border-radius:7px;background:#b1a18c88;color:#534b44;font-size:11px;display:grid;place-items:center;pointer-events:none}.mapSpot{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border:3px solid #fff;border-radius:50%;background:#536c7e;color:white;box-shadow:0 3px 12px #0006;font-weight:900;font-size:16px;cursor:pointer;z-index:2;touch-action:manipulation;padding:0}.mapSpot:active:not(:disabled){transform:translate(-50%,-50%) scale(.85)}.mapSpot.bet{background:#e7bd55;color:#302820}.mapSpot.dud{background:#bd7b79}.mapSpot.pop{animation:spotPop .5s cubic-bezier(.34,1.56,.64,1)}#mapActions{display:flex;gap:8px;justify-content:center}#mapActions button{flex:1}#mapStatus{min-height:24px;font-size:14px;color:#e7d6b7}body.hiding #ui{display:none}#darkness{position:fixed;inset:0;z-index:2;pointer-events:none;display:none}#frost{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,transparent 48%,#cdeeff99 80%,#f2fbffee 100%);box-shadow:inset 0 0 90px 24px #e9f8ffcc}#effect{position:fixed;top:119px;left:14px;z-index:3;display:none;background:#101820e8;border:1px solid #ffffff55;border-radius:12px;padding:9px 13px;font-weight:800;font-size:13px}#inspectHud{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .35s .25s,visibility .35s .25s}#inspectHud .bar{position:absolute;top:18%;left:50%;transform:translateX(-50%);background:#14212ce8;padding:12px 18px;border-radius:16px;text-align:center;white-space:nowrap}#inspectOpen{position:absolute;left:18px;bottom:30px;pointer-events:auto;background:#9de3bb}#inspectExit{position:absolute;right:18px;bottom:30px;pointer-events:auto}#inspectHint{position:absolute;bottom:105px;left:50%;transform:translateX(-50%);background:#14212ce8;border-radius:12px;padding:10px;white-space:nowrap;font-size:13px}body.inspect #ui{opacity:0;visibility:hidden}body.inspect #inspectHud{opacity:1;visibility:visible}
 #panel,#mapPanel{animation:rise .5s cubic-bezier(.34,1.56,.64,1)}#search.ready{animation:ready 1.1s ease-in-out infinite}.bump{animation:bump .4s cubic-bezier(.34,1.56,.64,1)}canvas.dizzy{animation:dizzy .9s ease-in-out}#fx{position:fixed;inset:0;z-index:7;pointer-events:none}
 #reveal{position:fixed;inset:0;z-index:6;display:grid;place-items:center;background:#0b1118b0;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;padding:18px}#reveal.show{opacity:1;visibility:visible}#reveal .stage{display:flex;flex-direction:column;align-items:center;gap:30px;padding-top:110px}.env{position:relative;width:270px;height:170px;transform:translateY(-70vh) rotate(-16deg);transition:transform .55s cubic-bezier(.34,1.56,.64,1)}#reveal.show .env{transform:none}.env .back{position:absolute;inset:0;background:#d9ae58;border-radius:10px}.env .letter{position:absolute;left:14px;right:14px;top:10px;height:150px;background:#fffaf0;border-radius:8px;padding:12px;text-align:center;color:#2c2a26;z-index:2;box-shadow:0 4px 14px #0003;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}#reveal.out .letter{transform:translateY(-118px) scale(1.06)}.env .front{position:absolute;inset:0;background:#f4d78a;border-radius:10px;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);z-index:3}.env .flap{position:absolute;left:0;right:0;top:0;height:62%;background:#e3b85e;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .45s ease-in,z-index 0s .22s;z-index:4}#reveal.open .flap{transform:rotateX(180deg);z-index:1}.letter .icon{font-size:36px;line-height:1.1}.letter .ltitle{font-weight:900;font-size:17px;margin:4px 0 3px}.letter .ltext{font-size:13px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#revealBtn{opacity:0;transform:translateY(12px);transition:opacity .3s .9s,transform .4s .9s cubic-bezier(.34,1.56,.64,1)}#reveal.out #revealBtn{opacity:1;transform:none}.kind-bet .letter{background:#fff6d6}.kind-bet .ltitle{color:#b5821b}.kind-ice .letter{background:#e8f7ff}.kind-ice .ltitle{color:#2f7cb3}.kind-dark .letter{background:#2a2540;color:#f1edff}.kind-reverse .letter{background:#ffe8f0}.kind-reverse .ltitle{color:#c0476e}#reveal.kind-bet.out .env{animation:wiggle .6s .55s}
-@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 방 · 직접 찾아보는 탐색</div></div><div class="pill" id="count">배치 0 / 4</div></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 배치해. 순서대로 ✉️ 내기 → ❄️ 얼음 → 🌑 암흑 → 🔄 방향</small><div id="floorplan"><div class="furniture" style="left:8%;top:9%;width:28%;height:39%">침대</div><div class="furniture" style="left:64%;top:6%;width:25%;height:13%">책상</div><div class="furniture" style="left:84%;top:22%;width:13%;height:24%">옷장</div><div class="furniture" style="left:70%;top:65%;width:27%;height:15%">소파</div><div class="furniture" style="left:2%;top:62%;width:17%;height:23%">책장</div><div class="furniture" style="left:54.5%;top:66%;width:15.8%;height:11.8%;border-radius:50%">러그</div><div class="furniture" style="left:34.2%;top:3.2%;width:5.8%;height:5.5%"></div><div class="furniture" style="left:93.7%;top:87.7%;width:4.2%;height:4.5%;border-radius:50%"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>배치 완료 (0/4)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 4개를 배치한 뒤 3D 방에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+#timer{font-weight:900;font-size:16px;font-variant-numeric:tabular-nums;align-self:center}#timer.live{color:#d9ff44}#peerCount{position:absolute;top:75px;right:14px;font-size:13px;display:none;border-color:#ff6c9188}#feed{position:absolute;top:165px;left:14px;display:flex;flex-direction:column;gap:6px;max-width:72vw}.feedItem{background:#1d2632ee;border:1px solid #ffffff30;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:700;animation:feedIn .45s cubic-bezier(.34,1.56,.64,1);transition:opacity .4s,transform .4s}.feedItem.hot{background:#ff6c91ee;border-color:#fff}.feedItem.gone{opacity:0;transform:translateX(-20px)}#alarm{position:fixed;inset:0;z-index:2;pointer-events:none}#alarm.on{animation:alarm 1.1s ease-out}#countdown{position:fixed;inset:0;z-index:5;display:grid;place-items:center;pointer-events:none;font-size:130px;font-weight:900;color:#d9ff44;-webkit-text-stroke:4px #101310;text-shadow:0 8px 30px #0008;opacity:0}#countdown.pop{animation:cd .8s cubic-bezier(.34,1.56,.64,1)}.letter .ltime{font-size:12px;font-weight:800;margin-top:6px;color:#b5821b}.kind-lose .letter{background:#eef0f5}.kind-lose .ltitle{color:#5b6475}.kind-lose .ltime{color:#c0476e}
+@keyframes feedIn{from{opacity:0;transform:translateX(-30px) scale(.9)}to{opacity:1;transform:none}}@keyframes alarm{0%{box-shadow:inset 0 0 90px 26px #ff6c91cc}100%{box-shadow:inset 0 0 0 0 #ff6c9100}}@keyframes cd{0%{opacity:0;transform:scale(2.2)}30%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(.8)}}
+@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 방 · 직접 찾아보는 탐색</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">배치 0 / 4</div></div><div class="pill" id="peerCount">상대 0 / 8</div><div id="feed"></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 배치해. 순서대로 ✉️ 내기 → ❄️ 얼음 → 🌑 암흑 → 🔄 방향</small><div id="floorplan"><div class="furniture" style="left:8%;top:9%;width:28%;height:39%">침대</div><div class="furniture" style="left:64%;top:6%;width:25%;height:13%">책상</div><div class="furniture" style="left:84%;top:22%;width:13%;height:24%">옷장</div><div class="furniture" style="left:70%;top:65%;width:27%;height:15%">소파</div><div class="furniture" style="left:2%;top:62%;width:17%;height:23%">책장</div><div class="furniture" style="left:54.5%;top:66%;width:15.8%;height:11.8%;border-radius:50%">러그</div><div class="furniture" style="left:34.2%;top:3.2%;width:5.8%;height:5.5%"></div><div class="furniture" style="left:58.7%;top:2.7%;width:3.5%;height:3.8%;border-radius:50%"></div><div class="furniture" style="left:85%;top:.9%;width:9.2%;height:5.5%"></div><div class="furniture" style="left:74.2%;top:55.2%;width:15%;height:4.1%">TV</div><div class="furniture" style="left:93.7%;top:87.7%;width:4.2%;height:4.5%;border-radius:50%"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>배치 완료 (0/4)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 4개를 배치한 뒤 3D 방에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -30,6 +32,7 @@ const mat=(c,o={})=>new THREE.MeshStandardMaterial({color:c,roughness:.8,...o});
 // Toy-diorama palette: pastel base with DOPA# lime / pink / mint accents.
 const C={wood:'#dcae80',woodDark:'#b98656',sheet:'#fffaf2',pink:'#ff9fb6',pinkDeep:'#ff6c91',mint:'#8fe3c6',mintLight:'#bff3df',lime:'#d9ff44',sky:'#bfe3ff',lav:'#c9b6ff',lavLight:'#ddd0ff',peach:'#ffc7a8',terra:'#e8896a',leaf:'#62c486',ink:'#3a3f4b',trim:'#fffaf4'};
 const M=Object.fromEntries(Object.entries(C).map(([k,v])=>[k,mat(v)]));
+const bookCols=[C.pinkDeep,C.lime,C.sky,C.lav,C.peach,C.mint,'#ffd46b'];
 function mesh(geo,m,x,y,z,group=scene){const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;group.add(o);return o}
 function rbox(w,h,d,x,y,z,m,group=scene,r=.08){return mesh(new RoundedBoxGeometry(w,h,d,3,Math.min(r,Math.min(w,h,d)/2-.002)),m,x,y,z,group)}
 const cyl=(rt,rb,h,seg=20)=>new THREE.CylinderGeometry(rt,rb,h,seg);
@@ -41,12 +44,37 @@ const planks=mesh(new THREE.PlaneGeometry(12.3,11.3),mat('#ffffff',{map:plankTex
 rbox(12.6,3.2,.3,0,1.6,-5.65,mat('#fbefe3'),scene,.12);rbox(.3,3.2,11.6,-6.15,1.6,0,mat('#f6e2d6'),scene,.12);
 rbox(12.2,1.05,.08,.15,.52,-5.47,mat('#f3cfc2'),scene,.03);rbox(12.2,.08,.14,.15,1.07,-5.45,M.trim,scene,.03);
 rbox(.08,1.05,11.2,-5.97,.52,.15,mat('#f3cfc2'),scene,.03);rbox(.14,.08,11.2,-5.95,1.07,.15,M.trim,scene,.03);
-// Window with curtains, and two little frames on the side wall.
+// Window with curtains and a little plant on the sill.
 rbox(1.8,1.35,.12,-.4,1.95,-5.44,M.trim,scene,.05);mesh(new THREE.PlaneGeometry(1.5,1.08),mat('#bfe6ff',{emissive:'#d8f0ff',emissiveIntensity:.6}),-.4,1.95,-5.37);
 rbox(.06,1.08,.06,-.4,1.95,-5.36,M.trim,scene,.02);rbox(1.5,.06,.06,-.4,1.95,-5.36,M.trim,scene,.02);rbox(1.95,.08,.26,-.4,1.25,-5.36,M.trim,scene,.03);
 for(const x of [-1.45,.65])rbox(.38,1.6,.1,x,1.9,-5.33,M.pink,scene,.05);
-rbox(.06,.75,.95,-5.95,2.05,1.3,M.trim,scene,.03);rbox(.03,.6,.8,-5.91,2.05,1.3,M.lime,scene,.02);mesh(new THREE.CircleGeometry(.16,24),M.pinkDeep,-5.89,2.05,1.3).rotation.y=Math.PI/2;
-rbox(.06,.55,.55,-5.95,2.15,-.4,M.trim,scene,.03);rbox(.03,.42,.42,-5.91,2.15,-.4,M.sky,scene,.02);
+mesh(cyl(.08,.06,.14,16),M.terra,.15,1.36,-5.33);mesh(new THREE.IcosahedronGeometry(.11,0),mat(C.leaf,{flatShading:true}),.15,1.5,-5.33);
+// Side wall: entry door with frame, switch, door mat and a hook with a tote bag; a frame between bed and door.
+rbox(.14,2.3,1.22,-5.93,1.15,.9,M.trim,scene,.04);rbox(.06,2.12,.98,-5.85,1.07,.9,mat('#e9b98d'),scene,.03);
+for(const y of [.6,1.55])rbox(.03,.7,.7,-5.81,y,.9,mat('#dcaa7c'),scene,.03);mesh(new THREE.SphereGeometry(.05,12,10),mat('#f0c75a',{metalness:.4,roughness:.35}),-5.78,1.05,1.25);
+rbox(.6,.03,1.05,-5.5,.015,.9,mat('#cfe07a'),scene,.012).castShadow=false;rbox(.03,.16,.1,-5.97,1.3,1.6,M.trim,scene,.01);
+rbox(.05,.05,.3,-5.96,1.8,1.8,M.woodDark,scene,.02);rbox(.1,.42,.34,-5.9,1.42,1.8,M.lime,scene,.05);mesh(new THREE.TorusGeometry(.1,.018,6,16,Math.PI),M.lime,-5.9,1.62,1.8).rotation.y=Math.PI/2;
+rbox(.06,.75,.95,-5.95,2.05,-.25,M.trim,scene,.03);rbox(.03,.6,.8,-5.91,2.05,-.25,M.lime,scene,.02);mesh(new THREE.CircleGeometry(.16,24),M.pinkDeep,-5.89,2.05,-.25).rotation.y=Math.PI/2;
+// Back wall: floating shelf over the bed with books, a succulent and a photo.
+rbox(1.6,.06,.28,-3.5,2.2,-5.36,M.wood,scene,.02);for(const x of [-4.1,-2.9])rbox(.05,.18,.2,x,2.1,-5.4,M.woodDark,scene,.02);
+[[C.pinkDeep,.3],[C.sky,.26],[C.lime,.32],[C.lav,.24]].forEach(([c,h],k)=>rbox(.07,h,.2,-4.15+k*.085,2.23+h/2,-5.36,mat(c),scene,.012));
+mesh(cyl(.08,.06,.12,16),mat('#fffaf4'),-2.95,2.29,-5.36);mesh(new THREE.IcosahedronGeometry(.1,0),mat(C.leaf,{flatShading:true}),-2.95,2.4,-5.36);
+rbox(.32,.26,.03,-3.5,2.36,-5.38,M.trim,scene,.015).rotation.x=-.15;rbox(.25,.19,.01,-3.5,2.36,-5.36,M.sky,scene,.005).rotation.x=-.15;
+// Wall clock above the desk shows the real time (hands updated in the loop).
+mesh(cyl(.3,.3,.07,32),M.pink,2.8,2.55,-5.46).rotation.x=Math.PI/2;mesh(new THREE.CircleGeometry(.25,32),M.trim,2.8,2.55,-5.42);
+for(let k=0;k<12;k++){const a=k/12*Math.PI*2;rbox(.02,k%3?.03:.06,.01,2.8+Math.sin(a)*.21,2.55+Math.cos(a)*.21,-5.415,M.ink,scene,.004).rotation.z=-a}
+const clockHand=(len,w,z)=>{const p=new THREE.Group();p.position.set(2.8,2.55,z);scene.add(p);rbox(w,len,.01,0,len/2-.02,0,M.ink,p,.004);return p};
+const clockH=clockHand(.13,.03,-5.405),clockM=clockHand(.2,.02,-5.4);mesh(new THREE.SphereGeometry(.02,8,6),M.pinkDeep,2.8,2.55,-5.395);
+// Tall bookshelf beside the desk, against the back wall, with a plant and a little trophy among the books.
+rbox(1.1,2,.06,4.75,1,-5.37,M.wood,scene,.03);for(const x of [4.22,5.28])rbox(.06,2,.6,x,1,-5.1,M.wood,scene,.03);for(const y of [.04,.52,1,1.48,1.97])rbox(1.1,.06,.6,4.75,y,-5.1,M.wood,scene,.03);
+for(const [row,y] of [.07,.55,1.03,1.51].entries()){const end=row===1||row===2?4.88:5.24;let x=4.27;while(x+.14<end){const w=.07+rnd()*.07,h=.26+rnd()*.1;rbox(w,h,.4,x+w/2,y+h/2,-5.12,mat(bookCols[Math.floor(rnd()*bookCols.length)]),scene,.015);x+=w+.008}}
+mesh(cyl(.08,.06,.14,16),M.terra,5.06,.62,-5.1);mesh(new THREE.IcosahedronGeometry(.12,0),mat(C.leaf,{flatShading:true}),5.06,.77,-5.1);
+rbox(.3,.05,.22,5.06,1.055,-5.1,M.pink,scene,.015);rbox(.27,.05,.2,5.06,1.105,-5.1,M.sky,scene,.015);rbox(.12,.03,.12,5.06,1.145,-5.1,M.woodDark,scene,.01);mesh(cyl(.07,.035,.13,16),mat(C.lime,{metalness:.3,roughness:.4}),5.06,1.225,-5.1);
+// Trash can tucked between the desk and the window, with paper balls.
+mesh(cyl(.2,.16,.44,24),mat('#a9bccf'),1.25,.22,-5);mesh(new THREE.TorusGeometry(.2,.02,6,24),mat('#8ea3b8'),1.25,.44,-5).rotation.x=Math.PI/2;
+for(const [x,y,z] of [[1.2,.43,-5.02],[1.32,.46,-4.95],[1.55,.07,-4.5]])mesh(new THREE.IcosahedronGeometry(.07,1),mat('#ffffff',{flatShading:true}),x,y,z);
+// Slippers by the bed.
+for(const [x,r] of [[-1.78,.15],[-1.52,-.1]])rbox(.15,.07,.32,x,.035,-2.3,M.peach,scene,.03).rotation.y=r;
 // Bed: plump mattress, pink blanket (cover 0) and a big pillow (cover 7).
 rbox(3,.38,4,-3.5,.25,-2.8,M.wood,scene,.12);rbox(3.1,1.35,.24,-3.5,.72,-4.72,M.woodDark,scene,.12);rbox(2.8,.34,3.7,-3.5,.6,-2.7,M.sheet,scene,.15);
 const blanket=rbox(2.9,.14,2.1,-3.5,.83,-1.95,mat(C.pink),scene,.07);rbox(2.92,.15,.2,0,.005,-.55,M.pinkDeep,blanket,.06);
@@ -72,12 +100,17 @@ const wardDoor=rbox(.72,1.9,.06,5.39,1.22,-2.02,mat(C.lavLight),scene,.04);wardD
 rbox(2.5,.42,.95,3.8,.27,2.8,M.mint,scene,.14);rbox(2.5,.72,.3,3.8,.68,3.15,M.mint,scene,.14);for(const x of [2.7,4.9])rbox(.32,.6,.95,x,.5,2.8,M.mint,scene,.14);
 rbox(.92,.18,.66,3.32,.57,2.72,M.mintLight,scene,.08);const cushion=rbox(.92,.18,.66,4.28,.57,2.72,mat(C.mintLight),scene,.08);
 rbox(.5,.45,.16,3.05,.85,2.95,M.lime,scene,.08).rotation.set(-.2,.15,.12);
+// TV on a low stand facing the sofa; its screen light flickers softly (see loop).
+rbox(1.8,.45,.45,3.8,.225,.8,M.wood,scene,.06);for(const [x,m] of [[3.35,M.mintLight],[4.25,M.lavLight]]){rbox(.8,.3,.02,x,.225,1.03,m,scene,.02);mesh(new THREE.SphereGeometry(.03,8,6),M.trim,x,.3,1.05)}
+rbox(.5,.03,.18,3.8,.465,.8,M.ink,scene,.015);rbox(.08,.14,.05,3.8,.54,.78,M.ink,scene,.02);rbox(1.5,.88,.07,3.8,1.04,.78,M.ink,scene,.04);rbox(.08,.03,.22,4.5,.465,.85,M.ink,scene,.012);
+const tvTex=canvasTexture(x=>{const g=x.createLinearGradient(0,0,0,128);g.addColorStop(0,'#8ec5ff');g.addColorStop(1,'#ffd1e0');x.fillStyle=g;x.fillRect(0,0,230,128);x.fillStyle='#d9ff44';x.beginPath();x.arc(178,34,18,0,7);x.fill();x.fillStyle='#86d9b8';x.beginPath();x.ellipse(60,128,110,46,0,0,7);x.fill();x.fillStyle='#62c486';x.beginPath();x.ellipse(190,132,90,40,0,0,7);x.fill();x.fillStyle='#fff';x.font='900 22px system-ui';x.fillText('DOPA# TV',12,30)},230,128);
+mesh(new THREE.PlaneGeometry(1.38,.76),new THREE.MeshBasicMaterial({map:tvTex}),3.8,1.04,.816).castShadow=false;
+const tvLight=new THREE.PointLight(0x9fd0ff,.7,3.2,1.6);tvLight.position.set(3.8,1,1.35);scene.add(tvLight);
 // Floor lamp in the sofa corner.
 mesh(cyl(.22,.22,.05,20),M.ink,5.5,.025,4.4);mesh(cyl(.025,.025,1.7,8),M.ink,5.5,.88,4.4);mesh(cyl(.2,.32,.35,24),mat(C.lime,{emissive:'#e8ff8a',emissiveIntensity:.45}),5.5,1.75,4.4);
 const floorLamp=new THREE.PointLight(0xfff0b0,1.6,5,1.6);floorLamp.position.set(5.3,1.55,4.2);scene.add(floorLamp);
 // Bookshelf full of colourful books; the pink one (cover 4) slides out.
 rbox(1.2,1.62,.08,-4.8,.81,3.06,M.wood,scene,.03);for(const x of [-5.36,-4.24])rbox(.08,1.62,.8,x,.81,2.7,M.wood,scene,.03);for(const y of [.04,.56,1.08,1.6])rbox(1.2,.07,.8,-4.8,y,2.7,M.wood,scene,.03);
-const bookCols=[C.pinkDeep,C.lime,C.sky,C.lav,C.peach,C.mint,'#ffd46b'];
 for(const [row,y] of [.075,.595,1.115].entries()){let x=-5.3;while(x+.14<-4.3){const w=.07+rnd()*.07,h=.3+rnd()*.12;if(!(row===1&&x>-4.72&&x<-4.45))rbox(w,h,.5,x+w/2,y+h/2,2.72,mat(bookCols[Math.floor(rnd()*bookCols.length)]),scene,.015);x+=w+.008}}
 const book=rbox(.13,.42,.52,-4.56,.805,2.7,mat(C.pinkDeep),scene,.02);rbox(.135,.04,.53,0,.12,0,M.lime,book,.01);
 // Planter (cover 5): terracotta pot with chunky low-poly leaves.
@@ -89,27 +122,29 @@ const rugTex=canvasTexture(x=>{['#d9ff44','#ff9fb6','#fffaf2','#8fe3c6','#fffaf2
 const rugGeo=cyl(.95,.95,.04,48);rugGeo.translate(0,0,.95);const rug=mesh(rugGeo,mat('#ffffff',{map:rugTex}),1.5,.03,2.4-.95*.68);rug.scale.z=.68;rug.castShadow=false;
 const coverMeshes=[blanket,drawer,wardDoor,cushion,book,pot,rug,pillow];
 const coverPositions=coverMeshes.map(m=>m.position.toArray());
-// Chibi jelly-bean avatars: big round head, bean body, stubby limbs that pivot at the hip/shoulder.
-const skin=mat('#ffe2cc',{roughness:.6}),eyeMat=mat('#2b2f3a',{roughness:.3}),sparkle=new THREE.MeshBasicMaterial({color:'#ffffff'}),blushMat=mat(C.pink,{transparent:true,opacity:.7});
-function makeAvatar(g,body,hat,beanie){
+// Chibi avatars (~3 heads tall): round head with hair, slim shirt body, pants legs with shoes, arms with hands.
+const skin=mat('#ffe2cc',{roughness:.6}),eyeMat=mat('#2b2f3a',{roughness:.3}),sparkle=new THREE.MeshBasicMaterial({color:'#ffffff'}),blushMat=mat(C.pink,{transparent:true,opacity:.7}),shoeMat=mat('#4a4f5c',{roughness:.6});
+function makeAvatar(g,{shirt,pants,hair,accent,bun}){
  const torso=new THREE.Group(),head=new THREE.Group();g.add(torso);
- const bodyMat=mat(body,{roughness:.55}),hatMat=mat(hat,{roughness:.6});
- mesh(new THREE.CapsuleGeometry(.32,.3,6,18),bodyMat,0,.8,0,torso);
- mesh(new THREE.SphereGeometry(.2,16,12),mat(new THREE.Color(body).lerp(new THREE.Color('#ffffff'),.45)),0,.74,.2,torso).scale.set(1,1.15,.5);
- head.position.set(0,1.42,0);torso.add(head);
- mesh(new THREE.SphereGeometry(.38,28,20),skin,0,0,0,head);
- const eyes=[-.13,.13].map(x=>{const e=mesh(new THREE.SphereGeometry(.055,14,10),eyeMat,x,.02,.34,head);e.scale.set(1,1.35,.6);mesh(new THREE.SphereGeometry(.018,8,6),sparkle,.015,.025,.04,e);return e});
- for(const x of [-.22,.22]){const b=mesh(new THREE.CircleGeometry(.06,16),blushMat,x,-.08,.315,head);b.rotation.y=x*.9;b.castShadow=false}
- mesh(new THREE.TorusGeometry(.04,.012,6,12,Math.PI),eyeMat,0,-.1,.37,head).rotation.z=Math.PI;
- mesh(new THREE.SphereGeometry(.4,26,12,0,Math.PI*2,0,Math.PI/2),hatMat,0,.05,0,head);
- if(beanie){mesh(new THREE.TorusGeometry(.37,.06,8,26),hatMat,0,.07,0,head).rotation.x=Math.PI/2;mesh(new THREE.SphereGeometry(.1,12,10),M.trim,0,.48,0,head)}
- else mesh(cyl(.3,.3,.04,24),hatMat,0,.08,.25,head).scale.z=.8;
- const limb=(r,len,x,y,m,parent,splay)=>{const p=new THREE.Group();p.position.set(x,y,0);p.rotation.z=splay;parent.add(p);mesh(new THREE.CapsuleGeometry(r,len,4,10),m,0,-(len/2+r)+.02,0,p);return p};
- g.userData={torso,head,eyes,blinkOff:Math.random()*3400,legL:limb(.11,.14,-.15,.4,bodyMat,g,0),legR:limb(.11,.14,.15,.4,bodyMat,g,0),armL:limb(.085,.16,-.36,1.02,bodyMat,torso,-.3),armR:limb(.085,.16,.36,1.02,bodyMat,torso,.3),phase:0,speed:0,step:1};
+ const shirtMat=mat(shirt,{roughness:.6}),pantsMat=mat(pants,{roughness:.7}),hairMat=mat(hair,{roughness:.45}),accentMat=mat(accent,{roughness:.5});
+ mesh(new THREE.CapsuleGeometry(.24,.32,6,18),shirtMat,0,.92,0,torso).scale.z=.85;
+ mesh(new THREE.TorusGeometry(.12,.035,8,20),mat(new THREE.Color(shirt).lerp(new THREE.Color('#ffffff'),.55)),0,1.28,0,torso).rotation.x=Math.PI/2;
+ head.position.set(0,1.6,0);torso.add(head);
+ mesh(new THREE.SphereGeometry(.35,28,20),skin,0,0,0,head);
+ const eyes=[-.12,.12].map(x=>{const e=mesh(new THREE.SphereGeometry(.05,14,10),eyeMat,x,.01,.315,head);e.scale.set(1,1.35,.6);mesh(new THREE.SphereGeometry(.017,8,6),sparkle,.014,.024,.04,e);return e});
+ for(const x of [-.2,.2]){const b=mesh(new THREE.CircleGeometry(.055,16),blushMat,x,-.09,.28,head);b.rotation.y=x*.9;b.castShadow=false}
+ mesh(new THREE.TorusGeometry(.036,.011,6,12,Math.PI),eyeMat,0,-.11,.335,head).rotation.z=Math.PI;
+ // Hair: a slightly larger sphere shifted back and up leaves the face open; a bun on top with a coloured tie.
+ mesh(new THREE.SphereGeometry(.385,28,20),hairMat,0,.09,-.05,head);
+ mesh(new THREE.SphereGeometry(bun,18,14),hairMat,0,.47+bun*.8,-.06,head);
+ mesh(new THREE.TorusGeometry(bun*.72,.03,8,20),accentMat,0,.48,-.06,head).rotation.x=Math.PI/2;
+ // Limbs pivot at shoulder/hip; each ends in a hand or shoe.
+ const limb=(r,len,x,y,m,parent,splay,end)=>{const p=new THREE.Group();p.position.set(x,y,0);p.rotation.z=splay;parent.add(p);mesh(new THREE.CapsuleGeometry(r,len,4,10),m,0,-(len/2+r)+.02,0,p);if(end==='hand')mesh(new THREE.SphereGeometry(.075,12,10),skin,0,-(len+r*2)+.03,0,p);else rbox(.2,.1,.3,0,-(len+r*2)+.01,.04,shoeMat,p,.05);return p};
+ g.userData={torso,head,eyes,blinkOff:Math.random()*3400,legL:limb(.1,.28,-.12,.54,pantsMat,g,0,'shoe'),legR:limb(.1,.28,.12,.54,pantsMat,g,0,'shoe'),armL:limb(.07,.3,-.3,1.2,shirtMat,torso,-.12,'hand'),armR:limb(.07,.3,.3,1.2,shirtMat,torso,.12,'hand'),phase:0,speed:0,step:1};
 }
-const player=new THREE.Group();scene.add(player);makeAvatar(player,'#8ec5ff',C.lime,false);
+const player=new THREE.Group();scene.add(player);makeAvatar(player,{shirt:'#8ec5ff',pants:'#4f5d7a',hair:'#4a3428',accent:C.lime,bun:.15});
 player.position.set(0,0,0);
-makeAvatar(peer,'#ff8fab',C.mint,true);peer.visible=false;scene.add(peer);
+makeAvatar(peer,{shirt:'#ff8fab',pants:'#6b5a8e',hair:'#c9783e',accent:C.mint,bun:.18});peer.visible=false;scene.add(peer);
 const spots=[['침대',-3.5,-2.7],['책상',2.8,-4.3],['옷장',4.65,-2.4],['소파',3.8,2.8],['책장',-4.8,2.7],['화분',-1.2,3.7],['러그',1.5,2.4],['베개',-3.5,-4]];
 // Axis-aligned furniture footprints with a small margin for the character body.
 const obstacles=[
@@ -121,6 +156,9 @@ const obstacles=[
  [-4.8,2.7,1.2,.9], // bookshelf
  [-1.2,3.7,.8,.8], // planter
  [-1.55,-4.85,.7,.6], // nightstand
+ [1.25,-5,.42,.42], // trash can
+ [4.75,-5.1,1.1,.6], // bookshelf beside the desk
+ [3.8,.8,1.8,.45], // TV stand
  [5.5,4.4,.5,.5] // floor lamp (the rug stays walkable)
 ];
 function blocked(x,z){
@@ -137,7 +175,7 @@ function moveWithFurniture(x,z,dx,dz){
  return [nx,nz];
 }
 const markers=[];for(const [name,x,z] of spots){const ring=new THREE.Mesh(new THREE.RingGeometry(.36,.45,32),new THREE.MeshBasicMaterial({color:'#ffd46b',side:THREE.DoubleSide,transparent:true,opacity:.65}));ring.rotation.x=-Math.PI/2;ring.position.set(x,.015,z);scene.add(ring);markers.push(ring)}
-let bet='커피 사기 ☕',active=false,phase='hide',freeze=0,darkTime=0,reverseTime=0,opened=new Set(),loot=[],yaw=0,joystick={x:0,y:0},keys={},drag=false,lastX=0,near=-1,noticeUntil=0;
+let bet='커피 사기 ☕',active=false,phase='hide',freeze=0,darkTime=0,reverseTime=0,opened=new Set(),loot=[],hunt=[],myRound=0,peerState=null,searchStart=0,lastPeerEv='',peerAlert=0,yaw=0,joystick={x:0,y:0},keys={},drag=false,lastX=0,near=-1,noticeUntil=0;
 const $=id=>document.getElementById(id);
 const buzz=p=>{try{if(navigator.vibrate&&navigator.userActivation?.hasBeenActive)navigator.vibrate(p)}catch(e){}};
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
@@ -146,7 +184,36 @@ function bump(el){el.classList.remove('bump');void el.offsetWidth;el.classList.a
 function notice(s){const t=$('toast');t.textContent=s;t.classList.remove('show');void t.offsetWidth;t.classList.add('show');noticeUntil=performance.now()+2100}
 function setCount(){$('count').textContent='조사 '+opened.size+' / 8';bump($('count'))}
 const codeFromUrl=new URLSearchParams(location.search).get('room');if(codeFromUrl)$('roomCode').value=codeFromUrl.toUpperCase().slice(0,6);
-function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('overlay').style.display='none';active=false;phase='hide';loot=[];opened.clear();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
+function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('overlay').style.display='none';active=false;phase='hide';loot=[];hunt=[];opened.clear();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
+// Race helpers: elapsed-time formatting, event broadcast to the opponent and the live feed.
+const fmtClock=s=>{s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const fmtKo=s=>{s=Math.round(s);return (s>=60?Math.floor(s/60)+'분 ':'')+s%60+'초'};
+const elapsed=()=>(performance.now()-searchStart)/1000;
+function sendEv(type,extra={}){if(!roomCode||!seat)return;update(ref(db,'rooms/'+roomCode+'/players/'+seat),{ev:{id:sessionId+'-'+Date.now(),type,opened:opened.size,...extra}}).catch(()=>{})}
+function feed(msg,hot){const box=$('feed'),el=document.createElement('div');el.className='feedItem'+(hot?' hot':'');el.textContent=msg;box.prepend(el);while(box.children.length>3)box.lastChild.remove();setTimeout(()=>{el.classList.add('gone');setTimeout(()=>el.remove(),400)},4200);if(hot){const a=$('alarm');a.classList.remove('on');void a.offsetWidth;a.classList.add('on');shakeAmt=.25;buzz([30,60,30])}}
+function onPeerEv(ev){
+ if(phase!=='search')return;const name=(spots[ev.spot]||[''])[0];
+ if(Number.isFinite(ev.opened)){$('peerCount').textContent='상대 '+ev.opened+' / 8';bump($('peerCount'))}
+ if(ev.type==='inspect'){feed('👀 상대가 '+name+' 뒤지는 중!');peerAlert=performance.now()+2600}
+ else if(ev.type==='close'){feed('😱 상대가 '+name+'에서 뭔가 발견했대!',true);peerAlert=performance.now()+3200}
+ else if(ev.type==='empty')feed('💨 상대: '+name+' 허탕!');
+ else if(ev.type==='dud')feed('😂 상대가 '+['','❄️ 얼음','🌑 암흑','🔄 방향'][ev.kind]+' 꽝에 걸렸다!');
+ else if(ev.type==='win')loseRound(Number(ev.time)||elapsed());
+}
+// Both players must submit this round's hiding spots; each then searches the other's room layout.
+function maybeStart(){if(phase==='wait'&&peerState&&peerState.round===myRound&&Array.isArray(peerState.loot)&&peerState.loot.length===4){hunt=peerState.loot.map(Number);countdown()}}
+function countdown(){
+ phase='count';active=false;opened.clear();freeze=darkTime=reverseTime=0;$('count').textContent='조사 0 / 8';$('peerCount').textContent='상대 0 / 8';$('peerCount').style.display=roomCode?'block':'none';$('timer').textContent='⏱ 00:00';$('phase').textContent='🚦 곧 시작!';
+ const el=$('countdown');let n=3;
+ const tick=()=>{el.textContent=n||'GO!';el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');buzz(n?30:[60,40,90]);
+  if(n--)setTimeout(tick,800);else{phase='search';active=true;searchStart=performance.now();$('timer').classList.add('live');$('phase').textContent=roomCode?'🔎 먼저 찾으면 승리!':'🔎 봉투를 찾아봐';notice('수색 시작! 세 종류의 꽝을 조심해')}};
+ tick();
+}
+function endRound(){phase='over';active=false;$('timer').classList.remove('live');$('timer').textContent='⏱ '+fmtClock(elapsed())}
+async function loseRound(time){
+ endRound();$('phase').textContent='😭 상대가 먼저 찾았어';if(inspecting>=0){camGoal=0;leaveInspect()}shakeAmt=.6;
+ await showReveal('lose',time);beginLocal();
+}
 async function enterRoom(code,create){
  $('lobbyError').textContent='안전하게 연결 중...';$('createRoom').disabled=true;$('joinRoom').disabled=true;
  try{
@@ -166,6 +233,7 @@ async function enterRoom(code,create){
  player.position.set(seat==='a'?-1.2:1.2,0,0);
  onValue(ref(db,root+'/players/'+(seat==='a'?'b':'a')),snap=>{
  const p=snap.val();peerVisible=!!p;peer.visible=!!p;
+ peerState=p?{loot:p.loot,round:p.round}:null;maybeStart();if(p&&p.ev&&p.ev.id!==lastPeerEv){lastPeerEv=p.ev.id;onPeerEv(p.ev)}
  if(p&&Number.isFinite(p.x)&&Number.isFinite(p.z)){peerTarget={x:p.x,z:p.z,rot:p.rot||0};if(p.push&&p.push.to===seat&&p.push.id!==lastReceivedPush){lastReceivedPush=p.push.id;const dx=Number(p.push.dx),dz=Number(p.push.dz);if(Number.isFinite(dx)&&Number.isFinite(dz)&&Math.hypot(dx,dz)<=0.7){[player.position.x,player.position.z]=moveWithFurniture(player.position.x,player.position.z,dx,dz)}}$('roomLabel').textContent='방 '+code+' · 친구 접속';}
  else{$('roomLabel').textContent='방 '+code+' · 친구 대기 중';}
  },e=>notice('상대 동기화 오류: '+e.message));
@@ -196,18 +264,26 @@ function renderMap(popped=-1){
  $('mapDone').disabled=n!==4;$('mapDone').textContent='수색 시작 ('+n+'/4)';$('undo').disabled=n===0;
 }
 $('undo').onclick=()=>{loot.pop();renderMap()};
-$('mapDone').onclick=()=>{if(loot.length!==4)return;document.body.classList.remove('hiding');$('mapOverlay').style.display='none';phase='search';active=true;opened.clear();freeze=0;darkTime=0;reverseTime=0;$('phase').textContent='🔎 수색 단계 · 봉투를 찾아봐';$('count').textContent='조사 0 / 8';notice('수색 시작! 세 종류의 꽝을 조심해')};
+$('mapDone').onclick=()=>{
+ if(loot.length!==4)return;document.body.classList.remove('hiding');$('mapOverlay').style.display='none';
+ if(!roomCode){hunt=loot.slice();countdown();return} // solo test: search your own layout
+ myRound++;phase='wait';active=false;$('phase').textContent='⏳ 상대가 봉투 숨기는 중...';
+ update(ref(db,'rooms/'+roomCode+'/players/'+seat),{loot:loot.slice(),round:myRound,ev:null}).then(maybeStart).catch(e=>notice('배치 전송 실패: '+e.message));
+};
 // Juice: tiny box particles for dust, sparkles and ice shards.
 const particles=[],particleGeo=new THREE.BoxGeometry(1,1,1);
 function burst(pos,color,n,{spread=1.2,up=1.5,size=.06,life=.8,gravity=-4}={}){for(let k=0;k<n;k++){const m=new THREE.Mesh(particleGeo,new THREE.MeshBasicMaterial({color,transparent:true,depthWrite:false}));m.position.copy(pos);m.scale.setScalar(size*(.6+Math.random()*.8));scene.add(m);particles.push({m,v:new THREE.Vector3((Math.random()-.5)*spread,Math.random()*up,(Math.random()-.5)*spread),life,max:life,g:gravity,spin:(Math.random()-.5)*14})}}
 function updateParticles(dt){for(let k=particles.length-1;k>=0;k--){const p=particles[k];p.life-=dt;if(p.life<=0){scene.remove(p.m);p.m.material.dispose();particles.splice(k,1);continue}p.v.y+=p.g*dt;p.m.position.addScaledVector(p.v,dt);if(p.m.position.y<.02){p.m.position.y=.02;p.v.y*=-.3;p.v.x*=.7;p.v.z*=.7}p.m.rotation.x+=p.spin*dt;p.m.rotation.y+=p.spin*dt;p.m.material.opacity=Math.min(1,p.life/p.max*2)}}
-function canvasTexture(draw){const c=document.createElement('canvas');c.width=c.height=128;draw(c.getContext('2d'));const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
+function canvasTexture(draw,w=128,h=128){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'));const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}
 // Floating 🔍 bubble over the nearest searchable spot.
 const hint=new THREE.Sprite(new THREE.SpriteMaterial({depthTest:false,map:canvasTexture(x=>{x.fillStyle='#fff';x.beginPath();x.arc(64,56,48,0,7);x.fill();x.beginPath();x.moveTo(50,96);x.lineTo(78,96);x.lineTo(64,120);x.fill();x.font='54px serif';x.textAlign='center';x.textBaseline='middle';x.fillText('🔍',64,58)})}));
 hint.renderOrder=999;hint.visible=false;scene.add(hint);
+// 👀 bubble over the opponent while they are digging through furniture.
+const peerBubble=new THREE.Sprite(new THREE.SpriteMaterial({depthTest:false,map:canvasTexture(x=>{x.fillStyle='#ff6c91';x.beginPath();x.arc(64,56,48,0,7);x.fill();x.beginPath();x.moveTo(50,96);x.lineTo(78,96);x.lineTo(64,120);x.fill();x.font='54px serif';x.textAlign='center';x.textBaseline='middle';x.fillText('👀',64,58)})}));
+peerBubble.renderOrder=999;peerBubble.visible=false;peerBubble.scale.setScalar(.6);scene.add(peerBubble);
 // Status effects on the avatar.
 const ice=new THREE.Mesh(new THREE.BoxGeometry(.95,2.15,.8),new THREE.MeshStandardMaterial({color:'#bfeaff',transparent:true,opacity:.5,roughness:.1}));ice.visible=false;player.add(ice);
-const stars=new THREE.Group();stars.position.y=2.15;stars.visible=false;player.add(stars);
+const stars=new THREE.Group();stars.position.y=2.3;stars.visible=false;player.add(stars);
 for(let k=0;k<3;k++){const s=new THREE.Mesh(new THREE.OctahedronGeometry(.08),new THREE.MeshStandardMaterial({color:'#ffd84a',emissive:'#ffb800',emissiveIntensity:.6}));s.position.set(Math.cos(k*2.094)*.38,0,Math.sin(k*2.094)*.38);stars.add(s)}
 function animateAvatar(a,speed,dt,now,dusty){
  const u=a.userData;u.speed+=(speed-u.speed)*Math.min(1,dt*10);const s=Math.min(1,u.speed);
@@ -242,7 +318,7 @@ halo.renderOrder=999;halo.scale.setScalar(.75);inspectEnvelope.add(halo);
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
 function openInspect(){
  if(!active||freeze>0||near<0||opened.has(near)||camSpot>=0)return;
- inspecting=near;camSpot=near;camGoal=1;inspectRevealed=false;envFly=-1;envPop=-1;setCoverOpen(near,false);document.body.classList.add('inspect');buzz(10);
+ inspecting=near;camSpot=near;camGoal=1;sendEv('inspect',{spot:near});inspectRevealed=false;envFly=-1;envPop=-1;setCoverOpen(near,false);document.body.classList.add('inspect');buzz(10);
  const [name,x,z]=spots[near];$('inspectTitle').textContent='🔎 '+name+' 내부 탐색';
  inspectEnvelope.visible=false;$('inspectOpen').textContent='🖐️ '+coverLabels[near];$('inspectOpen').disabled=false;
  // Place the envelope low and off-center, so a short look-around is required.
@@ -262,7 +338,8 @@ function openCover(){
  $('inspectOpen').disabled=true;$('inspectOpen').textContent='덜컹덜컹...';$('inspectHint').textContent='두근두근...';
  setTimeout(()=>{
   if(inspecting!==i)return;setCoverOpen(i,true);burst(c.base.clone().setY(c.base.y+.15),'#efe6d6',14,{spread:1.6,up:1.4,size:.05,life:.9,gravity:-1.5});
-  if(loot.includes(i)){envPop=0;inspectEnvelope.visible=true;burst(envBase,'#ffd96a',16,{spread:1.4,up:1.6,size:.04,life:.9,gravity:-1});buzz([15,40,15]);$('inspectOpen').textContent='✨ 뭔가 있다!';$('inspectHint').textContent='구석에 봉투가 있어! 둘러보고 터치해'}
+  sendEv(hunt.includes(i)?'close':'empty',{spot:i});
+  if(hunt.includes(i)){envPop=0;inspectEnvelope.visible=true;burst(envBase,'#ffd96a',16,{spread:1.4,up:1.6,size:.04,life:.9,gravity:-1});buzz([15,40,15]);$('inspectOpen').textContent='✨ 뭔가 있다!';$('inspectHint').textContent='구석에 봉투가 있어! 둘러보고 터치해'}
   else{$('inspectOpen').textContent='💨 텅...';$('inspectHint').textContent='여긴 비어 있어... 다른 곳을 찾아보자';emptyLeave=setTimeout(()=>{if(inspecting===i){leaveInspect();notice('빈 곳이었어!')}},1300)}
  },520);
 }
@@ -273,20 +350,23 @@ function tapInspect(e){
 }
 function leaveInspect(){
  if(inspecting<0)return;const i=inspecting;clearTimeout(emptyLeave);setCoverOpen(i,false);
- if(inspectRevealed&&!loot.includes(i)&&!opened.has(i)){opened.add(i);setCount()}
+ if(inspectRevealed&&!hunt.includes(i)&&!opened.has(i)){opened.add(i);setCount()}
  inspecting=-1;inspectRevealed=false;inspectEnvelope.visible=false;envFly=-1;camGoal=0;document.body.classList.remove('inspect');
 }
 // Envelope card that drops in, flips its flap and slides the letter out.
-function showReveal(kind){
- const [icon,title,text,btn]={bet:['✉️','내기 봉투 발견!',bet,'🎉 한 판 더'],ice:['❄️','얼음 꽝!','5초 동안 꽁꽁 얼어붙어','으악!'],dark:['🌑','암흑 꽝!','5초 동안 눈앞이 캄캄해','으악!'],reverse:['🔄','방향 꽝!','5초 동안 조작이 반대로','으악!']}[kind];
- const el=$('reveal');el.className='kind-'+kind;el.querySelector('.icon').textContent=icon;el.querySelector('.ltitle').textContent=title;el.querySelector('.ltext').textContent=text;$('revealBtn').textContent=btn;
+let revealSeq=0;
+function showReveal(kind,time){
+ let record='';if(kind==='bet'&&!roomCode&&time!=null){try{const best=Number(localStorage.getItem('betroom-best'))||Infinity;if(time<best){localStorage.setItem('betroom-best',time);record=' · 🏆 최고 기록!'}else record=' · 최고 '+fmtKo(best)}catch(e){}}
+ const [icon,title,text,btn]={bet:['✉️','내기 봉투 발견!',roomCode?'내기: '+bet+' · 상대가 쏜다!':bet,'🎉 한 판 더'],lose:['😭','상대가 먼저 찾았다!','내기: '+bet+' · 내가 쏜다…','다음 판은 이긴다'],ice:['❄️','얼음 꽝!','5초 동안 꽁꽁 얼어붙어','으악!'],dark:['🌑','암흑 꽝!','5초 동안 눈앞이 캄캄해','으악!'],reverse:['🔄','방향 꽝!','5초 동안 조작이 반대로','으악!']}[kind];
+ const el=$('reveal');el.className='kind-'+kind;el.querySelector('.icon').textContent=icon;el.querySelector('.ltitle').textContent=title;el.querySelector('.ltext').textContent=text;el.querySelector('.ltime').textContent=time==null?'':'⏱ '+fmtKo(time)+(kind==='lose'?' 만에 상대가 찾음':' 만에 발견!'+record);$('revealBtn').textContent=btn;
  void el.offsetWidth;el.classList.add('show');setTimeout(()=>el.classList.add('open'),480);setTimeout(()=>{el.classList.add('out');buzz(kind==='bet'?[40,60,40,60,120]:[60,40,60])},880);
- return new Promise(res=>{let done=false;const close=()=>{if(done)return;done=true;el.classList.remove('show');setTimeout(()=>{el.className='';res()},250)};$('revealBtn').onclick=close;if(kind!=='bet')setTimeout(close,2400)});
+ const token=++revealSeq; // a newer card (e.g. losing mid-dud) must not be closed by an older card's timer
+ return new Promise(res=>{let done=false;const close=()=>{if(done||token!==revealSeq)return;done=true;el.classList.remove('show');setTimeout(()=>{el.className='';res()},250)};$('revealBtn').onclick=close;if(kind!=='bet'&&kind!=='lose')setTimeout(close,2400)});
 }
 async function resolveFind(){
- const i=inspecting;if(i<0)return;opened.add(i);setCount();const n=loot.indexOf(i);
- if(n===0){active=false;$('phase').textContent='🎉 내기 봉투 발견 · 게임 종료';setTimeout(()=>{confettiBurst(150);setTimeout(()=>confettiBurst(90),300)},880);await showReveal('bet');leaveInspect();beginLocal()}
- else{shakeAmt=.35;await showReveal(['','ice','dark','reverse'][n]);leaveInspect();applyDud(n)}
+ const i=inspecting;if(i<0||phase!=='search')return;opened.add(i);setCount();const n=hunt.indexOf(i);
+ if(n===0){const t=elapsed();sendEv('win',{spot:i,time:t});endRound();$('phase').textContent='🎉 내기 봉투 발견 · 게임 종료';setTimeout(()=>{confettiBurst(150);setTimeout(()=>confettiBurst(90),300)},880);await showReveal('bet',t);leaveInspect();beginLocal()}
+ else{sendEv('dud',{spot:i,kind:n});shakeAmt=.35;await showReveal(['','ice','dark','reverse'][n]);if(phase!=='search')return;leaveInspect();applyDud(n)}
 }
 function applyDud(n){
  shakeAmt=n===1?.9:.5;
@@ -295,7 +375,7 @@ function applyDud(n){
  else{reverseTime=5;notice('🔄 방향 꽝! 5초간 이동 반전');const c=renderer.domElement;c.classList.remove('dizzy');void c.offsetWidth;c.classList.add('dizzy')}
 }
 $('inspectOpen').onclick=openCover;
-$('inspectExit').onclick=()=>{const empty=inspectRevealed&&!loot.includes(inspecting);leaveInspect();if(empty)notice('빈 곳이었어!')};
+$('inspectExit').onclick=()=>{const empty=inspectRevealed&&!hunt.includes(inspecting);leaveInspect();if(empty)notice('빈 곳이었어!')};
 $('search').onclick=openInspect;
 // 2D confetti layer for the win.
 const fx=$('fx'),fxc=fx.getContext('2d');let confetti=[];
@@ -312,6 +392,10 @@ inspectCovers.forEach((c,i)=>{
  const glow=(i===near&&inspecting<0&&active)||(i===inspecting&&!inspectRevealed&&camBlend>.9);c.mat.emissive.set('#ffbf3c');c.mat.emissiveIntensity=glow?.22+.16*Math.sin(now*.008):0;
 });
 updateParticles(dt);
+if(phase==='search')$('timer').textContent='⏱ '+fmtClock(elapsed());
+peerBubble.visible=peerVisible&&now<peerAlert;if(peerBubble.visible)peerBubble.position.set(peer.position.x,2.75+Math.abs(Math.sin(now*.008))*.15,peer.position.z);
+tvLight.intensity=.6+.2*Math.sin(now*.007)*Math.sin(now*.0031);
+{const d=new Date();clockM.rotation.z=-(d.getMinutes()+d.getSeconds()/60)/60*Math.PI*2;clockH.rotation.z=-(d.getHours()%12+d.getMinutes()/60)/12*Math.PI*2}
 let peerSpeed=0;if(peerTarget&&peerVisible){const px=peer.position.x,pz=peer.position.z;peer.position.x+=(peerTarget.x-peer.position.x)*Math.min(1,dt*9);peer.position.z+=(peerTarget.z-peer.position.z)*Math.min(1,dt*9);peerSpeed=Math.hypot(peer.position.x-px,peer.position.z-pz)/dt/3;turn(peer,peerTarget.rot,dt*12)}animateAvatar(peer,peerSpeed,dt,now,false);
 if(roomCode&&seat&&now-lastSync>=200){lastSync=now;update(ref(db,'rooms/'+roomCode+'/players/'+seat),{x:Math.round(player.position.x*100)/100,z:Math.round(player.position.z*100)/100,rot:player.rotation.y,updated:serverTimestamp(),...(pendingPush?{push:pendingPush}:{})}).catch(()=>{});pendingPush=null;}
 let moveSpeed=0;
