@@ -7,7 +7,12 @@
 #reveal{position:fixed;inset:0;z-index:6;display:grid;place-items:center;background:#0b1118b0;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;padding:18px}#reveal.show{opacity:1;visibility:visible}#reveal .stage{display:flex;flex-direction:column;align-items:center;gap:30px;padding-top:110px}.env{position:relative;width:270px;height:170px;transform:translateY(-70vh) rotate(-16deg);transition:transform .55s cubic-bezier(.34,1.56,.64,1)}#reveal.show .env{transform:none}.env .back{position:absolute;inset:0;background:#d9ae58;border-radius:10px}.env .letter{position:absolute;left:14px;right:14px;top:10px;height:150px;background:#fffaf0;border-radius:8px;padding:12px;text-align:center;color:#2c2a26;z-index:2;box-shadow:0 4px 14px #0003;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}#reveal.out .letter{transform:translateY(-118px) scale(1.06)}.env .front{position:absolute;inset:0;background:#f4d78a;border-radius:10px;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);z-index:3}.env .flap{position:absolute;left:0;right:0;top:0;height:62%;background:#e3b85e;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .45s ease-in,z-index 0s .22s;z-index:4}#reveal.open .flap{transform:rotateX(180deg);z-index:1}.letter .icon{font-size:36px;line-height:1.1}.letter .ltitle{font-weight:900;font-size:17px;margin:4px 0 3px}.letter .ltext{font-size:13px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#revealBtn{opacity:0;transform:translateY(12px);transition:opacity .3s .9s,transform .4s .9s cubic-bezier(.34,1.56,.64,1)}#reveal.out #revealBtn{opacity:1;transform:none}.kind-bet .letter{background:#fff6d6}.kind-bet .ltitle{color:#b5821b}.kind-ice .letter{background:#e8f7ff}.kind-ice .ltitle{color:#2f7cb3}.kind-dark .letter{background:#2a2540;color:#f1edff}.kind-reverse .letter{background:#ffe8f0}.kind-reverse .ltitle{color:#c0476e}#reveal.kind-bet.out .env{animation:wiggle .6s .55s}
 #timer{font-weight:900;font-size:16px;font-variant-numeric:tabular-nums;align-self:center}#timer.live{color:#d9ff44}#peerCount{position:absolute;top:75px;right:14px;font-size:13px;display:none;border-color:#ff6c9188}#feed{position:absolute;top:165px;left:14px;display:flex;flex-direction:column;gap:6px;max-width:72vw}.feedItem{background:#1d2632ee;border:1px solid #ffffff30;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:700;animation:feedIn .45s cubic-bezier(.34,1.56,.64,1);transition:opacity .4s,transform .4s}.feedItem.hot{background:#ff6c91ee;border-color:#fff}.feedItem.gone{opacity:0;transform:translateX(-20px)}#alarm{position:fixed;inset:0;z-index:2;pointer-events:none}#alarm.on{animation:alarm 1.1s ease-out}#countdown{position:fixed;inset:0;z-index:5;display:grid;place-items:center;pointer-events:none;font-size:130px;font-weight:900;color:#d9ff44;-webkit-text-stroke:4px #101310;text-shadow:0 8px 30px #0008;opacity:0}#countdown.pop{animation:cd .8s cubic-bezier(.34,1.56,.64,1)}.letter .ltime{font-size:12px;font-weight:800;margin-top:6px;color:#b5821b}.kind-lose .letter{background:#eef0f5}.kind-lose .ltitle{color:#5b6475}.kind-lose .ltime{color:#c0476e}
 @keyframes feedIn{from{opacity:0;transform:translateX(-30px) scale(.9)}to{opacity:1;transform:none}}@keyframes alarm{0%{box-shadow:inset 0 0 90px 26px #ff6c91cc}100%{box-shadow:inset 0 0 0 0 #ff6c9100}}@keyframes cd{0%{opacity:0;transform:scale(2.2)}30%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(.8)}}
-@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 방 · 직접 찾아보는 탐색</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">배치 0 / 4</div></div><div class="pill" id="peerCount">상대 0 / 8</div><div id="feed"></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 배치해. 순서대로 ✉️ 내기 → ❄️ 얼음 → 🌑 암흑 → 🔄 방향</small><div id="floorplan"><div class="furniture" style="left:8.3%;top:6.4%;width:25%;height:36.4%">침대</div><div class="furniture" style="left:34.2%;top:3.2%;width:5.8%;height:5.5%"></div><div class="furniture" style="left:58.7%;top:2.7%;width:3.5%;height:3.8%;border-radius:50%"></div><div class="furniture" style="left:63.3%;top:2.7%;width:20%;height:10%">책상</div><div class="furniture" style="left:85%;top:.9%;width:9.2%;height:5.5%"></div><div class="furniture" style="left:0;top:53.6%;width:1.5%;height:9.1%;background:#e9b98d"></div><div class="furniture" style="left:.4%;top:64.5%;width:13.3%;height:10.9%">옷장</div><div class="furniture" style="left:.4%;top:80.9%;width:6.7%;height:10.9%">책장</div><div class="furniture" style="left:36.7%;top:80%;width:6.7%;height:7.3%;border-radius:50%"></div><div class="furniture" style="left:66.5%;top:52.7%;width:3.8%;height:16.4%">TV</div><div class="furniture" style="left:72.5%;top:55%;width:15.8%;height:11.8%;border-radius:50%">러그</div><div class="furniture" style="left:90.6%;top:49.5%;width:8.1%;height:22.7%">소파</div><div class="furniture" style="left:93.3%;top:74.5%;width:4.2%;height:4.5%;border-radius:50%"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>배치 완료 (0/4)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 4개를 배치한 뒤 3D 방에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}
+#inviteDialog{width:min(90vw,380px);max-height:90dvh;overflow:auto;box-sizing:border-box;border:1px solid #ffffff33;border-radius:24px;background:#29333e;color:#fff;padding:24px;text-align:center}#inviteDialog::backdrop{background:#10151bdd}#inviteQr{margin:18px auto;width:min(100%,250px);background:white;border-radius:12px;overflow:hidden}#inviteQr svg{display:block;width:100%;height:auto}#inviteUrl{display:block;overflow-wrap:anywhere;color:#bfe3ff;font-size:12px;margin:12px 0}#inviteDialog button{margin:4px}#inviteDialog h2{margin:0 0 8px}
+#socialButtons{position:absolute;right:20px;bottom:100px;display:flex;gap:8px;pointer-events:auto}#socialButtons button{padding:10px 14px;font-size:14px;background:#bfe3ff}#socialButtons button:last-child{background:#ffb8cf}
+</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 방 · 직접 찾아보는 탐색</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">배치 0 / 4</div></div><div class="pill" id="peerCount">상대 0 / 8</div><div id="feed"></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="showInvite" style="padding:6px 9px;font-size:12px">친구 초대 QR</button> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="socialButtons"><button id="wave">👋 인사</button><button id="tease">😜 놀리기</button></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 배치해. 순서대로 ✉️ 내기 → ❄️ 얼음 → 🌑 암흑 → 🔄 방향</small><div id="floorplan"><div class="furniture" style="left:8.3%;top:6.4%;width:25%;height:36.4%">침대</div><div class="furniture" style="left:34.2%;top:3.2%;width:5.8%;height:5.5%"></div><div class="furniture" style="left:58.7%;top:2.7%;width:3.5%;height:3.8%;border-radius:50%"></div><div class="furniture" style="left:63.3%;top:2.7%;width:20%;height:10%">책상</div><div class="furniture" style="left:85%;top:.9%;width:9.2%;height:5.5%"></div><div class="furniture" style="left:0;top:53.6%;width:1.5%;height:9.1%;background:#e9b98d"></div><div class="furniture" style="left:.4%;top:64.5%;width:13.3%;height:10.9%">옷장</div><div class="furniture" style="left:.4%;top:80.9%;width:6.7%;height:10.9%">책장</div><div class="furniture" style="left:36.7%;top:80%;width:6.7%;height:7.3%;border-radius:50%"></div><div class="furniture" style="left:66.5%;top:52.7%;width:3.8%;height:16.4%">TV</div><div class="furniture" style="left:72.5%;top:55%;width:15.8%;height:11.8%;border-radius:50%">러그</div><div class="furniture" style="left:90.6%;top:49.5%;width:8.1%;height:22.7%">소파</div><div class="furniture" style="left:93.3%;top:74.5%;width:4.2%;height:4.5%;border-radius:50%"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>배치 완료 (0/4)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 4개를 배치한 뒤 3D 방에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+<dialog id="inviteDialog" aria-labelledby="inviteTitle"><h2 id="inviteTitle">친구를 초대해!</h2><small>친구 휴대폰 카메라로 QR을 찍으면<br>이 방 코드가 입력된 입장 화면이 열려.</small><div id="inviteQr"></div><b id="inviteCode"></b><a id="inviteUrl" target="_blank" rel="noopener"></a><div><button id="copyInvite">링크 복사</button><button id="closeInvite" style="background:#acbac6">닫고 봉투 숨기기</button></div></dialog>
+<script src="./vendor/qrcode.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -18,7 +23,7 @@ const fb=initializeApp({apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDom
 import {getAuth,signInAnonymously,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 const db=getDatabase(fb),auth=getAuth(fb);
 const authReady=new Promise((resolve,reject)=>{const off=onAuthStateChanged(auth,u=>{if(u){off();resolve(u)}},reject);signInAnonymously(auth).catch(reject)});
-let roomCode='',seat='',peerTarget=null,peerVisible=false,lastSync=0,lastPush=0,lastReceivedPush='',pendingPush=null;
+let roomCode='',seat='',peerTarget=null,peerVisible=false,lastSync=0,lastPush=0,lastReceivedPush='',pendingPush=null,lastPeerGesture='';
 const sessionId=(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)).replace(/[^a-zA-Z0-9]/g,'').slice(0,22);
 const peer=new THREE.Group(); // mesh added after player setup
 
@@ -149,9 +154,18 @@ function makeAvatar(g,{shirt,pants,hair,accent,bun}){
  const limb=(r,len,x,y,m,parent,splay,end)=>{const p=new THREE.Group();p.position.set(x,y,0);p.rotation.z=splay;parent.add(p);mesh(new THREE.CapsuleGeometry(r,len,4,10),m,0,-(len/2+r)+.02,0,p);if(end==='hand')mesh(new THREE.SphereGeometry(.075,12,10),skin,0,-(len+r*2)+.03,0,p);else rbox(.2,.1,.3,0,-(len+r*2)+.01,.04,shoeMat,p,.05);return p};
  g.userData={torso,head,eyes,blinkOff:Math.random()*3400,legL:limb(.1,.28,-.12,.54,pantsMat,g,0,'shoe'),legR:limb(.1,.28,.12,.54,pantsMat,g,0,'shoe'),armL:limb(.07,.3,-.3,1.2,shirtMat,torso,-.12,'hand'),armR:limb(.07,.3,.3,1.2,shirtMat,torso,.12,'hand'),phase:0,speed:0,step:1};
 }
-const player=new THREE.Group();scene.add(player);makeAvatar(player,{shirt:'#8ec5ff',pants:'#4f5d7a',hair:'#4a3428',accent:C.lime,bun:.15});
-player.position.set(0,0,0);
-makeAvatar(peer,{shirt:'#ff8fab',pants:'#6b5a8e',hair:'#c9783e',accent:C.mint,bun:.18});peer.visible=false;scene.add(peer);
+// Appearance belongs to the room seat, so both clients see the same character.
+const avatars={a:new THREE.Group(),b:new THREE.Group()};
+makeAvatar(avatars.a,{shirt:'#8ec5ff',pants:'#4f5d7a',hair:'#4a3428',accent:C.lime,bun:.15});
+makeAvatar(avatars.b,{shirt:'#ff8fab',pants:'#6b5a8e',hair:'#c9783e',accent:C.mint,bun:.18});
+const player=new THREE.Group();scene.add(player);
+function assignAvatars(mySeat){
+ const mine=avatars[mySeat],other=avatars[mySeat==='a'?'b':'a'];
+ player.add(mine);peer.add(other);
+ player.userData=mine.userData;peer.userData=other.userData;
+}
+assignAvatars('a');player.position.set(0,0,0);
+peer.visible=false;scene.add(peer);
 const spots=[['침대',-3.5,-2.7],['책상',2.8,-4.3],['옷장',-4.85,1.2],['소파',4.65,.72],['책장',-4.9,4],['화분',-1.2,3.7],['러그',3.6,1.4],['베개',-3.5,-4]];
 // Axis-aligned furniture footprints with a small margin for the character body.
 const obstacles=[
@@ -234,24 +248,73 @@ async function enterRoom(code,create){
    await set(ref(db,root+'/players/b'),{id:uid,x:1.2,z:0,rot:0,updated:serverTimestamp()});
  }
  roomCode=code;
+ assignAvatars(seat);
  const myRef=ref(db,root+'/players/'+seat);
  // Seats remain reserved until the room is removed, preventing account takeover on disconnect.
  await onDisconnect(myRef).remove();
  player.position.set(seat==='a'?-1.2:1.2,0,0);
  onValue(ref(db,root+'/players/'+(seat==='a'?'b':'a')),snap=>{
  const p=snap.val();peerVisible=!!p;peer.visible=!!p;
+ if(p&&p.gesture&&p.gesture.id!==lastPeerGesture){lastPeerGesture=p.gesture.id;if(Number.isFinite(p.gesture.at)&&Math.abs(Date.now()-p.gesture.at)<4000)showGesture(peer,p.gesture.type)}
  peerState=p?{loot:p.loot,round:p.round}:null;maybeStart();if(p&&p.ev&&p.ev.id!==lastPeerEv){lastPeerEv=p.ev.id;onPeerEv(p.ev)}
  if(p&&Number.isFinite(p.x)&&Number.isFinite(p.z)){peerTarget={x:p.x,z:p.z,rot:p.rot||0};if(p.push&&p.push.to===seat&&p.push.id!==lastReceivedPush){lastReceivedPush=p.push.id;const dx=Number(p.push.dx),dz=Number(p.push.dz);if(Number.isFinite(dx)&&Number.isFinite(dz)&&Math.hypot(dx,dz)<=0.7){[player.position.x,player.position.z]=moveWithFurniture(player.position.x,player.position.z,dx,dz)}}$('roomLabel').textContent='방 '+code+' · 친구 접속';}
  else{$('roomLabel').textContent='방 '+code+' · 친구 대기 중';}
  },e=>notice('상대 동기화 오류: '+e.message));
  $('roomInfo').style.display='block';history.replaceState(null,'',location.pathname+'?room='+code);
- beginLocal();notice('방 '+code+' 연결! 친구에게 링크를 보내줘');
+ beginLocal();if(create)showInvite();notice('방 '+code+' 연결! 친구를 초대해줘');
  }catch(e){$('lobbyError').textContent='연결 실패: '+(e.message||e)+' · 익명 인증과 DB 규칙을 확인해줘';roomCode='';seat='';}
  finally{$('createRoom').disabled=false;$('joinRoom').disabled=false}
 }
 $('createRoom').onclick=()=>{const code=Array.from(crypto.getRandomValues(new Uint8Array(6)),v=>'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[v%32]).join('');enterRoom(code,true)};
 $('joinRoom').onclick=()=>{const code=$('roomCode').value.trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(code)){$('lobbyError').textContent='6자리 방 코드를 입력해줘';return}enterRoom(code,false)};
-$('copyRoom').onclick=async()=>{const url=location.origin+location.pathname+'?room='+roomCode;try{await navigator.clipboard.writeText(url);notice('초대 링크 복사 완료')}catch(e){prompt('초대 링크',url)}};
+function inviteUrl(){
+ const local=['localhost','127.0.0.1','[::1]'].includes(location.hostname);
+ const url=new URL(local?'https://dopasharp.github.io/bet-room/':location.href);
+ url.search='';url.hash='';url.searchParams.set('room',roomCode);return url.href;
+}
+function showInvite(){
+ if(!roomCode)return;
+ const url=inviteUrl(),qr=qrcode(0,'M');qr.addData(url);qr.make();
+ $('inviteQr').innerHTML=qr.createSvgTag({cellSize:6,margin:24,scalable:true});
+ $('inviteQr').firstElementChild.setAttribute('aria-label','친구 입장 QR 코드');
+ $('inviteCode').textContent='방 코드: '+roomCode;
+ $('inviteUrl').href=url;$('inviteUrl').textContent=url;
+ if(!$('inviteDialog').open)$('inviteDialog').showModal();
+}
+async function copyInvite(){const url=inviteUrl();try{await navigator.clipboard.writeText(url);notice('초대 링크 복사 완료')}catch(e){prompt('초대 링크',url)}}
+$('showInvite').onclick=showInvite;
+$('closeInvite').onclick=()=>$('inviteDialog').close();
+$('copyRoom').onclick=copyInvite;$('copyInvite').onclick=copyInvite;
+const gestures={wave:{text:'👋 안녕!',color:'#bfe3ff'},tease:{text:'😜 메롱~',color:'#ffb8cf'}};
+const gestureTextures=Object.fromEntries(Object.entries(gestures).map(([type,g])=>[type,canvasTexture(x=>{
+ x.fillStyle=g.color;x.beginPath();x.roundRect(4,27,120,70,18);x.fill();
+ x.beginPath();x.moveTo(51,96);x.lineTo(64,111);x.lineTo(77,96);x.fill();
+ x.fillStyle='#283440';x.font='bold 22px system-ui';x.textAlign='center';x.textBaseline='middle';x.fillText(g.text,64,63);
+})]));
+const gestureBubbles=[player,peer].map(actor=>{
+ const bubble=new THREE.Sprite(new THREE.SpriteMaterial({map:gestureTextures.wave,depthTest:false}));
+ bubble.renderOrder=1000;bubble.scale.setScalar(1.3);bubble.visible=false;scene.add(bubble);return {actor,bubble};
+});
+function showGesture(actor,type){
+ if(!Object.hasOwn(gestures,type))return;
+ actor.userData.gesture={type,start:performance.now()};
+ feed((actor===player?'나: ':'상대: ')+gestures[type].text);
+}
+let lastGestureAt=-Infinity;
+function sendGesture(type){
+ if(!Object.hasOwn(gestures,type))return;
+ const now=performance.now();if(now-lastGestureAt<1200)return;lastGestureAt=now;
+ showGesture(player,type);
+ if(roomCode&&seat)update(ref(db,'rooms/'+roomCode+'/players/'+seat),{gesture:{id:sessionId+'-'+Date.now(),type,at:Date.now()}}).catch(()=>notice('인사를 전하지 못했어. 다시 눌러줘'));
+}
+$('wave').onclick=()=>sendGesture('wave');$('tease').onclick=()=>sendGesture('tease');
+function updateGestureBubbles(now){
+ for(const {actor,bubble} of gestureBubbles){
+ const gesture=actor.userData.gesture;
+ bubble.visible=!!gesture&&now-gesture.start<2600&&(actor===player?player.visible:peerVisible);
+ if(bubble.visible){bubble.material.map=gestureTextures[gesture.type];bubble.position.set(actor.position.x,2.7+Math.sin((now-gesture.start)*.007)*.08,actor.position.z)}
+ }
+}
 $('start').onclick=beginLocal;
 window.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;keys[e.key.toLowerCase()]=true;if(e.key===' '){e.preventDefault();if(inspecting>=0)openCover();else openInspect()}});window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 const joy=$('joy');function joyMove(e){const r=joy.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),len=Math.max(1,Math.hypot(dx,dy)),n=Math.min(1,len/40);joystick={x:dx/len*n,y:dy/len*n};$('nub').style.transform='translate('+joystick.x*32+'px,'+joystick.y*32+'px)'}
@@ -299,6 +362,13 @@ function animateAvatar(a,speed,dt,now,dusty){
  u.torso.position.y=Math.abs(Math.cos(u.phase))*.07*s+Math.sin(now*.003)*.015*(1-s);
  u.torso.rotation.x=.12*s;u.head.rotation.z=Math.sin(u.phase*.5)*.06*s;
  const sq=.035*s*Math.cos(u.phase*2);u.torso.scale.set(1+sq,1-sq,1+sq); // jelly squash
+ u.armL.rotation.z=-.12;u.armR.rotation.z=.12;
+ const gesture=u.gesture,age=gesture?(now-gesture.start)/1000:Infinity;
+ if(age<2.6){
+ const pulse=Math.sin(age*18);
+ if(gesture.type==='wave'){u.armR.rotation.z=-2.4+pulse*.3;u.armR.rotation.x=.15}
+ else{u.armL.rotation.z=.9;u.armR.rotation.z=-.9;u.head.rotation.z=Math.sin(age*12)*.18;u.torso.position.y+=Math.abs(Math.sin(age*9))*.1}
+ }else{u.armL.rotation.z=-.12;u.armR.rotation.z=.12}
  const blink=(now+u.blinkOff)%3400<110;u.eyes.forEach(e=>e.scale.y=blink?.15:1.35);
  if(dusty&&s>.35&&Math.sign(sw)!==u.step){u.step=Math.sign(sw);burst(a.position.clone().setY(.05),'#cbb79c',3,{spread:.7,up:.6,size:.05,life:.45,gravity:-2})}
 }
@@ -423,6 +493,7 @@ const eff=freeze>0?['❄️ 얼음',freeze]:darkTime>0?['🌑 암흑',darkTime]:
 $('search').textContent=freeze>0?'❄️ '+Math.ceil(freeze)+'초 정지':near>=0?spots[near][0]+' 조사하기':'가구에 접근';$('tip').textContent=freeze>0?'❄️ 얼음! 이동과 수색 불가':darkTime>0?'🌑 암흑! 가까운 곳만 보여':reverseTime>0?'🔄 방향 반전! 이동 조작이 반대야':near>=0?spots[near][0]+' 근처 · '+'조사하기':'이동: WASD / 조이스틱 · 시점: 드래그'}
 if(now>noticeUntil)$('toast').classList.remove('show');
 animateAvatar(player,moveSpeed,dt,now,true);
+updateGestureBubbles(now);
 // Ice block grows from the feet and shatters when the freeze ends.
 if(freeze>0){iceS+=(1-iceS)*Math.min(1,dt*14);ice.visible=true;ice.scale.set(1+(1-iceS)*.3,Math.max(.01,iceS),1+(1-iceS)*.3);ice.position.y=1.07*iceS}else{if(prevFreeze>0){burst(player.position.clone().setY(1),'#cfefff',24,{spread:3,up:3,size:.09,life:1});buzz(30)}ice.visible=false}prevFreeze=freeze;
 $('frost').style.opacity=freeze>0?Math.min(1,(5-freeze)/.25,freeze/.4):0;
