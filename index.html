@@ -9,8 +9,10 @@
 @keyframes feedIn{from{opacity:0;transform:translateX(-30px) scale(.9)}to{opacity:1;transform:none}}@keyframes alarm{0%{box-shadow:inset 0 0 90px 26px #ff6c91cc}100%{box-shadow:inset 0 0 0 0 #ff6c9100}}@keyframes cd{0%{opacity:0;transform:scale(2.2)}30%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(.8)}}
 @keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}
 #inviteDialog{width:min(90vw,380px);max-height:90dvh;overflow:auto;box-sizing:border-box;border:1px solid #ffffff33;border-radius:24px;background:#29333e;color:#fff;padding:24px;text-align:center}#inviteDialog::backdrop{background:#10151bdd}#inviteQr{margin:18px auto;width:min(100%,250px);background:white;border-radius:12px;overflow:hidden}#inviteQr svg{display:block;width:100%;height:auto}#inviteUrl{display:block;overflow-wrap:anywhere;color:#bfe3ff;font-size:12px;margin:12px 0}#inviteDialog button{margin:4px}#inviteDialog h2{margin:0 0 8px}
+#mute{pointer-events:auto;background:#1d2632dd;color:#fff;font-size:16px;padding:8px 12px}#dangerGlow{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0;box-shadow:inset 0 0 150px 46px #ff2d6fcc}#dangerPill{position:absolute;bottom:195px;left:50%;transform:translateX(-50%);display:none;white-space:nowrap;background:#5a1830ee;border-color:#ff6c91;font-size:13px;font-weight:800;animation:ready 1s ease-in-out infinite}
+#slotRow{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:12px;font-size:12px;color:#c8d0d8}#slotRow button{padding:6px 10px;font-size:12px;background:#3a4654;color:#dfe6ee}#slotRow button.on{background:#d9ff44;color:#20252b}
 #socialButtons{position:absolute;right:20px;bottom:100px;display:flex;gap:8px;pointer-events:auto}#socialButtons button{padding:10px 14px;font-size:14px;background:#bfe3ff}#socialButtons button:last-child{background:#ffb8cf}
-</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 집 · 거실 · 방 · 화장실</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">조사 0 / 16</div></div><div class="pill" id="peerCount">상대 0 / 16</div><div id="feed"></div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="showInvite" style="padding:6px 9px;font-size:12px">친구 초대 QR</button> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="socialButtons"><button id="wave">👋 인사</button><button id="tease">😜 놀리기</button></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 봉투 7개를 숨겨. ✉️ 내기 1개 + 꽝 6개(❄️ 🌑 🔄 각 2개)</small><div id="floorplan"><div id="mapFurniture"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="mapDone" disabled>수색 시작 (0/7)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 7개(내기 1 + 꽝 6)를 숨긴 뒤 3D 집에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="dangerGlow"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 집 · 거실 · 방 · 화장실</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">조사 0 / 16</div><button id="mute" class="pill" aria-label="소리 켜기/끄기">🔊</button></div><div class="pill" id="peerCount">상대 0 / 16</div><div id="feed"></div><div class="pill" id="dangerPill">💓 상대가 내 내기 봉투 근처에 있어!</div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="showInvite" style="padding:6px 9px;font-size:12px">친구 초대 QR</button> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="socialButtons"><button id="wave">👋 인사</button><button id="tease" style="background:#ffb8cf">😜 놀리기</button><button id="what" style="background:#fff0a8">🤔 뭐해?</button></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 봉투 7개를 숨겨. ✉️ 내기 1개 + 꽝 6개(❄️ 🌑 🔄 각 2개)</small><div id="floorplan"><div id="mapFurniture"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="randomLoot" style="background:#bfe3ff">🎲 랜덤</button><button id="mapDone" disabled>수색 시작 (0/7)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 7개(내기 1 + 꽝 6)를 숨긴 뒤 3D 집에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><div id="slotRow"><span>같은 기기에서 둘이 테스트:</span><button type="button" data-p="1">player1</button><button type="button" data-p="2">player2</button></div><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
 <dialog id="inviteDialog" aria-labelledby="inviteTitle"><h2 id="inviteTitle">친구를 초대해!</h2><small>친구 휴대폰 카메라로 QR을 찍으면<br>이 방 코드가 입력된 입장 화면이 열려.</small><div id="inviteQr"></div><b id="inviteCode"></b><a id="inviteUrl" target="_blank" rel="noopener"></a><div><button id="copyInvite">링크 복사</button><button id="closeInvite" style="background:#acbac6">닫고 봉투 숨기기</button></div></dialog>
 <script src="./vendor/qrcode.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
@@ -19,7 +21,10 @@ import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
 import {getDatabase,ref,get,set,update,onValue,onDisconnect,serverTimestamp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
-const fb=initializeApp({apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDomain:"bet-room-e2ae3.firebaseapp.com",databaseURL:"https://bet-room-e2ae3-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bet-room-e2ae3",appId:"1:152551218316:web:3f34e5cf9f01f2e4dfefa9"});
+// Test profiles: ?p=2 runs this tab as "player2" with its own anonymous login (a separately named Firebase app keeps
+// its own saved login), so one browser can play both sides. player1 is the normal default login; invite links never carry p.
+const playerSlot=Math.min(4,Math.max(1,parseInt(new URLSearchParams(location.search).get('p'))||1));
+const fb=initializeApp({apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDomain:"bet-room-e2ae3.firebaseapp.com",databaseURL:"https://bet-room-e2ae3-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bet-room-e2ae3",appId:"1:152551218316:web:3f34e5cf9f01f2e4dfefa9"},playerSlot===1?'[DEFAULT]':'player'+playerSlot);
 import {getAuth,signInAnonymously,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 const db=getDatabase(fb),auth=getAuth(fb);
 const authReady=new Promise((resolve,reject)=>{const off=onAuthStateChanged(auth,u=>{if(u){off();resolve(u)}},reject);signInAnonymously(auth).catch(reject)});
@@ -357,6 +362,78 @@ function moveWithFurniture(x,z,dx,dz){
 const cross2=(ax,az,bx,bz,cx,cz)=>(bx-ax)*(cz-az)-(bz-az)*(cx-ax);
 function segHit(ax,az,bx,bz,cx,cz,dx,dz){return cross2(ax,az,bx,bz,cx,cz)*cross2(ax,az,bx,bz,dx,dz)<0&&cross2(cx,cz,dx,dz,ax,az)*cross2(cx,cz,dx,dz,bx,bz)<0}
 function segDist(px,pz,ax,az,bx,bz){const vx=bx-ax,vz=bz-az,t=THREE.MathUtils.clamp(((px-ax)*vx+(pz-az)*vz)/(vx*vx+vz*vz||1),0,1);return Math.hypot(px-ax-vx*t,pz-az-vz*t)}
+// ---------- Sound: a tiny WebAudio synth, so there are no audio files to load ----------
+// Every sound takes (v=volume multiplier, pan=-1..1). The context starts on the first tap or key press.
+const sfx=(()=>{
+ let ctx=null,out=null,noise=null,muted=false,keepAlive=null;try{muted=localStorage.getItem('betroom-mute')==='1'}catch(e){}
+ function init(){
+  if(!ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;ctx=new AC();out=ctx.createGain();out.gain.value=muted?0:.9;
+   const comp=ctx.createDynamicsCompressor();out.connect(comp);comp.connect(ctx.destination);
+   noise=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);const d=noise.getChannelData(0);for(let k=0;k<d.length;k++)d[k]=Math.random()*2-1}
+  if(ctx.state==='suspended')ctx.resume();
+  // iPhone silent switch: Web Audio counts as "ambient" sound and is muted on silent. Declaring media playback
+  // (audioSession on iOS 17+, or a silent looping <audio> element on older iOS) makes the game audible like a video.
+  try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+  if(!keepAlive){keepAlive=new Audio(silentWav());keepAlive.loop=true;keepAlive.setAttribute('playsinline','')}
+  if(keepAlive.paused&&!muted)keepAlive.play().catch(()=>{});
+ }
+ function silentWav(){const n=4000,b=new ArrayBuffer(44+n),v=new DataView(b),w=(o,t)=>{for(let k=0;k<t.length;k++)v.setUint8(o+k,t.charCodeAt(k))};
+  w(0,'RIFF');v.setUint32(4,36+n,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,8000,true);v.setUint16(32,1,true);v.setUint16(34,8,true);w(36,'data');v.setUint32(40,n,true);
+  for(let k=0;k<n;k++)v.setUint8(44+k,128);return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
+ const dest=pan=>{if(!pan||!ctx.createStereoPanner)return out;const p=ctx.createStereoPanner();p.pan.value=Math.max(-1,Math.min(1,pan));p.connect(out);return p};
+ const env=(g,t,a,peak,dur)=>{g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+dur)};
+ const ok=vol=>ctx&&ctx.state==='running'&&!muted&&vol>.002;
+ function tone({f=440,f2=f,type='sine',dur=.2,vol=.2,a=.005,delay=0,pan=0,vib=0,vibD=.03}){
+  if(!ok(vol))return;const t=ctx.currentTime+delay,o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(f2!==f)o.frequency.exponentialRampToValueAtTime(f2,t+dur);
+  if(vib){const l=ctx.createOscillator(),lg=ctx.createGain();l.frequency.value=vib;lg.gain.value=f*vibD;l.connect(lg);lg.connect(o.frequency);l.start(t);l.stop(t+dur+.02)}
+  env(g,t,a,vol,dur);o.connect(g);g.connect(dest(pan));o.start(t);o.stop(t+dur+.02)}
+ function hiss({dur=.2,vol=.2,type='bandpass',f=1000,f2=f,q=1,a=.005,delay=0,pan=0}){
+  if(!ok(vol))return;const t=ctx.currentTime+delay,s=ctx.createBufferSource(),fl=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=noise;s.loop=true;
+  fl.type=type;fl.Q.value=q;fl.frequency.setValueAtTime(f,t);if(f2!==f)fl.frequency.exponentialRampToValueAtTime(f2,t+dur);
+  env(g,t,a,vol,dur);s.connect(fl);fl.connect(g);g.connect(dest(pan));s.start(t,Math.random()*.5);s.stop(t+dur+.02)}
+ const S={
+  step:(v=1,pan=0)=>hiss({dur:.06,vol:.05*v,f:650+Math.random()*350,q:1.4,pan}),
+  // Furniture: creaky hinge, sliding drawer, soft lift, curtain swish, and a nervous rattle before opening.
+  creak:(v=1,pan=0)=>{tone({f:140,f2:240,type:'sawtooth',dur:.5,vol:.05*v,a:.05,vib:24,vibD:.06,pan});tone({f:320,f2:200,type:'triangle',dur:.42,vol:.05*v,a:.06,delay:.14,vib:16,pan});hiss({dur:.14,vol:.12*v,type:'lowpass',f:420,delay:.45,pan})},
+  slide:(v=1,pan=0)=>{hiss({dur:.32,vol:.12*v,f:450,f2:1700,q:2.5,a:.03,pan});tone({f:95,type:'sine',dur:.09,vol:.18*v,delay:.3,pan})},
+  lift:(v=1,pan=0)=>hiss({dur:.32,vol:.13*v,type:'lowpass',f:280,f2:1500,a:.05,pan}),
+  swish:(v=1,pan=0)=>{hiss({dur:.45,vol:.12*v,type:'highpass',f:1400,f2:5200,a:.04,pan});for(let k=0;k<6;k++)tone({f:2300+k*140,dur:.03,vol:.03*v,delay:.04+k*.06,pan})},
+  rattle:(v=1,pan=0)=>{for(let k=0;k<7;k++)hiss({dur:.05,vol:(.07+Math.random()*.06)*v,f:280+Math.random()*600,q:3,delay:k*.07,pan})},
+  // Search results.
+  found:()=>{[880,1175,1568,2093].forEach((f,k)=>tone({f,type:'triangle',dur:.38,vol:.12,delay:k*.07}));S.heart(.9)},
+  empty:()=>{hiss({dur:.35,vol:.1,type:'lowpass',f:900,f2:200});tone({f:330,f2:160,type:'triangle',dur:.45,vol:.1,delay:.05})},
+  grab:()=>hiss({dur:.28,vol:.14,f:500,f2:3200,q:.8}),
+  drop:()=>hiss({dur:.25,vol:.1,type:'lowpass',f:1800,f2:300}),
+  bet:()=>{[[523,0],[659,.12],[784,.24],[1047,.36],[784,.56],[1047,.68]].forEach(([f,d],k)=>tone({f,type:k<4?'square':'triangle',dur:k===5?.7:.16,vol:.07,delay:d}));for(let k=0;k<8;k++)tone({f:1800+Math.random()*1600,dur:.12,vol:.03,delay:.8+k*.05})},
+  lose:()=>[392,370,349,311].forEach((f,k)=>tone({f,type:'sawtooth',dur:k===3?.95:.3,vol:.06,delay:k*.36,vib:k===3?6:0,vibD:.02})),
+  ice:()=>{for(let k=0;k<8;k++)tone({f:1700+Math.random()*2000,dur:.28,vol:.06,delay:k*.045});hiss({dur:.5,vol:.1,type:'highpass',f:4200})},
+  dark:()=>{tone({f:220,f2:42,dur:1.1,vol:.28});hiss({dur:1,vol:.12,type:'lowpass',f:700,f2:70})},
+  reverse:()=>tone({f:280,f2:620,dur:.95,vol:.15,vib:9,vibD:.25}),
+  shatter:()=>{hiss({dur:.4,vol:.16,type:'highpass',f:2600});for(let k=0;k<6;k++)tone({f:2400+Math.random()*2200,dur:.12,vol:.04,delay:k*.03})},
+  // UI and tension.
+  beep:go=>tone({f:go?990:660,type:'square',dur:go?.38:.12,vol:.06}),
+  alarm:()=>{for(let k=0;k<4;k++)tone({f:k%2?660:880,type:'square',dur:.13,vol:.05,delay:k*.15})},
+  ping:(v=1,pan=0)=>tone({f:1320,f2:1760,dur:.15,vol:.06*v,pan}),
+  heart:(v=1)=>{tone({f:72,f2:40,dur:.17,vol:.35*v});tone({f:66,f2:38,dur:.2,vol:.26*v,delay:.19})},
+  tick:(hi,v=1)=>tone({f:hi?2300:1700,type:'square',dur:.022,vol:.022*v}),
+  blip:(k=0)=>tone({f:520*Math.pow(1.12,k),type:'triangle',dur:.12,vol:.1}),
+  hi:(v=1,pan=0)=>[660,880].forEach((f,k)=>tone({f,type:'triangle',dur:.14,vol:.1*v,delay:k*.11,pan})),
+  boing:(v=1,pan=0)=>tone({f:170,f2:540,dur:.36,vol:.15*v,vib:18,vibD:.2,pan}),
+  huh:(v=1,pan=0)=>{tone({f:300,f2:330,type:'triangle',dur:.12,vol:.1*v,pan});tone({f:340,f2:640,type:'triangle',dur:.24,vol:.1*v,delay:.15,pan})},
+  laugh:(v=1,pan=0)=>{for(let k=0;k<4;k++)tone({f:520-k*35,f2:430-k*35,type:'square',dur:.09,vol:.035*v,delay:k*.13,pan})}
+ };
+ return {init,S,get muted(){return muted},toggle(){muted=!muted;try{localStorage.setItem('betroom-mute',muted?'1':'0')}catch(e){}if(out)out.gain.value=muted?0:.9;if(keepAlive){if(muted)keepAlive.pause();else keepAlive.play().catch(()=>{})}return muted}};
+})();
+const S=sfx.S;
+for(const t of ['pointerdown','keydown'])addEventListener(t,()=>sfx.init(),true);
+// How each place sounds when it opens.
+places.forEach(p=>p.snd=({옷장:'creak',찬장:'creak',냉장고:'creak',신발장:'creak',책상:'slide',세면대:'slide',TV장:'slide',책장:'slide',욕조:'swish'})[p.name]||'lift');
+// Volume and stereo pan for a sound at (x,z): fades with distance, muffled through a wall, panned to the side of the screen it's on.
+function spatial(x,z,base=1){
+ const dx=x-player.position.x,dz=z-player.position.z,d=Math.hypot(dx,dz);let v=base*Math.max(0,1-d/18)**1.4;
+ if(roomAt(x,z)!==roomAt(player.position.x,player.position.z))v*=.45;
+ return [v,d>.3?(dx*Math.cos(yaw)+dz*Math.sin(yaw))/d*.85:0];
+}
 const markers=[];for(const [name,x,z] of spots){const ring=new THREE.Mesh(new THREE.RingGeometry(.36,.45,32),new THREE.MeshBasicMaterial({color:'#ffd46b',side:THREE.DoubleSide,transparent:true,opacity:.65}));ring.rotation.x=-Math.PI/2;ring.position.set(x,.015,z);scene.add(ring);markers.push(ring)}
 // Envelopes per round in hiding order: the bet first, then two of each dud.
 const LOOT_N=7,dudKind=n=>(n-1)%3+1; // hunt/loot index → 1 ice, 2 dark, 3 reverse
@@ -369,7 +446,10 @@ function bump(el){el.classList.remove('bump');void el.offsetWidth;el.classList.a
 function notice(s){const t=$('toast');t.textContent=s;t.classList.remove('show');void t.offsetWidth;t.classList.add('show');noticeUntil=performance.now()+2100}
 function setCount(){$('count').textContent='조사 '+opened.size+' / '+spots.length;bump($('count'))}
 const codeFromUrl=new URLSearchParams(location.search).get('room');if(codeFromUrl)$('roomCode').value=codeFromUrl.toUpperCase().slice(0,6);
-function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('overlay').style.display='none';active=false;phase='hide';loot=[];hunt=[];opened.clear();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
+// Switching profile reloads the page (the login is chosen at startup), keeping a typed room code.
+for(const b of $('slotRow').querySelectorAll('button')){b.classList.toggle('on',Number(b.dataset.p)===playerSlot);b.onclick=()=>{const url=new URL(location.href),n=Number(b.dataset.p),code=$('roomCode').value.trim().toUpperCase();
+ if(n>1)url.searchParams.set('p',n);else url.searchParams.delete('p');if(code)url.searchParams.set('room',code);location.href=url.href}}
+function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('overlay').style.display='none';active=false;phase='hide';loot=[];hunt=[];opened.clear();showMyLoot();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
 // Race helpers: elapsed-time formatting, event broadcast to the opponent and the live feed.
 const fmtClock=s=>{s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
 const fmtKo=s=>{s=Math.round(s);return (s>=60?Math.floor(s/60)+'분 ':'')+s%60+'초'};
@@ -377,12 +457,18 @@ const elapsed=()=>(performance.now()-searchStart)/1000;
 function sendEv(type,extra={}){if(!roomCode||!seat)return;update(ref(db,'rooms/'+roomCode+'/players/'+seat),{ev:{id:sessionId+'-'+Date.now(),type,opened:opened.size,...extra}}).catch(()=>{})}
 function feed(msg,hot){const box=$('feed'),el=document.createElement('div');el.className='feedItem'+(hot?' hot':'');el.textContent=msg;box.prepend(el);while(box.children.length>3)box.lastChild.remove();setTimeout(()=>{el.classList.add('gone');setTimeout(()=>el.remove(),400)},4200);if(hot){const a=$('alarm');a.classList.remove('on');void a.offsetWidth;a.classList.add('on');shakeAmt=.25;buzz([30,60,30])}}
 function onPeerEv(ev){
- if(phase!=='search')return;const name=(spots[ev.spot]||[''])[0];
+ if(phase!=='search')return;const i=ev.spot,p=places[i],name=p?p.name:'',now=performance.now(),mine=Number.isInteger(i)&&i===loot[0];
  if(Number.isFinite(ev.opened)){$('peerCount').textContent='상대 '+ev.opened+' / '+spots.length;bump($('peerCount'))}
- if(ev.type==='inspect'){feed('👀 상대가 '+name+' 뒤지는 중!');peerAlert=performance.now()+2600}
- else if(ev.type==='close'){feed('😱 상대가 '+name+'에서 뭔가 발견했대!',true);peerAlert=performance.now()+3200}
- else if(ev.type==='empty')feed('💨 상대: '+name+' 허탕!');
- else if(ev.type==='dud')feed('😂 상대가 '+['','❄️ 얼음','🌑 암흑','🔄 방향'][ev.kind]+' 꽝에 걸렸다!');
+ // The opponent searches their own copy of the house, but the same furniture rattles and opens here too, heard from where it is.
+ const c=p&&inspectCovers[i],[v,pan]=p?spatial(p.x,p.z):[0,0];
+ if(ev.type==='inspect'){
+  if(c){c.shake=.6;c.peerGlow=now+2800}S.rattle(v,pan);peerAlert=now+2600;
+  if(mine){feed('🚨 상대가 '+name+' 뒤지는 중… 거기 내 내기 봉투 있는데!!',true);S.alarm();peerDigBet=now+3500}else{feed('👀 상대가 '+name+' 뒤지는 중!');S.ping(.8)}
+ }else if(ev.type==='close'||ev.type==='empty'){
+  const hit=ev.type==='close';if(c){c.peerUntil=now+(hit?3800:2200);c.peerGlow=now+(hit?3800:2200)}
+  if(p){S[p.snd](v,pan);burst(coverCenters[i].clone().setY(coverCenters[i].y+.15),hit?'#ff9fb6':'#efe6d6',10,{spread:1.4,up:1.2,size:.05,life:.8,gravity:-1.5})}
+  if(hit){feed(mine?'😱 내 내기 봉투가 들켰다!!':'😱 상대가 '+name+'에서 뭔가 발견했대!',true);S.alarm();peerAlert=now+3200}else feed('💨 상대: '+name+' 허탕!');
+ }else if(ev.type==='dud'){for(const b of myBadges)if(b.userData.spot===i)b.userData.used=true;feed('😂 상대가 내가 숨긴 '+['','❄️ 얼음','🌑 암흑','🔄 방향'][ev.kind]+' 꽝에 걸렸다!');S.laugh(1.4)}
  else if(ev.type==='win')loseRound(Number(ev.time)||elapsed());
 }
 // Both players must submit this round's hiding spots; each then searches the other's room layout.
@@ -390,8 +476,8 @@ function maybeStart(){if(phase==='wait'&&peerState&&peerState.round===myRound&&A
 function countdown(){
  phase='count';active=false;opened.clear();freeze=darkTime=reverseTime=0;$('count').textContent='조사 0 / '+spots.length;$('peerCount').textContent='상대 0 / '+spots.length;$('peerCount').style.display=roomCode?'block':'none';$('timer').textContent='⏱ 00:00';$('phase').textContent='🚦 곧 시작!';
  const el=$('countdown');let n=3;
- const tick=()=>{el.textContent=n||'GO!';el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');buzz(n?30:[60,40,90]);
-  if(n--)setTimeout(tick,800);else{phase='search';active=true;searchStart=performance.now();$('timer').classList.add('live');$('phase').textContent=roomCode?'🔎 먼저 찾으면 승리!':'🔎 봉투를 찾아봐';notice('수색 시작! 세 종류의 꽝을 조심해')}};
+ const tick=()=>{el.textContent=n||'GO!';S.beep(!n);el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');buzz(n?30:[60,40,90]);
+  if(n--)setTimeout(tick,800);else{phase='search';active=true;searchStart=performance.now();$('timer').classList.add('live');$('phase').textContent=roomCode?'🔎 먼저 찾으면 승리!':'🔎 봉투를 찾아봐';showMyLoot();notice(roomCode?'수색 시작! 머리 위 ✉️ 표시는 내가 숨긴 봉투야':'수색 시작! 세 종류의 꽝을 조심해')}};
  tick();
 }
 function endRound(){phase='over';active=false;$('timer').classList.remove('live');$('timer').textContent='⏱ '+fmtClock(elapsed())}
@@ -407,9 +493,18 @@ async function enterRoom(code,create){
    await set(ref(db,root),{seats:{a:uid},players:{a:{id:uid,x:-1.2,z:2.5,rot:0,updated:serverTimestamp()}}});
    seat='a';
  }else{
-   await set(ref(db,root+'/seats/b'),uid);
-   seat='b';
-   await set(ref(db,root+'/players/b'),{id:uid,x:1.2,z:2.5,rot:0,updated:serverTimestamp()});
+   // Rejoining after a refresh: this browser's login may already own a seat here (the creator owns a),
+   // and claiming seat b again is refused by the DB rules. Reuse the seat we own; only claim b when it's free.
+   let seats,readable=true;try{seats=(await get(ref(db,root+'/seats'))).val()}catch(e){readable=false}
+   if(seats&&seats.a===uid)seat='a';
+   else if(seats&&seats.b===uid)seat='b';
+   else if(readable&&!seats)throw new Error('없는 방 코드야. 코드를 다시 확인해줘');
+   else if(seats&&seats.b)throw new Error('이미 두 명이 들어가 있는 방이야');
+   else{
+     try{await set(ref(db,root+'/seats/b'),uid);seat='b'}
+     catch(e){if(readable)throw e;seat='a'} // seats unreadable: assume we're the creator coming back
+   }
+   await set(ref(db,root+'/players/'+seat),{id:uid,x:seat==='a'?-1.2:1.2,z:2.5,rot:0,updated:serverTimestamp()});
  }
  roomCode=code;
  assignAvatars(seat);
@@ -424,7 +519,7 @@ async function enterRoom(code,create){
  if(p&&Number.isFinite(p.x)&&Number.isFinite(p.z)){peerTarget={x:p.x,z:p.z,rot:p.rot||0};if(p.push&&p.push.to===seat&&p.push.id!==lastReceivedPush){lastReceivedPush=p.push.id;const dx=Number(p.push.dx),dz=Number(p.push.dz);if(Number.isFinite(dx)&&Number.isFinite(dz)&&Math.hypot(dx,dz)<=0.7){[player.position.x,player.position.z]=moveWithFurniture(player.position.x,player.position.z,dx,dz)}}$('roomLabel').textContent='방 '+code+' · 친구 접속';}
  else{$('roomLabel').textContent='방 '+code+' · 친구 대기 중';}
  },e=>notice('상대 동기화 오류: '+e.message));
- $('roomInfo').style.display='block';history.replaceState(null,'',location.pathname+'?room='+code);
+ $('roomInfo').style.display='block';$('lobbyError').textContent='';history.replaceState(null,'',location.pathname+'?room='+code+(playerSlot>1?'&p='+playerSlot:''));
  beginLocal();if(create)showInvite();notice('방 '+code+' 연결! 친구를 초대해줘');
  }catch(e){$('lobbyError').textContent='연결 실패: '+(e.message||e)+' · 익명 인증과 DB 규칙을 확인해줘';roomCode='';seat='';}
  finally{$('createRoom').disabled=false;$('joinRoom').disabled=false}
@@ -449,7 +544,7 @@ async function copyInvite(){const url=inviteUrl();try{await navigator.clipboard.
 $('showInvite').onclick=showInvite;
 $('closeInvite').onclick=()=>$('inviteDialog').close();
 $('copyRoom').onclick=copyInvite;$('copyInvite').onclick=copyInvite;
-const gestures={wave:{text:'👋 안녕!',color:'#bfe3ff'},tease:{text:'😜 메롱~',color:'#ffb8cf'}};
+const gestures={wave:{text:'👋 안녕!',color:'#bfe3ff'},tease:{text:'😜 메롱~',color:'#ffb8cf'},what:{text:'🤔 뭐해?',color:'#fff0a8'}};
 const gestureTextures=Object.fromEntries(Object.entries(gestures).map(([type,g])=>[type,canvasTexture(x=>{
  x.fillStyle=g.color;x.beginPath();x.roundRect(4,27,120,70,18);x.fill();
  x.beginPath();x.moveTo(51,96);x.lineTo(64,111);x.lineTo(77,96);x.fill();
@@ -462,6 +557,7 @@ const gestureBubbles=[player,peer].map(actor=>{
 function showGesture(actor,type){
  if(!Object.hasOwn(gestures,type))return;
  actor.userData.gesture={type,start:performance.now()};
+ {const [v,pan]=actor===player?[1,0]:spatial(peer.position.x,peer.position.z,1.4);({wave:S.hi,tease:S.boing,what:S.huh}[type])(v,pan)}
  feed((actor===player?'나: ':'상대: ')+gestures[type].text);
 }
 let lastGestureAt=-Infinity;
@@ -471,7 +567,7 @@ function sendGesture(type){
  showGesture(player,type);
  if(roomCode&&seat)update(ref(db,'rooms/'+roomCode+'/players/'+seat),{gesture:{id:sessionId+'-'+Date.now(),type,at:Date.now()}}).catch(()=>notice('인사를 전하지 못했어. 다시 눌러줘'));
 }
-$('wave').onclick=()=>sendGesture('wave');$('tease').onclick=()=>sendGesture('tease');
+$('wave').onclick=()=>sendGesture('wave');$('tease').onclick=()=>sendGesture('tease');$('what').onclick=()=>sendGesture('what');
 function updateGestureBubbles(now){
  for(const {actor,bubble} of gestureBubbles){
  const gesture=actor.userData.gesture;
@@ -480,6 +576,7 @@ function updateGestureBubbles(now){
  }
 }
 $('start').onclick=beginLocal;
+$('mute').textContent=sfx.muted?'🔇':'🔊';$('mute').onclick=()=>{$('mute').textContent=sfx.toggle()?'🔇':'🔊';bump($('mute'))};
 window.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;keys[e.key.toLowerCase()]=true;if(e.key===' '){e.preventDefault();if(inspecting>=0)openCover();else openInspect()}});window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 const joy=$('joy');function joyMove(e){const r=joy.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),len=Math.max(1,Math.hypot(dx,dy)),n=Math.min(1,len/40);joystick={x:dx/len*n,y:dy/len*n};$('nub').style.transform='translate('+joystick.x*32+'px,'+joystick.y*32+'px)'}
 joy.addEventListener('pointerdown',e=>{joy.setPointerCapture(e.pointerId);$('nub').classList.add('held');joyMove(e)});joy.addEventListener('pointermove',e=>{if(joy.hasPointerCapture(e.pointerId))joyMove(e)});for(const type of ['pointerup','pointercancel'])joy.addEventListener(type,()=>{joystick={x:0,y:0};$('nub').classList.remove('held');$('nub').style.transform=''});
@@ -515,16 +612,20 @@ function renderMap(popped=-1){
  const rank=loot.indexOf(i);if(rank>=0){btn.classList.add(rank===0?'bet':'dud');btn.textContent=['✉','❄','🌑','🔄'][rank&&dudKind(rank)];btn.setAttribute('aria-label',name+' 배치됨')}
  else{btn.textContent='+';btn.setAttribute('aria-label',name+'에 숨기기')}
  if(i===popped)btn.classList.add('pop');
- btn.title=name;btn.onclick=()=>{if(loot.includes(i)||loot.length>=LOOT_N)return;loot.push(i);buzz(12);renderMap(i);bump($('mapStatus'))};dots.appendChild(btn);
+ btn.title=name;btn.onclick=()=>{if(loot.includes(i)||loot.length>=LOOT_N)return;loot.push(i);buzz(12);S.blip(loot.length);renderMap(i);bump($('mapStatus'))};dots.appendChild(btn);
  });
  const n=loot.length;$('mapStatus').textContent=n===LOOT_N?'배치 완료! 이제 수색을 시작해':'('+(n+1)+'/'+LOOT_N+') '+['✉️ 내기 봉투를 숨겨줘','❄️ 얼음 꽝을 숨겨줘','🌑 암흑 꽝을 숨겨줘','🔄 방향 꽝을 숨겨줘','❄️ 얼음 꽝 하나 더!','🌑 암흑 꽝 하나 더!','🔄 방향 꽝 하나 더!'][n];
  $('mapDone').disabled=n!==LOOT_N;$('mapDone').textContent='수색 시작 ('+n+'/'+LOOT_N+')';$('undo').disabled=n===0;
 }
-$('undo').onclick=()=>{loot.pop();renderMap()};
+$('undo').onclick=()=>{loot.pop();S.blip(-4);renderMap()};
+// Random placement: reshuffle every envelope into distinct random places (pressing again rerolls).
+$('randomLoot').onclick=()=>{const free=spots.map((_,i)=>i);for(let k=free.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[free[k],free[j]]=[free[j],free[k]]}
+ loot=free.slice(0,LOOT_N);buzz([10,30,10]);for(let k=0;k<LOOT_N;k++)setTimeout(()=>S.blip(k),k*45);renderMap();
+ for(const [k,el] of [...$('mapDots').children].entries())if(loot.includes(k)){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}};
 $('mapDone').onclick=()=>{
  if(loot.length!==LOOT_N)return;document.body.classList.remove('hiding');$('mapOverlay').style.display='none';
  if(!roomCode){hunt=loot.slice();countdown();return} // solo test: search your own layout
- myRound++;phase='wait';active=false;$('phase').textContent='⏳ 상대가 봉투 숨기는 중...';
+ myRound=Math.max(myRound+1,peerState&&Number(peerState.round)||0);phase='wait';active=false;$('phase').textContent='⏳ 상대가 봉투 숨기는 중...';
  update(ref(db,'rooms/'+roomCode+'/players/'+seat),{loot:loot.slice(),round:myRound,ev:null}).then(maybeStart).catch(e=>notice('배치 전송 실패: '+e.message));
 };
 // Juice: tiny box particles for dust, sparkles and ice shards.
@@ -538,26 +639,40 @@ hint.renderOrder=999;hint.visible=false;scene.add(hint);
 // 👀 bubble over the opponent while they are digging through furniture.
 const peerBubble=new THREE.Sprite(new THREE.SpriteMaterial({depthTest:false,map:canvasTexture(x=>{x.fillStyle='#ff6c91';x.beginPath();x.arc(64,56,48,0,7);x.fill();x.beginPath();x.moveTo(50,96);x.lineTo(78,96);x.lineTo(64,120);x.fill();x.font='54px serif';x.textAlign='center';x.textBaseline='middle';x.fillText('👀',64,58)})}));
 peerBubble.renderOrder=999;peerBubble.visible=false;peerBubble.scale.setScalar(.6);scene.add(peerBubble);
+// Badges over the places where *you* hid envelopes, so you can watch the opponent closing in on them.
+// 2-player only: in a solo test you search your own layout, so showing it would give the answers away.
+const lootIcon=['✉️','❄️','🌑','🔄'],lootColor=['#f3d58a','#bfe3ff','#c9b6ff','#ffb8cf'];
+const badgeTex=lootIcon.map((icon,k)=>canvasTexture(x=>{x.fillStyle=lootColor[k];x.beginPath();x.arc(64,50,40,0,7);x.fill();x.lineWidth=6;x.strokeStyle='#ffffff';x.stroke();
+ x.font='44px serif';x.textAlign='center';x.textBaseline='middle';x.fillText(icon,64,52);x.fillStyle='#283440';x.beginPath();x.roundRect(20,92,88,30,13);x.fill();x.fillStyle='#ffffff';x.font='bold 18px system-ui';x.fillText(k?'내 꽝':'내 봉투',64,108)}));
+const myBadges=[];
+function showMyLoot(){
+ for(const b of myBadges){scene.remove(b);b.material.dispose()}myBadges.length=0;if(!roomCode)return;
+ loot.forEach((spot,n)=>{const k=n&&dudKind(n),c=coverCenters[spot],b=new THREE.Sprite(new THREE.SpriteMaterial({map:badgeTex[k],depthTest:false,transparent:true}));
+  b.renderOrder=998;b.scale.setScalar(.62);b.position.set(c.x,c.y+.85,c.z);b.userData={spot,k,y:c.y+.85,used:false};scene.add(b);myBadges.push(b)});
+}
 // Status effects on the avatar.
 const ice=new THREE.Mesh(new THREE.BoxGeometry(.95,2.15,.8),new THREE.MeshStandardMaterial({color:'#bfeaff',transparent:true,opacity:.5,roughness:.1}));ice.visible=false;player.add(ice);
 const stars=new THREE.Group();stars.position.y=2.3;stars.visible=false;player.add(stars);
 for(let k=0;k<3;k++){const s=new THREE.Mesh(new THREE.OctahedronGeometry(.08),new THREE.MeshStandardMaterial({color:'#ffd84a',emissive:'#ffb800',emissiveIntensity:.6}));s.position.set(Math.cos(k*2.094)*.38,0,Math.sin(k*2.094)*.38);stars.add(s)}
-function animateAvatar(a,speed,dt,now,dusty){
+function animateAvatar(a,speed,dt,now,dusty,onStep){
  const u=a.userData;u.speed+=(speed-u.speed)*Math.min(1,dt*10);const s=Math.min(1,u.speed);
  u.phase+=dt*(4+s*9);const sw=Math.sin(u.phase);
  u.legL.rotation.x=sw*.7*s;u.legR.rotation.x=-sw*.7*s;u.armL.rotation.x=-sw*.65*s;u.armR.rotation.x=sw*.65*s;
  u.torso.position.y=Math.abs(Math.cos(u.phase))*.07*s+Math.sin(now*.003)*.015*(1-s);
- u.torso.rotation.x=.12*s;u.head.rotation.z=Math.sin(u.phase*.5)*.06*s;
+ u.torso.rotation.x=.12*s;u.torso.rotation.z=0;u.head.rotation.z=Math.sin(u.phase*.5)*.06*s;
  const sq=.035*s*Math.cos(u.phase*2);u.torso.scale.set(1+sq,1-sq,1+sq); // jelly squash
  u.armL.rotation.z=-.12;u.armR.rotation.z=.12;
  const gesture=u.gesture,age=gesture?(now-gesture.start)/1000:Infinity;
  if(age<2.6){
  const pulse=Math.sin(age*18);
- if(gesture.type==='wave'){u.armR.rotation.z=-2.4+pulse*.3;u.armR.rotation.x=.15}
+ // Wave: the right arm goes up and out to the side (positive z raises it on the avatar's right) and swings.
+ if(gesture.type==='wave'){u.armR.rotation.z=2.55+pulse*.35;u.armR.rotation.x=.15;u.head.rotation.z=-.1+pulse*.04;u.torso.rotation.z=-.05}
+ // "What are you doing?": a palms-up shrug with a curious head tilt.
+ else if(gesture.type==='what'){const k=Math.min(1,age*5);u.armL.rotation.z=-.95*k;u.armR.rotation.z=.95*k;u.armL.rotation.x=u.armR.rotation.x=-.5*k;u.head.rotation.z=.28*Math.sin(age*3.2);u.torso.position.y+=Math.abs(Math.sin(age*6))*.04}
  else{u.armL.rotation.z=.9;u.armR.rotation.z=-.9;u.head.rotation.z=Math.sin(age*12)*.18;u.torso.position.y+=Math.abs(Math.sin(age*9))*.1}
  }else{u.armL.rotation.z=-.12;u.armR.rotation.z=.12}
  const blink=(now+u.blinkOff)%3400<110;u.eyes.forEach(e=>e.scale.y=blink?.15:1.35);
- if(dusty&&s>.35&&Math.sign(sw)!==u.step){u.step=Math.sign(sw);burst(a.position.clone().setY(.05),'#cbb79c',3,{spread:.7,up:.6,size:.05,life:.45,gravity:-2})}
+ if(s>.35&&Math.sign(sw)!==u.step){u.step=Math.sign(sw);if(dusty)burst(a.position.clone().setY(.05),'#cbb79c',3,{spread:.7,up:.6,size:.05,life:.45,gravity:-2});if(onStep)onStep()}
 }
 const turn=(o,t,k)=>{o.rotation.y+=Math.atan2(Math.sin(t-o.rotation.y),Math.cos(t-o.rotation.y))*Math.min(1,k)};
 // Close-up exploration: the player must spot and tap a physical envelope.
@@ -600,18 +715,18 @@ function openInspect(){
 // Rattle first for suspense, then spring the cover open.
 function openCover(){
  if(inspecting<0||inspectRevealed)return;
- const i=inspecting,c=inspectCovers[i];inspectRevealed=true;c.shake=.5;buzz(20);
+ const i=inspecting,c=inspectCovers[i];inspectRevealed=true;c.shake=.5;buzz(20);S.rattle();
  $('inspectOpen').disabled=true;$('inspectOpen').textContent='덜컹덜컹...';$('inspectHint').textContent='두근두근...';
  setTimeout(()=>{
-  if(inspecting!==i)return;setCoverOpen(i,true);burst(coverCenters[i].clone().setY(coverCenters[i].y+.15),'#efe6d6',14,{spread:1.6,up:1.4,size:.05,life:.9,gravity:-1.5});
+  if(inspecting!==i)return;setCoverOpen(i,true);S[places[i].snd]();burst(coverCenters[i].clone().setY(coverCenters[i].y+.15),'#efe6d6',14,{spread:1.6,up:1.4,size:.05,life:.9,gravity:-1.5});
   sendEv(hunt.includes(i)?'close':'empty',{spot:i});
-  if(hunt.includes(i)){envPop=0;inspectEnvelope.visible=true;burst(envBase,'#ffd96a',16,{spread:1.4,up:1.6,size:.04,life:.9,gravity:-1});buzz([15,40,15]);$('inspectOpen').textContent='✨ 뭔가 있다!';$('inspectHint').textContent='구석에 봉투가 있어! 둘러보고 터치해'}
-  else{$('inspectOpen').textContent='💨 텅...';$('inspectHint').textContent='여긴 비어 있어... 다른 곳을 찾아보자';emptyLeave=setTimeout(()=>{if(inspecting===i){leaveInspect();notice('빈 곳이었어!')}},1300)}
+  if(hunt.includes(i)){S.found();envPop=0;inspectEnvelope.visible=true;burst(envBase,'#ffd96a',16,{spread:1.4,up:1.6,size:.04,life:.9,gravity:-1});buzz([15,40,15]);$('inspectOpen').textContent='✨ 뭔가 있다!';$('inspectHint').textContent='구석에 봉투가 있어! 둘러보고 터치해'}
+  else{S.empty();$('inspectOpen').textContent='💨 텅...';$('inspectHint').textContent='여긴 비어 있어... 다른 곳을 찾아보자';emptyLeave=setTimeout(()=>{if(inspecting===i){leaveInspect();notice('빈 곳이었어!')}},1300)}
  },520);
 }
 function tapInspect(e){
  const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,viewCam);
- if(inspectEnvelope.visible&&envFly<0&&envPop>.25&&raycaster.intersectObjects(inspectEnvelope.children,true).length){envFly=0;envFrom.copy(inspectEnvelope.position);buzz(20);$('inspectHint').textContent='두근두근...';return}
+ if(inspectEnvelope.visible&&envFly<0&&envPop>.25&&raycaster.intersectObjects(inspectEnvelope.children,true).length){envFly=0;envFrom.copy(inspectEnvelope.position);buzz(20);S.grab();$('inspectHint').textContent='두근두근...';return}
  if(!inspectRevealed&&raycaster.intersectObject(inspectCovers[inspecting].mesh).length)openCover();
 }
 function leaveInspect(){
@@ -625,7 +740,7 @@ function showReveal(kind,time){
  let record='';if(kind==='bet'&&!roomCode&&time!=null){try{const best=Number(localStorage.getItem('betroom-best'))||Infinity;if(time<best){localStorage.setItem('betroom-best',time);record=' · 🏆 최고 기록!'}else record=' · 최고 '+fmtKo(best)}catch(e){}}
  const [icon,title,text,btn]={bet:['✉️','내기 봉투 발견!',roomCode?'내기: '+bet+' · 상대가 쏜다!':bet,'🎉 한 판 더'],lose:['😭','상대가 먼저 찾았다!','내기: '+bet+' · 내가 쏜다…','다음 판은 이긴다'],ice:['❄️','얼음 꽝!','5초 동안 꽁꽁 얼어붙어','으악!'],dark:['🌑','암흑 꽝!','5초 동안 눈앞이 캄캄해','으악!'],reverse:['🔄','방향 꽝!','5초 동안 조작이 반대로','으악!']}[kind];
  const el=$('reveal');el.className='kind-'+kind;el.querySelector('.icon').textContent=icon;el.querySelector('.ltitle').textContent=title;el.querySelector('.ltext').textContent=text;el.querySelector('.ltime').textContent=time==null?'':'⏱ '+fmtKo(time)+(kind==='lose'?' 만에 상대가 찾음':' 만에 발견!'+record);$('revealBtn').textContent=btn;
- void el.offsetWidth;el.classList.add('show');setTimeout(()=>el.classList.add('open'),480);setTimeout(()=>{el.classList.add('out');buzz(kind==='bet'?[40,60,40,60,120]:[60,40,60])},880);
+ void el.offsetWidth;el.classList.add('show');S.drop();setTimeout(()=>el.classList.add('open'),480);setTimeout(()=>{el.classList.add('out');S[kind]();buzz(kind==='bet'?[40,60,40,60,120]:[60,40,60])},880);
  const token=++revealSeq; // a newer card (e.g. losing mid-dud) must not be closed by an older card's timer
  return new Promise(res=>{let done=false;const close=()=>{if(done||token!==revealSeq)return;done=true;el.classList.remove('show');setTimeout(()=>{el.className='';res()},250)};$('revealBtn').onclick=close;if(kind!=='bet'&&kind!=='lose')setTimeout(close,2400)});
 }
@@ -648,21 +763,34 @@ const fx=$('fx'),fxc=fx.getContext('2d');let confetti=[];
 function confettiBurst(n){fx.width=innerWidth;fx.height=innerHeight;const cols=['#f3d58a','#ff8a7a','#9de3bb','#8ec5ff','#ffffff','#e7bd55'];for(let k=0;k<n;k++)confetti.push({x:innerWidth/2+(Math.random()-.5)*80,y:innerHeight*.4,vx:(Math.random()-.5)*16,vy:-6-Math.random()*13,r:Math.random()*6,vr:(Math.random()-.5)*.5,c:cols[k%cols.length],w:6+Math.random()*7,h:4+Math.random()*5})}
 function drawConfetti(dt){if(!confetti.length)return;const f=dt*60;fxc.clearRect(0,0,fx.width,fx.height);confetti=confetti.filter(p=>{p.vy+=.35*f;p.vx*=Math.pow(.985,f);p.x+=p.vx*f;p.y+=p.vy*f;p.r+=p.vr*f;fxc.save();fxc.translate(p.x,p.y);fxc.rotate(p.r);fxc.fillStyle=p.c;fxc.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.r*2)));fxc.restore();return p.y<fx.height+30});if(!confetti.length)fxc.clearRect(0,0,fx.width,fx.height)}
 
+let nextTick=0,tickHi=false,nextBeat=0,dangerLv=0,dangerPulse=0,peerDigBet=0;
 let last=performance.now();function loop(now){requestAnimationFrame(loop);let dt=Math.min(.05,(now-last)/1000);last=now;
 inspectCovers.forEach((c,i)=>{
  // Under-damped spring so lids overshoot a little; rattle jitter while shaking.
- c.v+=((c.target-c.p)*170-c.v*15)*dt;c.p+=c.v*dt;c.shake=Math.max(0,c.shake-dt);
+ const goal=Math.max(c.target,now<(c.peerUntil||0)?1:0);c.v+=((goal-c.p)*170-c.v*15)*dt;c.p+=c.v*dt;c.shake=Math.max(0,c.shake-dt);
  const t=c.p,j=c.shake>0?(Math.random()-.5)*.1*Math.min(1,c.shake*3+.3):0;
  c.mesh.position.copy(c.base);c.mesh.scale.copy(c.scale);c.mesh.rotation.set(c.rot.x+j,c.rot.y+j*.6,c.rot.z+j*.8);if(c.shake>0)c.mesh.position.y+=Math.abs(j)*.3;
  places[i].open(c.mesh,t);
- const glow=(i===near&&inspecting<0&&active)||(i===inspecting&&!inspectRevealed&&camBlend>.9);c.mat.emissive.set('#ffbf3c');c.mat.emissiveIntensity=glow?.22+.16*Math.sin(now*.008):0;
+ const glow=(i===near&&inspecting<0&&active)||(i===inspecting&&!inspectRevealed&&camBlend>.9);const pg=!glow&&now<(c.peerGlow||0);c.mat.emissive.set(pg?'#ff4f86':'#ffbf3c');c.mat.emissiveIntensity=glow?.22+.16*Math.sin(now*.008):pg?.28+.2*Math.sin(now*.014):0;
 });
 updateParticles(dt);
 if(phase==='search')$('timer').textContent='⏱ '+fmtClock(elapsed());
+// Tension: a clock that ticks faster the longer the search runs, and a heartbeat (with a red edge glow)
+// while the opponent is in the same room as, and close to, the spot where you hid your bet envelope.
+if(phase==='search'){
+ if(now>=nextTick){tickHi=!tickHi;S.tick(tickHi);nextTick=now+Math.max(320,950-elapsed()*2.6)}
+ let danger=0;
+ if(roomCode&&peerVisible&&loot.length===LOOT_N){const b=places[loot[0]];if(roomAt(peer.position.x,peer.position.z)===spotRooms[loot[0]])danger=THREE.MathUtils.clamp((4.5-Math.hypot(peer.position.x-b.x,peer.position.z-b.z))/3.5,0,1);if(now<peerDigBet)danger=1}
+ dangerLv+=(danger-dangerLv)*Math.min(1,dt*4);
+ if(dangerLv>.05&&now>=nextBeat){S.heart(.35+.65*dangerLv);nextBeat=now+1100-550*dangerLv;dangerPulse=now}
+}else dangerLv=Math.max(0,dangerLv-dt*2);
+$('dangerGlow').style.opacity=dangerLv*(.5+.5*Math.max(0,1-(now-dangerPulse)/450));$('dangerPill').style.display=dangerLv>.45?'block':'none';
 peerBubble.visible=peerVisible&&now<peerAlert;if(peerBubble.visible)peerBubble.position.set(peer.position.x,2.75+Math.abs(Math.sin(now*.008))*.15,peer.position.z);
+// My badges bob gently, hide in close-ups, fade once the opponent has sprung that dud, and the bet badge throbs red in danger.
+for(const b of myBadges){const u=b.userData,hot=u.k===0&&dangerLv>.3;b.visible=camBlend<.3;b.position.y=u.y+Math.sin(now*.003+u.spot)*.06;b.scale.setScalar(.62*(hot?1.15+.12*Math.sin(now*.02):1));b.material.color.set(hot?'#ff8fa8':'#ffffff');b.material.opacity=u.used?.35:1}
 tvLight.intensity=.6+.2*Math.sin(now*.007)*Math.sin(now*.0031);
 {const d=new Date();clockM.rotation.z=-(d.getMinutes()+d.getSeconds()/60)/60*Math.PI*2;clockH.rotation.z=-(d.getHours()%12+d.getMinutes()/60)/12*Math.PI*2}
-let peerSpeed=0;if(peerTarget&&peerVisible){const px=peer.position.x,pz=peer.position.z;peer.position.x+=(peerTarget.x-peer.position.x)*Math.min(1,dt*9);peer.position.z+=(peerTarget.z-peer.position.z)*Math.min(1,dt*9);peerSpeed=Math.hypot(peer.position.x-px,peer.position.z-pz)/dt/3;turn(peer,peerTarget.rot,dt*12)}animateAvatar(peer,peerSpeed,dt,now,false);
+let peerSpeed=0;if(peerTarget&&peerVisible){const px=peer.position.x,pz=peer.position.z;peer.position.x+=(peerTarget.x-peer.position.x)*Math.min(1,dt*9);peer.position.z+=(peerTarget.z-peer.position.z)*Math.min(1,dt*9);peerSpeed=Math.hypot(peer.position.x-px,peer.position.z-pz)/dt/3;turn(peer,peerTarget.rot,dt*12)}animateAvatar(peer,peerSpeed,dt,now,false,()=>{const [v,pan]=spatial(peer.position.x,peer.position.z,2.6);S.step(v,pan)});
 if(roomCode&&seat&&now-lastSync>=200){lastSync=now;update(ref(db,'rooms/'+roomCode+'/players/'+seat),{x:Math.round(player.position.x*100)/100,z:Math.round(player.position.z*100)/100,rot:player.rotation.y,updated:serverTimestamp(),...(pendingPush?{push:pendingPush}:{})}).catch(()=>{});pendingPush=null;}
 let moveSpeed=0;
 if(active&&inspecting<0){freeze=Math.max(0,freeze-dt);darkTime=Math.max(0,darkTime-dt);reverseTime=Math.max(0,reverseTime-dt);let x=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0)+joystick.x,z=(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0)+joystick.y,len=Math.hypot(x,z);if(reverseTime>0){x=-x;z=-z}
@@ -681,10 +809,10 @@ if(darkTime>0){const k=Math.min(1,(5-darkTime)/.6,darkTime/.6),r=115+(1-ease(k))
 const eff=freeze>0?['❄️ 얼음',freeze]:darkTime>0?['🌑 암흑',darkTime]:reverseTime>0?['🔄 방향 반전',reverseTime]:null;if(eff){const p=eff[1]/5*100;$('effect').textContent=eff[0]+' '+Math.ceil(eff[1])+'초';$('effect').style.background='linear-gradient(90deg,#4f86b8cc '+p+'%,#101820e8 '+p+'%)'}$('effect').style.display=eff?'block':'none';
 $('search').textContent=freeze>0?'❄️ '+Math.ceil(freeze)+'초 정지':near>=0?spots[near][0]+' 조사하기':'가구에 접근';$('tip').textContent=freeze>0?'❄️ 얼음! 이동과 수색 불가':darkTime>0?'🌑 암흑! 가까운 곳만 보여':reverseTime>0?'🔄 방향 반전! 이동 조작이 반대야':near>=0?spots[near][0]+' 근처 · '+'조사하기':'이동: WASD / 조이스틱 · 시점: 드래그'}
 if(now>noticeUntil)$('toast').classList.remove('show');
-animateAvatar(player,moveSpeed,dt,now,true);
+animateAvatar(player,moveSpeed,dt,now,true,()=>S.step(.7));
 updateGestureBubbles(now);
 // Ice block grows from the feet and shatters when the freeze ends.
-if(freeze>0){iceS+=(1-iceS)*Math.min(1,dt*14);ice.visible=true;ice.scale.set(1+(1-iceS)*.3,Math.max(.01,iceS),1+(1-iceS)*.3);ice.position.y=1.07*iceS}else{if(prevFreeze>0){burst(player.position.clone().setY(1),'#cfefff',24,{spread:3,up:3,size:.09,life:1});buzz(30)}ice.visible=false}prevFreeze=freeze;
+if(freeze>0){iceS+=(1-iceS)*Math.min(1,dt*14);ice.visible=true;ice.scale.set(1+(1-iceS)*.3,Math.max(.01,iceS),1+(1-iceS)*.3);ice.position.y=1.07*iceS}else{if(prevFreeze>0){S.shatter();burst(player.position.clone().setY(1),'#cfefff',24,{spread:3,up:3,size:.09,life:1});buzz(30)}ice.visible=false}prevFreeze=freeze;
 $('frost').style.opacity=freeze>0?Math.min(1,(5-freeze)/.25,freeze/.4):0;
 stars.visible=reverseTime>0;if(stars.visible){stars.rotation.y+=dt*6;stars.children.forEach(s=>s.rotation.y+=dt*8)}
 const hs=near>=0&&inspecting<0&&active&&freeze<=0?near:-1;if(hs!==hintSpot){hintSpot=hs;hintPop=0;if(hs>=0)buzz(8)}hintPop=Math.min(1,hintPop+dt/.5);
