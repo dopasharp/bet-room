@@ -10,9 +10,9 @@
 @keyframes rise{from{opacity:0;transform:translateY(34px) scale(.94)}to{opacity:1;transform:none}}@keyframes spotPop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-40deg)}100%{transform:translate(-50%,-50%) scale(1)}}@keyframes ready{0%,100%{box-shadow:0 0 0 0 #f3d58aaa;transform:scale(1)}50%{box-shadow:0 0 0 12px #f3d58a00;transform:scale(1.05)}}@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}@keyframes dizzy{0%{transform:none}45%{transform:rotate(200deg) scale(.82)}100%{transform:rotate(360deg)}}@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}
 #inviteDialog{width:min(90vw,380px);max-height:90dvh;overflow:auto;box-sizing:border-box;border:1px solid #ffffff33;border-radius:24px;background:#29333e;color:#fff;padding:24px;text-align:center}#inviteDialog::backdrop{background:#10151bdd}#inviteQr{margin:18px auto;width:min(100%,250px);background:white;border-radius:12px;overflow:hidden}#inviteQr svg{display:block;width:100%;height:auto}#inviteUrl{display:block;overflow-wrap:anywhere;color:#bfe3ff;font-size:12px;margin:12px 0}#inviteDialog button{margin:4px}#inviteDialog h2{margin:0 0 8px}
 #mute{pointer-events:auto;background:#1d2632dd;color:#fff;font-size:16px;padding:8px 12px}#dangerGlow{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0;box-shadow:inset 0 0 150px 46px #ff2d6fcc}#dangerPill{position:absolute;bottom:195px;left:50%;transform:translateX(-50%);display:none;white-space:nowrap;background:#5a1830ee;border-color:#ff6c91;font-size:13px;font-weight:800;animation:ready 1s ease-in-out infinite}
-#slotRow{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:12px;font-size:12px;color:#c8d0d8}#slotRow button{padding:6px 10px;font-size:12px;background:#3a4654;color:#dfe6ee}#slotRow button.on{background:#d9ff44;color:#20252b}
+#mapBetRow{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#e7d6b7;white-space:nowrap}#mapBetRow input{margin:0;padding:9px 12px;flex:1;min-width:0;font-size:14px}#peerBet{font-size:12px;color:#ffb8cf;min-height:16px;margin:6px 0 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #socialButtons{position:absolute;right:20px;bottom:100px;display:flex;gap:8px;pointer-events:auto}#socialButtons button{padding:10px 14px;font-size:14px;background:#bfe3ff}#socialButtons button:last-child{background:#ffb8cf}
-</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="dangerGlow"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 집 · 거실 · 방 · 화장실</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">조사 0 / 16</div><button id="mute" class="pill" aria-label="소리 켜기/끄기">🔊</button></div><div class="pill" id="peerCount">상대 0 / 16</div><div id="feed"></div><div class="pill" id="dangerPill">💓 상대가 내 내기 봉투 근처에 있어!</div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="showInvite" style="padding:6px 9px;font-size:12px">친구 초대 QR</button> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="socialButtons"><button id="wave">👋 인사</button><button id="tease" style="background:#ffb8cf">😜 놀리기</button><button id="what" style="background:#fff0a8">🤔 뭐해?</button></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 봉투 7개를 숨겨. ✉️ 내기 1개 + 꽝 6개(❄️ 🌑 🔄 각 2개)</small><div id="floorplan"><div id="mapFurniture"></div><div id="mapDots"></div></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="randomLoot" style="background:#bfe3ff">🎲 랜덤</button><button id="mapDone" disabled>수색 시작 (0/7)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>게임 시작 전 내기 내용을 직접 입력해.<br>도면에 봉투 7개(내기 1 + 꽝 6)를 숨긴 뒤 3D 집에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내기 항목 입력"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><div id="slotRow"><span>같은 기기에서 둘이 테스트:</span><button type="button" data-p="1">player1</button><button type="button" data-p="2">player2</button></div><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
+</style></head><body><canvas id="fx"></canvas><div id="reveal"><div class="stage"><div class="env"><div class="back"></div><div class="letter"><div class="icon"></div><div class="ltitle"></div><div class="ltext"></div><div class="ltime"></div></div><div class="front"></div><div class="flap"></div></div><button id="revealBtn">확인</button></div></div><div id="inspectHud"><div class="bar" id="inspectTitle">🔎 가구 안을 살펴봐</div><div id="inspectHint">화면을 드래그해 둘러보고 봉투를 터치!</div><button id="inspectOpen">🖐️ 열어보기</button><button id="inspectExit">↩ 돌아가기</button></div><div id="darkness"></div><div id="alarm"></div><div id="dangerGlow"></div><div id="countdown"></div><div id="frost"></div><div id="effect"></div><div id="ui"><div id="top"><div class="pill"><b>✉️ BET ROOM</b><div style="font-size:11px;opacity:.8">3D 집 · 거실 · 방 · 화장실</div></div><div class="pill" id="timer">⏱ 00:00</div><div class="pill" id="count">조사 0 / 16</div><button id="mute" class="pill" aria-label="소리 켜기/끄기">🔊</button></div><div class="pill" id="peerCount">상대 0 / 16</div><div id="feed"></div><div class="pill" id="dangerPill">💓 상대가 내 내기 봉투 근처에 있어!</div><div id="toast"></div><div id="roomInfo" class="pill" style="position:absolute;top:120px;right:14px;display:none;font-size:12px;pointer-events:auto"><span id="roomLabel"></span> <button id="showInvite" style="padding:6px 9px;font-size:12px">친구 초대 QR</button> <button id="copyRoom" style="padding:6px 9px;font-size:12px">링크 복사</button></div><div id="phase" class="pill" style="position:absolute;top:75px;left:14px;font-size:13px">준비 중</div><div id="tip" class="pill">이동: WASD / 조이스틱 · 시점: 드래그</div><div id="joy"><div id="nub"></div></div><div id="socialButtons"><button id="wave">👋 인사</button><button id="tease" style="background:#ffb8cf">😜 놀리기</button><button id="what" style="background:#fff0a8">🤔 뭐해?</button></div><div id="buttons" style="display:flex;gap:8px;align-items:center"><button id="ready" style="display:none;background:#b8ddba">숨기기 완료</button><button id="search" disabled>조사하기</button></div></div><div id="mapOverlay"><div id="mapPanel"><h2 style="margin:0">✉️ 봉투 숨기기</h2><small>도면의 점을 눌러 봉투 7개를 숨겨. ✉️ 내기 1개 + 꽝 6개(❄️ 🌑 🔄 각 2개)</small><div id="floorplan"><div id="mapFurniture"></div><div id="mapDots"></div></div><label id="mapBetRow">🎯 내가 이기면 상대가<input id="mapBet" maxlength="60" placeholder="예: 커피 사기 ☕"></label><div id="peerBet"></div><div id="mapStatus">내기 봉투를 숨길 위치를 선택해</div><div id="mapActions"><button id="undo" style="background:#acbac6">↶ 되돌리기</button><button id="randomLoot" style="background:#bfe3ff">🎲 랜덤</button><button id="mapDone" disabled>수색 시작 (0/7)</button></div></div></div><div id="overlay"><div id="panel"><h1>BET ROOM</h1><p>✉️ 숨겨진 봉투를 찾아봐!</p><small>내가 이기면 상대가 할 일을 적어. 상대도 자기 내기를 따로 적어.<br>도면에 봉투 7개(내기 1 + 꽝 6)를 숨긴 뒤 3D 집에서 찾아봐.<br>현재는 혼자 플레이하는 로컬 테스트야.</small><input id="bet" value="커피 사기 ☕" maxlength="60" placeholder="내가 이기면 상대가 할 일 (예: 커피 사기)"><div style="display:flex;gap:8px"><button id="start" style="flex:1">혼자 테스트</button><button id="createRoom" style="flex:1;background:#b8ddba">방 만들기</button></div><input id="roomCode" maxlength="6" placeholder="친구 방 코드 6자리" style="text-transform:uppercase;margin:12px 0 8px"><button id="joinRoom" style="width:100%">방 코드로 입장</button><small id="lobbyError" style="display:block;margin-top:9px;color:#ffd0c8"></small></div></div>
 <dialog id="inviteDialog" aria-labelledby="inviteTitle"><h2 id="inviteTitle">친구를 초대해!</h2><small>친구 휴대폰 카메라로 QR을 찍으면<br>이 방 코드가 입력된 입장 화면이 열려.</small><div id="inviteQr"></div><b id="inviteCode"></b><a id="inviteUrl" target="_blank" rel="noopener"></a><div><button id="copyInvite">링크 복사</button><button id="closeInvite" style="background:#acbac6">닫고 봉투 숨기기</button></div></dialog>
 <script src="./vendor/qrcode.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
@@ -21,13 +21,20 @@ import * as THREE from 'three';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
 import {getDatabase,ref,get,set,update,onValue,onDisconnect,serverTimestamp} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js';
-// Test profiles: ?p=2 runs this tab as "player2" with its own anonymous login (a separately named Firebase app keeps
-// its own saved login), so one browser can play both sides. player1 is the normal default login; invite links never carry p.
-const playerSlot=Math.min(4,Math.max(1,parseInt(new URLSearchParams(location.search).get('p'))||1));
-const fb=initializeApp({apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDomain:"bet-room-e2ae3.firebaseapp.com",databaseURL:"https://bet-room-e2ae3-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bet-room-e2ae3",appId:"1:152551218316:web:3f34e5cf9f01f2e4dfefa9"},playerSlot===1?'[DEFAULT]':'player'+playerSlot);
+const fbConfig={apiKey:"AIzaSyCxWU60OQVzzZQKMy4_tWU1nyfPCiSzh9U",authDomain:"bet-room-e2ae3.firebaseapp.com",databaseURL:"https://bet-room-e2ae3-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bet-room-e2ae3",appId:"1:152551218316:web:3f34e5cf9f01f2e4dfefa9"};
+const fb=initializeApp(fbConfig);
 import {getAuth,signInAnonymously,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
-const db=getDatabase(fb),auth=getAuth(fb);
-const authReady=new Promise((resolve,reject)=>{const off=onAuthStateChanged(auth,u=>{if(u){off();resolve(u)}},reject);signInAnonymously(auth).catch(reject)});
+// Each browser keeps a saved anonymous login. A second one ("p2", its own named Firebase app) is used only when
+// this browser created a room and joins it again while player 1 is still online, i.e. a second tab on the same
+// device, so one browser can play both sides without choosing anything.
+let db=getDatabase(fb);
+const logins={};
+function login(name){
+ if(!logins[name]){const app=name==='main'?fb:initializeApp(fbConfig,name),a=getAuth(app);
+  logins[name]={db:name==='main'?db:getDatabase(app),user:new Promise((res,rej)=>{const off=onAuthStateChanged(a,u=>{if(u){off();res(u)}},rej);signInAnonymously(a).catch(rej)})}}
+ return logins[name];
+}
+login('main');
 let roomCode='',seat='',peerTarget=null,peerVisible=false,lastSync=0,lastPush=0,lastReceivedPush='',pendingPush=null,lastPeerGesture='';
 const sessionId=(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)).replace(/[^a-zA-Z0-9]/g,'').slice(0,22);
 const peer=new THREE.Group(); // mesh added after player setup
@@ -437,6 +444,9 @@ function spatial(x,z,base=1){
 const markers=[];for(const [name,x,z] of spots){const ring=new THREE.Mesh(new THREE.RingGeometry(.36,.45,32),new THREE.MeshBasicMaterial({color:'#ffd46b',side:THREE.DoubleSide,transparent:true,opacity:.65}));ring.rotation.x=-Math.PI/2;ring.position.set(x,.015,z);scene.add(ring);markers.push(ring)}
 // Envelopes per round in hiding order: the bet first, then two of each dud.
 const LOOT_N=7,dudKind=n=>(n-1)%3+1; // hunt/loot index → 1 ice, 2 dark, 3 reverse
+// Each player writes their own bet: what the opponent must do if *I* win. The winner's bet is the one that counts.
+const peerBet=()=>peerState&&peerState.bet||'';
+function showPeerBet(){$('peerBet').textContent=!roomCode?'':peerBet()?'😈 상대가 이기면 내가: '+peerBet():'😈 상대 내기는 상대가 숨기기를 끝내면 보여'}
 let bet='커피 사기 ☕',active=false,phase='hide',freeze=0,darkTime=0,reverseTime=0,opened=new Set(),loot=[],hunt=[],myRound=0,peerState=null,searchStart=0,lastPeerEv='',peerAlert=0,yaw=0,joystick={x:0,y:0},keys={},drag=false,lastX=0,near=-1,noticeUntil=0;
 const $=id=>document.getElementById(id);
 const buzz=p=>{try{if(navigator.vibrate&&navigator.userActivation?.hasBeenActive)navigator.vibrate(p)}catch(e){}};
@@ -446,10 +456,7 @@ function bump(el){el.classList.remove('bump');void el.offsetWidth;el.classList.a
 function notice(s){const t=$('toast');t.textContent=s;t.classList.remove('show');void t.offsetWidth;t.classList.add('show');noticeUntil=performance.now()+2100}
 function setCount(){$('count').textContent='조사 '+opened.size+' / '+spots.length;bump($('count'))}
 const codeFromUrl=new URLSearchParams(location.search).get('room');if(codeFromUrl)$('roomCode').value=codeFromUrl.toUpperCase().slice(0,6);
-// Switching profile reloads the page (the login is chosen at startup), keeping a typed room code.
-for(const b of $('slotRow').querySelectorAll('button')){b.classList.toggle('on',Number(b.dataset.p)===playerSlot);b.onclick=()=>{const url=new URL(location.href),n=Number(b.dataset.p),code=$('roomCode').value.trim().toUpperCase();
- if(n>1)url.searchParams.set('p',n);else url.searchParams.delete('p');if(code)url.searchParams.set('room',code);location.href=url.href}}
-function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('overlay').style.display='none';active=false;phase='hide';loot=[];hunt=[];opened.clear();showMyLoot();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
+function beginLocal(){bet=$('bet').value.trim()||'커피 사기';$('mapBet').value=bet;showPeerBet();$('overlay').style.display='none';active=false;phase='hide';loot=[];hunt=[];opened.clear();showMyLoot();document.body.classList.add('hiding');$('mapOverlay').style.display='flex';renderMap()}
 // Race helpers: elapsed-time formatting, event broadcast to the opponent and the live feed.
 const fmtClock=s=>{s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
 const fmtKo=s=>{s=Math.round(s);return (s>=60?Math.floor(s/60)+'분 ':'')+s%60+'초'};
@@ -477,7 +484,7 @@ function countdown(){
  phase='count';active=false;opened.clear();freeze=darkTime=reverseTime=0;$('count').textContent='조사 0 / '+spots.length;$('peerCount').textContent='상대 0 / '+spots.length;$('peerCount').style.display=roomCode?'block':'none';$('timer').textContent='⏱ 00:00';$('phase').textContent='🚦 곧 시작!';
  const el=$('countdown');let n=3;
  const tick=()=>{el.textContent=n||'GO!';S.beep(!n);el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');buzz(n?30:[60,40,90]);
-  if(n--)setTimeout(tick,800);else{phase='search';active=true;searchStart=performance.now();$('timer').classList.add('live');$('phase').textContent=roomCode?'🔎 먼저 찾으면 승리!':'🔎 봉투를 찾아봐';showMyLoot();notice(roomCode?'수색 시작! 머리 위 ✉️ 표시는 내가 숨긴 봉투야':'수색 시작! 세 종류의 꽝을 조심해')}};
+  if(n--)setTimeout(tick,800);else{phase='search';active=true;searchStart=performance.now();$('timer').classList.add('live');$('phase').textContent=roomCode?'🔎 먼저 찾으면 승리!':'🔎 봉투를 찾아봐';showMyLoot();notice(roomCode?'수색 시작! 머리 위 ✉️ 표시는 내가 숨긴 봉투야':'수색 시작! 세 종류의 꽝을 조심해');if(roomCode){feed('😈 지면 내가: '+(peerBet()||'?'));feed('🎯 이기면 상대가: '+bet)}}};
  tick();
 }
 function endRound(){phase='over';active=false;$('timer').classList.remove('live');$('timer').textContent='⏱ '+fmtClock(elapsed())}
@@ -488,21 +495,23 @@ async function loseRound(time){
 async function enterRoom(code,create){
  $('lobbyError').textContent='안전하게 연결 중...';$('createRoom').disabled=true;$('joinRoom').disabled=true;
  try{
- const user=await authReady,uid=user.uid,root='rooms/'+code;
+ const root='rooms/'+code;let uid;db=login('main').db;
  if(create){
+   uid=(await login('main').user).uid;
    await set(ref(db,root),{seats:{a:uid},players:{a:{id:uid,x:-1.2,z:2.5,rot:0,updated:serverTimestamp()}}});
    seat='a';
  }else{
-   // Rejoining after a refresh: this browser's login may already own a seat here (the creator owns a),
-   // and claiming seat b again is refused by the DB rules. Reuse the seat we own; only claim b when it's free.
-   let seats,readable=true;try{seats=(await get(ref(db,root+'/seats'))).val()}catch(e){readable=false}
-   if(seats&&seats.a===uid)seat='a';
-   else if(seats&&seats.b===uid)seat='b';
-   else if(readable&&!seats)throw new Error('없는 방 코드야. 코드를 다시 확인해줘');
-   else if(seats&&seats.b)throw new Error('이미 두 명이 들어가 있는 방이야');
+   const main=await login('main').user;
+   let seats;try{seats=(await get(ref(db,root+'/seats'))).val()}catch(e){throw new Error('방 정보를 읽지 못했어')}
+   if(!seats||!seats.a)throw new Error('없는 방 코드야. 코드를 다시 확인해줘');
+   const p1Online=seats.a===main.uid&&(await get(ref(db,root+'/players/a')).catch(()=>null))?.exists();
+   if(seats.a===main.uid&&!p1Online){seat='a';uid=main.uid} // player 1 coming back after a refresh
    else{
-     try{await set(ref(db,root+'/seats/b'),uid);seat='b'}
-     catch(e){if(readable)throw e;seat='a'} // seats unreadable: assume we're the creator coming back
+     // Player 2. If this browser is also player 1's (still online in another tab), play with the second login.
+     const who=seats.a===main.uid?'p2':'main';db=login(who).db;uid=(await login(who).user).uid;
+     if(seats.b&&seats.b!==uid)throw new Error('이미 두 명이 들어가 있는 방이야');
+     if(seats.b!==uid)await set(ref(db,root+'/seats/b'),uid);
+     seat='b';
    }
    await set(ref(db,root+'/players/'+seat),{id:uid,x:seat==='a'?-1.2:1.2,z:2.5,rot:0,updated:serverTimestamp()});
  }
@@ -513,14 +522,16 @@ async function enterRoom(code,create){
  await onDisconnect(myRef).remove();
  player.position.set(seat==='a'?-1.2:1.2,0,2.5);
  onValue(ref(db,root+'/players/'+(seat==='a'?'b':'a')),snap=>{
- const p=snap.val();peerVisible=!!p;peer.visible=!!p;
+ const p=snap.val(),arrived=!!p&&!peerVisible;peerVisible=!!p;peer.visible=!!p;
+ // Player 2 just arrived: drop the invite QR and go straight on to hiding envelopes.
+ if(arrived){S.hi();if(seat==='a'){if($('inviteDialog').open)$('inviteDialog').close();notice('🙌 플레이어 2 입장! 봉투를 숨겨줘');feed('🙌 플레이어 2가 들어왔어')}else notice('🙌 플레이어 1과 연결! 봉투를 숨겨줘')}
  if(p&&p.gesture&&p.gesture.id!==lastPeerGesture){lastPeerGesture=p.gesture.id;if(Number.isFinite(p.gesture.at)&&Math.abs(Date.now()-p.gesture.at)<4000)showGesture(peer,p.gesture.type)}
- peerState=p?{loot:p.loot,round:p.round}:null;maybeStart();if(p&&p.ev&&p.ev.id!==lastPeerEv){lastPeerEv=p.ev.id;onPeerEv(p.ev)}
- if(p&&Number.isFinite(p.x)&&Number.isFinite(p.z)){peerTarget={x:p.x,z:p.z,rot:p.rot||0};if(p.push&&p.push.to===seat&&p.push.id!==lastReceivedPush){lastReceivedPush=p.push.id;const dx=Number(p.push.dx),dz=Number(p.push.dz);if(Number.isFinite(dx)&&Number.isFinite(dz)&&Math.hypot(dx,dz)<=0.7){[player.position.x,player.position.z]=moveWithFurniture(player.position.x,player.position.z,dx,dz)}}$('roomLabel').textContent='방 '+code+' · 친구 접속';}
- else{$('roomLabel').textContent='방 '+code+' · 친구 대기 중';}
+ peerState=p?{loot:p.loot,round:p.round,bet:typeof p.bet==='string'?p.bet.slice(0,60):''}:null;showPeerBet();maybeStart();if(p&&p.ev&&p.ev.id!==lastPeerEv){lastPeerEv=p.ev.id;onPeerEv(p.ev)}
+ if(p&&Number.isFinite(p.x)&&Number.isFinite(p.z)){peerTarget={x:p.x,z:p.z,rot:p.rot||0};if(p.push&&p.push.to===seat&&p.push.id!==lastReceivedPush){lastReceivedPush=p.push.id;const dx=Number(p.push.dx),dz=Number(p.push.dz);if(Number.isFinite(dx)&&Number.isFinite(dz)&&Math.hypot(dx,dz)<=0.7){[player.position.x,player.position.z]=moveWithFurniture(player.position.x,player.position.z,dx,dz)}}$('roomLabel').textContent='방 '+code+' · 나는 플레이어 '+(seat==='a'?1:2)+' · 상대 접속';}
+ else{$('roomLabel').textContent='방 '+code+' · 나는 플레이어 '+(seat==='a'?1:2)+' · '+(seat==='a'?'플레이어 2 기다리는 중':'상대 대기 중');}
  },e=>notice('상대 동기화 오류: '+e.message));
- $('roomInfo').style.display='block';$('lobbyError').textContent='';history.replaceState(null,'',location.pathname+'?room='+code+(playerSlot>1?'&p='+playerSlot:''));
- beginLocal();if(create)showInvite();notice('방 '+code+' 연결! 친구를 초대해줘');
+ $('roomInfo').style.display='block';$('lobbyError').textContent='';history.replaceState(null,'',location.pathname+'?room='+code);
+ beginLocal();if(create){showInvite();notice('방 '+code+' 만들었어! 플레이어 2를 초대해줘')}else if(!peerVisible)notice('방 '+code+' 입장! 나는 플레이어 '+(seat==='a'?1:2));
  }catch(e){$('lobbyError').textContent='연결 실패: '+(e.message||e)+' · 익명 인증과 DB 규칙을 확인해줘';roomCode='';seat='';}
  finally{$('createRoom').disabled=false;$('joinRoom').disabled=false}
 }
@@ -623,10 +634,10 @@ $('randomLoot').onclick=()=>{const free=spots.map((_,i)=>i);for(let k=free.lengt
  loot=free.slice(0,LOOT_N);buzz([10,30,10]);for(let k=0;k<LOOT_N;k++)setTimeout(()=>S.blip(k),k*45);renderMap();
  for(const [k,el] of [...$('mapDots').children].entries())if(loot.includes(k)){el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}};
 $('mapDone').onclick=()=>{
- if(loot.length!==LOOT_N)return;document.body.classList.remove('hiding');$('mapOverlay').style.display='none';
+ if(loot.length!==LOOT_N)return;bet=$('mapBet').value.trim()||bet;$('bet').value=$('mapBet').value=bet;document.body.classList.remove('hiding');$('mapOverlay').style.display='none';
  if(!roomCode){hunt=loot.slice();countdown();return} // solo test: search your own layout
  myRound=Math.max(myRound+1,peerState&&Number(peerState.round)||0);phase='wait';active=false;$('phase').textContent='⏳ 상대가 봉투 숨기는 중...';
- update(ref(db,'rooms/'+roomCode+'/players/'+seat),{loot:loot.slice(),round:myRound,ev:null}).then(maybeStart).catch(e=>notice('배치 전송 실패: '+e.message));
+ update(ref(db,'rooms/'+roomCode+'/players/'+seat),{loot:loot.slice(),round:myRound,bet,ev:null}).then(maybeStart).catch(e=>notice('배치 전송 실패: '+e.message));
 };
 // Juice: tiny box particles for dust, sparkles and ice shards.
 const particles=[],particleGeo=new THREE.BoxGeometry(1,1,1);
@@ -738,7 +749,7 @@ function leaveInspect(){
 let revealSeq=0;
 function showReveal(kind,time){
  let record='';if(kind==='bet'&&!roomCode&&time!=null){try{const best=Number(localStorage.getItem('betroom-best'))||Infinity;if(time<best){localStorage.setItem('betroom-best',time);record=' · 🏆 최고 기록!'}else record=' · 최고 '+fmtKo(best)}catch(e){}}
- const [icon,title,text,btn]={bet:['✉️','내기 봉투 발견!',roomCode?'내기: '+bet+' · 상대가 쏜다!':bet,'🎉 한 판 더'],lose:['😭','상대가 먼저 찾았다!','내기: '+bet+' · 내가 쏜다…','다음 판은 이긴다'],ice:['❄️','얼음 꽝!','5초 동안 꽁꽁 얼어붙어','으악!'],dark:['🌑','암흑 꽝!','5초 동안 눈앞이 캄캄해','으악!'],reverse:['🔄','방향 꽝!','5초 동안 조작이 반대로','으악!']}[kind];
+ const [icon,title,text,btn]={bet:['✉️','내기 봉투 발견!',roomCode?'이겼다! 상대가: '+bet:bet,'🎉 한 판 더'],lose:['😭','상대가 먼저 찾았다!','졌다… 내가: '+(peerBet()||bet),'다음 판은 이긴다'],ice:['❄️','얼음 꽝!','5초 동안 꽁꽁 얼어붙어','으악!'],dark:['🌑','암흑 꽝!','5초 동안 눈앞이 캄캄해','으악!'],reverse:['🔄','방향 꽝!','5초 동안 조작이 반대로','으악!']}[kind];
  const el=$('reveal');el.className='kind-'+kind;el.querySelector('.icon').textContent=icon;el.querySelector('.ltitle').textContent=title;el.querySelector('.ltext').textContent=text;el.querySelector('.ltime').textContent=time==null?'':'⏱ '+fmtKo(time)+(kind==='lose'?' 만에 상대가 찾음':' 만에 발견!'+record);$('revealBtn').textContent=btn;
  void el.offsetWidth;el.classList.add('show');S.drop();setTimeout(()=>el.classList.add('open'),480);setTimeout(()=>{el.classList.add('out');S[kind]();buzz(kind==='bet'?[40,60,40,60,120]:[60,40,60])},880);
  const token=++revealSeq; // a newer card (e.g. losing mid-dud) must not be closed by an older card's timer
